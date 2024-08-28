@@ -1,6 +1,6 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" >اسم الموقع</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+        <a class="navbar-brand" >ادارة بنوك الدم</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,7 +37,7 @@
                         <a class="nav-link">تسجيل الدخول</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ">إنشاء حساب</a>
+                        <a class="nav-link" >إنشاء حساب</a>
                     </li>
                 @endauth
             </ul>
