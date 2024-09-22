@@ -20,6 +20,8 @@ class CreatePatientsTable extends Migration
             $table->enum('BloodType', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
             $table->string('ContactNumber', 20);
             $table->timestamps();
+            $table->time('dob');
+
         });
     }
 

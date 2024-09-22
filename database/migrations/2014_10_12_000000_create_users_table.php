@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('Email', 100)->unique();
             $table->enum('UserType', ['Admin', 'Donor', 'Patient', 'BloodCenter']);
             $table->timestamps();
+
         });
     }
 
