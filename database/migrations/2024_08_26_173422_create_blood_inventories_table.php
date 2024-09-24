@@ -15,7 +15,7 @@ class CreateBloodInventoriesTable extends Migration
     {
        Schema::create('blood_inventory', function (Blueprint $table) {
             $table->id('InventoryID');
-            $table->foreignId('CenterID')->constrained('blood_centers', 'CenterID');
+            $table->foreignId('center_id')->constrained('blood_centers', 'id');
             $table->enum('BloodType', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
             $table->integer('Quantity');
             $table->date('ExpirationDate');

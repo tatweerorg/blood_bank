@@ -15,8 +15,8 @@ class CreateBloodTransfersTable extends Migration
     {
         Schema::create('blood_transfers', function (Blueprint $table) {
             $table->id('TransferID');
-            $table->foreignId('FromCenterID')->constrained('blood_centers', 'CenterID');
-            $table->foreignId('ToCenterID')->constrained('blood_centers', 'CenterID');
+            $table->foreignId('FromCenterID')->constrained('blood_centers', 'id');
+            $table->foreignId('ToCenterID')->constrained('blood_centers', 'id');
             $table->enum('BloodType', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
             $table->integer('Quantity');
             $table->dateTime('TransferDate');

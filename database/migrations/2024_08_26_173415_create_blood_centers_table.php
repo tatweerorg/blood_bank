@@ -13,13 +13,13 @@ class CreateBloodCentersTable extends Migration
      */
     public function up()
     {
-       Schema::create('blood_centers', function (Blueprint $table) {
-            $table->id('CenterID');
-            $table->foreignId('UserID')->unique()->constrained('users', 'UserID');
-            $table->string('CenterName', 100);
-            $table->text('Address');
-            $table->string('ContactNumber', 20);
-            $table->timestamps();
+        Schema::create('blood_centers', function (Blueprint $table) {
+            $table->id(); 
+            $table->foreignId('user_id')->constrained('users', 'id');
+            $table->string('CenterName', 100); 
+            $table->string('Address');
+            $table->string('ContactNumber', 20); 
+            $table->timestamps(); 
         });
     }
 

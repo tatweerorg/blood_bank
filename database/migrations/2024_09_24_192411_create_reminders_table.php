@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateRemindersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-          Schema::create('users', function (Blueprint $table) {
+        Schema::create('reminders', function (Blueprint $table) {
             $table->id();
-            $table->string('Username', 50)->unique();
-            $table->string('Password');
-            $table->string('Email', 100)->unique();
-            $table->enum('UserType', ['Admin', 'User', 'BloodCenter']);
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->enum('reminder_type',['donation','transfusion']);
+            $table->date('reminder_date');
+            $table->enum('status', ['sent', 'unsent'])->default('unsent'); 
             $table->timestamps();
-
         });
     }
 
@@ -31,6 +30,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('reminders');
     }
 }

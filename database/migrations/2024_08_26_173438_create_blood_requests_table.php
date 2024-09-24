@@ -15,7 +15,7 @@ class CreateBloodRequestsTable extends Migration
     {
           Schema::create('blood_requests', function (Blueprint $table) {
             $table->id('RequestID');
-            $table->foreignId('PatientID')->constrained('patients', 'PatientID');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); 
             $table->enum('BloodType', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
             $table->integer('Quantity');
             $table->dateTime('RequestDate');

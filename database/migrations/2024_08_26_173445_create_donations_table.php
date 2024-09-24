@@ -15,11 +15,11 @@ class CreateDonationsTable extends Migration
     {
        Schema::create('donations', function (Blueprint $table) {
             $table->id('DonationID');
-            $table->foreignId('DonorID')->constrained('donors', 'DonorID');
-            $table->foreignId('CenterID')->constrained('blood_centers', 'CenterID');
+            $table->foreignId('center_id')->constrained('blood_centers', 'id');
             $table->enum('BloodType', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
             $table->integer('Quantity');
             $table->dateTime('DonationDate');
+            $table->enum('Status', ['Scheduled', 'Completed', 'Cancelled']);
             $table->timestamps();
         });
     }
