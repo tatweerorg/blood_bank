@@ -122,7 +122,14 @@ table tbody tr:nth-child(even) {
                 <li><a href="#">طلبات التبرع</a></li>
                 <li><a href="#">التقارير</a></li>
                 <li><a href="#">الإعدادات</a></li>
-                <li><a href="#">تسجيل الخروج</a></li>
+                <li>
+                <li>
+    <form action="{{ route('logout') }}" method="POST" id="logout-form">
+        @csrf
+        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل الخروج</a>
+    </form>
+</li>
+
             </ul>
         </nav>
         <main class="main-content">

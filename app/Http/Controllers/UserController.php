@@ -4,35 +4,50 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function register(Request $request)
     {
-
-        $request->validate([
-            'email' => 'required|email|unique:users,Email|max:100',
-            'username' => 'required|string|unique:users,Username|max:50',
-            'password' => 'required|string|min:6',
-            'blood_type' => 'required|string|in:A+,A-,B+,B-,AB+,AB-,O+,O-',
-            'dob' => 'required|date',
+        // Validate the request data
+        $validatedData = $request->validate([
+            'Username' => 'required|string|max:50|unique:users,Username',
+            'Email' => 'required|string|email|max:100|unique:users,Email',
+            'Password' => 'required|string|min:8',
+            'UserType' => 'required|in:Admin,User,BloodCenter',
         ]);
 
-        $user = User::create([
-            'Username' => $request->username,
-            'Password' => Hash::make($request->password),
-            'Email' => $request->email,
-            'UserType' => 'Donor',  
+        // Create the user
+        User::create([
+            'Username' => $request->Username,
+            'Email' => $request->Email,
+            'Password' => Hash::make($request->Password),// Hashing handled by the model
+            'UserType' => 'User',
         ]);
 
-        $user->patient()->create([
-            'FullName' => $request->username,
-            'BloodType' => $request->blood_type,
-            'dob' => $request->dob,
-            'ContactNumber' => '', 
-        ]);
-
+        // Redirect after successful registration
         return redirect()->route('login')->with('success', 'Account created successfully!');
+    }
+   
+    public function registerBloodBank(Request $request){
+        $validatedData = $request->validate([
+            'Username' => 'required|string|max:50|unique:users,Username',
+            'Email' => 'required|string|email|max:100|unique:users,Email',
+            'Password' => 'required|string|min:8',
+            'UserType' => 'required|in:Admin,User,BloodCenter',
+        ]);
+        User::create(
+            [
+                'Username'=> $request->Username,
+                'Email' => $request->Email,
+                'Password' => Hash::make($request->Password),
+                'UserType' => 'BloodCenter',
+
+            ]
+        );
+        return redirect()->route('login')->with('success','Account created successfully!');
+
     }
 }

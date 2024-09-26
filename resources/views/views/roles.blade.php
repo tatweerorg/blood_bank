@@ -6,7 +6,7 @@
         <div class="container">
             <h2>اختر نوع حسابك</h2>
             <div class="role-options">
-                <a href="" class="role-card">
+                <a href="{{route('register.bloodbank')}}" class="role-card">
                     <h3>بنك الدم</h3>
                     <p>إنشاء حساب لبنك الدم</p>
                 </a>

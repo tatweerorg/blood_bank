@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,16 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+Route::middleware('auth')->group(function () {
+    // Protected routes here
+    Route::get('/dashboard', [AuthController::class, 'index'])->name('dashboard');
+});
+Route::middleware('auth')->group(function(){
+    Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
+});
 
 Route::get('/roles', function () {
     return view('views.roles');
@@ -30,8 +38,11 @@ Route::get('/register/user', function () {
 })->name('register.user');
 
 Route::post('/register/user', [UserController::class, 'register'])->name('register.user.post');
+Route::get('/register/bloodbank',function () {
+    return view('views.registerbloodbank');
+})->name('register.bloodbank');
+Route::post('/register/bloodbank',[UserController::class, 'registerBloodBank'])->name('register.bloodbank.post');
 
-Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::get('/about', function () {
     return view('views.about');
 })->name('views.about');
