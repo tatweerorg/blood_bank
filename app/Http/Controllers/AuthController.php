@@ -14,72 +14,28 @@ class AuthController extends Controller
         return view('views.login');  // تأكد من أن ملف blade الخاص بصفحة تسجيل الدخول موجود في resources/views/login.blade.php
     }
 
-    // معالجة بيانات تسجيل الدخول
-    // public function login(Request $request)
-    // {
-    //     $credentials = $request->validate(
-    //         [
-    //             'Email'=>'required|email',
-    //             'Password'=>'required|string|min:8'
-    //         ]
-    //         );
-    //         if(Auth::attempt($credentials)){
-    //             $request->session()->regenerate();
-    //             return redirect()->intended('/dashboard')->with('success','Logged in Successfully');
-    //         }
-    //         return back()->withErrors([
-    //             'email' => 'The provided credentials do not match our records.',
-    //         ]);
-/* 
-        // تحقق من صحة البيانات المدخلة
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        // الحصول على بيانات الاعتماد (البريد وكلمة المرور)
-        $credentials = $request->only('email', 'password');
-
-        // محاولة تسجيل الدخول
-        if (Auth::attempt($credentials, $request->remember)) {
-            // إذا تم تسجيل الدخول بنجاح، يعيد التوجيه إلى الصفحة الرئيسية أو لوحة التحكم
-            return redirect()->intended('dashboard');
-        }
-
-        // إذا فشل تسجيل الدخول، يعيد التوجيه إلى الصفحة السابقة مع رسالة خطأ
-        return back()->withErrors([
-            'email' => 'بيانات الدخول غير صحيحة.',
-        ])->withInput($request->only('email')); */
-    // }
     
  
         // Log the validated input data for debugging purposes
         public function login(Request $request)
         {
-            // Validate the request data
+            // Validate the input data
             $validatedData = $request->validate([
                 'Email' => 'required|email',
-                'Password' => 'required|min:8',
+                'Password' => 'required|string|min:8',
             ]);
         
-            // Log the validated input data for debugging purposes
-        
-            // Retrieve the user by email
-            $user = User::where('Email', $validatedData['Email'])->first();
-        
-            // Check if user exists and verify password
-            if ($user && Hash::check($request->Password, $user->Password)) {
-                // Regenerate session to prevent fixation attacks
-                $request->session()->regenerate();
-        
-                // Redirect to the intended page or home
-                return redirect()->intended('/dashboard')->with('success', 'Logged in successfully!');
+            // Attempt to authenticate the user
+            if (Auth::attempt(['Email' => $request->Email, 'Password' =>  Hash::make($request->Password)]))
+             {
+                // If authentication was successful, redirect to the dashboard or another protected route
+                return redirect()->intended('dashboard')->with('success', 'Login successful!');
             }
         
-            // If login fails, redirect back with an error
-            return back()->with('error', 'Invalid email or password.')->withInput();
+            // If authentication fails, redirect back with an error message
+            return back()->with('error', 'Invalid email or password.');
         }
-
+        
     public function logout(Request $request){
         Auth::logout();
         $request->session()->invalidate();

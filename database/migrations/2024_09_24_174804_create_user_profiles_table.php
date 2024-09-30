@@ -17,8 +17,8 @@ class CreateUserProfilesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); 
             $table->string('profile_image')->nullable();
-            $table->enum('BloodType', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
-            $table->date('DateOfBirth');
+            $table->enum('BloodType', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'])->nullable();
+            $table->date('DateOfBirth')->nullable();
             $table->string('ContactNumber', 20);
             $table->text('Address')->nullable();
             $table->date('last_donation_date')->nullable();

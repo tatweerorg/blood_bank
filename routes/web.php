@@ -21,6 +21,7 @@ Route::get('/', function () {
 });
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+
 Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 Route::middleware('auth')->group(function () {
     // Protected routes here
@@ -46,3 +47,16 @@ Route::post('/register/bloodbank',[UserController::class, 'registerBloodBank'])-
 Route::get('/about', function () {
     return view('views.about');
 })->name('views.about');
+Route::get('/profile/create/step1/{user_id}',[UserController::class,'create1'])->name('profile.view.step1');
+Route::post('/profile/store/step1/{user_id}',[UserController::class,'store1'])->name('profile.post.step1');
+Route::get('/profile/create/step2/{user_id}',[UserController::class,'create2'])->name('profile.view.step2');
+Route::post('/profile/store/step2/{user_id}', [UserController::class, 'store2'])->name('profile.post.step2');
+Route::get('/profile/create/step3/{user_id}',[UserController::class,'create3'])->name('profile.view.step3');
+Route::post('/profile/store/step3/{user_id}',[UserController::class,'store3'])->name('profile.post.step3');
+Route::get('/profile/create/step4/{user_id}',[UserController::class,'create4'])->name('profile.view.step4');
+Route::post('/profile/store/step4/{user_id}',[UserController::class,'store4'])->name('profile.post.step4');
+Route::get('/profile/create/step5/{user_id}',[UserController::class,'create5'])->name('profile.view.step5');
+Route::post('/profile/store/step5/{user_id}',[UserController::class,'store5'])->name('profile.post.step5');
+Route::get('/profile/create/step6/{user_id}',[UserController::class,'create6'])->name('profile.view.step6');
+Route::post('/profile/store/step6/{user_id}',[UserController::class,'store6'])->name('profile.post.step6');
+
