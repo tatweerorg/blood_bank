@@ -33,20 +33,20 @@ Route::middleware('auth')->group(function () {
 // });
 
 Route::get('/roles', function () {
-    return view('views.roles');
+    return view('views.auth.register.roles');
 })->name('roles');
 Route::get('/register/user', function () {
-    return view('views.registeruser');
+    return view('views.auth.register.registeruser');
 })->name('register.user');
 
 Route::post('/register/user', [UserController::class, 'register'])->name('register.user.post');
 Route::get('/register/bloodbank',function () {
-    return view('views.registerbloodbank');
+    return view('views.auth.register.registerbloodbank');
 })->name('register.bloodbank');
 Route::post('/register/bloodbank',[UserController::class, 'registerBloodBank'])->name('register.bloodbank.post');
 
 Route::get('/about', function () {
-    return view('views.about');
+    return view('views.about&contact.about');
 })->name('views.about');
 Route::get('/profile/create/step1/{user_id}',[UserController::class,'create1'])->name('profile.view.step1');
 Route::post('/profile/store/step1/{user_id}',[UserController::class,'store1'])->name('profile.post.step1');

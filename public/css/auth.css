@@ -1,0 +1,168 @@
+
+.login-section {
+
+    text-align: center;
+    margin-top:10%;
+}
+ .login-form {
+        
+     background-color: #fff;
+     padding: 20px;
+     border-radius: 10px;
+     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+     width: 100%;
+     max-width: 400px;
+     margin: auto;
+ }
+
+ .login-form h2 {
+     margin-bottom: 20px;
+ }
+.create_account_tag {
+    display: inline-block;
+    /* Allows padding and margin to be applied */
+    /* Background color for the button */
+    color: #d32f2f;
+    /* Text color */
+    padding: 10px 20px;
+    /* Padding for top/bottom and left/right */
+    text-decoration: none;
+    /* Remove underline */
+    border-radius: 5px;
+    /* Rounded corners */
+    font-size: 1.1em;
+    /* Font size */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    /* Smooth transitions */
+}
+
+/* Hover effect */
+.create_account_tag:hover {
+    /* Darker shade on hover */
+    transform: scale(1.05);
+    /* Slightly enlarge the button */
+}
+
+/* Responsive styling */
+@media (max-width: 600px) {
+    .create_account_tag {
+        font-size: 1em;
+        /* Adjust font size for smaller screens */
+        padding: 8px 15px;
+        /* Adjust padding */
+    }
+}
+ .form-group {
+     margin-bottom: 15px;
+     text-align: left;
+ }
+
+ .form-group label {
+     display: block;
+     font-size: 1em;
+     margin-bottom: 5px;
+     color: #333;
+ }
+
+ .form-group input {
+     width: 100%;
+     padding: 10px;
+     border-radius: 5px;
+     border: 1px solid #ccc;
+ }
+
+ .btn-primary {
+    margin-top: 10px;
+     background-color: #d32f2f;
+     color: #fff;
+     padding: 10px 30px;
+     text-decoration: none;
+     border-radius: 5px;
+    border: 1px solid #f6f6f6;
+     font-size: 1.2em;
+     cursor: pointer;
+     display: block;
+     width: 100%;
+     text-align: center;
+ }
+
+ .btn-primary:hover {
+     background-color: #b71c1c;
+ }
+
+ .role-selection {
+        margin-top: 10%;
+     padding: 50px 0;
+     text-align: center;
+ }
+
+ .role-selection h2 {
+     margin-bottom: 30px;
+     font-size: 2.5em;
+ }
+
+ .role-options {
+     display: flex;
+     justify-content: space-around;
+     flex-wrap: wrap;
+ }
+
+ .role-card {
+     background-color: #fff;
+     padding: 20px;
+     border-radius: 10px;
+     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+     width: 100%;
+     max-width: 300px;
+     margin: 10px;
+     text-decoration: none;
+     color: #333;
+     transition: transform 0.3s;
+        border: 1px solid #b71c1c;
+ }
+
+ .role-card h3 {
+     font-size: 1.8em;
+     margin-bottom: 10px;
+ }
+
+ .role-card p {
+     font-size: 1em;
+     color: #777;
+ }
+
+ .role-card:hover {
+     transform: scale(1.05);
+ }
+
+ .role-card:hover h3 {
+     color: #d32f2f;
+ }
+
+ .form-group input,
+ .form-group select {
+     width: 100%;
+     padding: 10px;
+     border-radius: 5px;
+     border: 1px solid #ccc;
+ }
+
+ .register-section {
+     padding: 50px 0;
+        margin-top: 5%;
+     text-align: center;
+ }
+
+ .register-form {
+     background-color: #fff;
+     padding: 20px;
+     border-radius: 10px;
+     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+     width: 100%;
+     max-width: 400px;
+     margin: auto;
+ }
+
+ .register-form h2 {
+     margin-bottom: 20px;
+ }

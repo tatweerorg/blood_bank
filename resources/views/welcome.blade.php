@@ -1,6 +1,8 @@
 
     @extends('layouts.main')
-
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/hero.css') }}">
+@endsection
 
 @section('content')
    <section class="hero">

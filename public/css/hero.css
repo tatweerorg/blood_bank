@@ -1,0 +1,98 @@
+/* Hero Section */
+.hero {
+    background-image: url('../images/background.png');
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    text-align: center;
+    padding: 100px;
+    background-color: rgba(0, 0, 0, 0.5);
+        /* لون أسود نصف شفاف */
+        background-blend-mode: darken;
+        /* نمط الدمج يجعل الصورة أغمق */
+    
+}
+
+.hero h2 {
+        color: #ffffff !important;
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.hero p {
+            color: #ffffff !important;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+.btn-primary {
+    background-color: #d32f2f;
+    /* لون خلفية الزر */
+    color: #fff;
+    /* لون النص */
+    padding: 10px 30px;
+    /* مساحة داخلية */
+    text-decoration: none;
+    /* إزالة التسطير */
+    border-radius: 5px;
+    /* زوايا مدورة */
+    font-size: 1.2em;
+    /* حجم الخط */
+    border: 1px solid #f6f6f6;
+    /* إطار أبيض */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    /* تأثير الانتقال */
+}
+
+/* تأثير عند التمرير */
+.btn-primary:hover {
+    background-color: #b71c1c;
+    /* لون الخلفية عند التمرير */
+    transform: scale(1.05);
+    /* تكبير الزر عند التمرير */
+}
+/* Features Section */
+.features {
+    padding: 50px 0;
+    background-color: #fff;
+    text-align: center;
+   
+}
+.features h3 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+.feature-list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.feature {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    width: 30%;
+    border: 2px solid #f36969;
+        /* إطار بلون أحمر */
+        border-radius: 10px;
+        /* زوايا مدورة للإطار */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        /* ظل مع الشفافية */
+            transition: transform 0.3s ease;
+                /* تأثير الانتقال */
+}
+/* تأثير التكبير عند التمرير */
+.feature:hover {
+    transform: scale(1.05);
+    /* يكبر العنصر بنسبة 5% */
+}
+
+.feature h4 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    font-size: 1em;
+    color: #3f3f3f;
+}

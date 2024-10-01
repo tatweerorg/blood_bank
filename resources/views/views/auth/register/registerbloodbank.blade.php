@@ -1,4 +1,7 @@
 @extends('layouts.main')
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+@endsection
 
 @section('content')
     <section class="register-section">
@@ -9,7 +12,7 @@
                 <p>{{ session('success') }}</p>
             @endif
 
-            <form action="{{ route('register.user.post') }}" method="POST" class="register-form">
+            <form action="{{ route('register.bloodbank.post') }}" method="POST" class="register-form">
                 @csrf
 
                 <!-- Username -->
@@ -40,7 +43,7 @@
                 </div>
 
                 <!-- UserType (hidden field or dropdown if needed) -->
-                <input type="hidden" name="UserType" value="User"> <!-- You can change this or use a dropdown for role selection -->
+                <input type="hidden" name="UserType" value="BloodCenter"> <!-- You can change this or use a dropdown for role selection -->
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn-primary">تسجيل</button>

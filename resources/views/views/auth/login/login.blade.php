@@ -1,4 +1,7 @@
 @extends('layouts.main')
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+@endsection
 
 @section('content')
     <section class="login-section">
@@ -34,7 +37,7 @@
                     @enderror
                 </div>
 
-                <a href="{{ route('roles') }}">انشاء حساب ؟</a>
+                <a href="{{ route('roles') }}" class="create_account_tag">انشاء حساب ؟</a>
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn-primary">تسجيل الدخول</button>
