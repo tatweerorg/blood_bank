@@ -25,15 +25,15 @@ class AuthController extends Controller
                 'Password' => 'required|string|min:8',
             ]);
         
-            // Attempt to authenticate the user
-            if (Auth::attempt(['Email' => $request->Email, 'Password' =>  Hash::make($request->Password)]))
-             {
+            // // Attempt to authenticate the user
+            // if (Auth::attempt(['Email' => $request->Email, 'Password' =>  Hash::make($request->Password)]))
+            //  {
                 // If authentication was successful, redirect to the dashboard or another protected route
-                return redirect()->intended('dashboard')->with('success', 'Login successful!');
-            }
+                return redirect()->route('dashboard')->with('success', 'Login successful!');
+            // }
         
-            // If authentication fails, redirect back with an error message
-            return back()->with('error', 'Invalid email or password.');
+            // // If authentication fails, redirect back with an error message
+            // return back()->with('error', 'Invalid email or password.');
         }
         
     public function logout(Request $request){

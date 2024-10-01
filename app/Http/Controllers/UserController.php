@@ -15,9 +15,14 @@ class UserController extends Controller
         // Validate the request data
         $validatedData = $request->validate([
             'Username' => 'required|string|max:50|unique:users,Username',
-            'Email' => 'required|string|email|max:100|unique:users,Email',
+            'Email' => 'required|string|email|unique:users,Email',
             'Password' => 'required|string|min:8|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/',
             'UserType' => 'required|in:Admin,User,BloodCenter',
+        ],[
+            'Email.email' => 'Please enter a valid email address.',
+            'Password.min' => 'The password must be at least 8 characters long.',
+            'Password.regex' => 'The password must contain at least one lowercase letter, one uppercase letter, and one number.',
+
         ]);
 
         // Create the user
@@ -29,15 +34,20 @@ class UserController extends Controller
         ]);
 
         // Redirect after successful registration
-        return redirect()->route('profile.view.step1',['user_id'=>$user->id])->with('success', 'Account created successfully!');
+        return redirect()->route('profile.view.step1',['user_id'=>$user->id]);
     }
    
     public function registerBloodBank(Request $request){
         $validatedData = $request->validate([
             'Username' => 'required|string|max:50|unique:users,Username',
-            'Email' => 'required|string|email|max:100|unique:users,Email',
+            'Email' => 'required|string|email|unique:users,Email',
             'Password' => 'required|string|min:8|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/',
             'UserType' => 'required|in:Admin,User,BloodCenter',
+        ],[
+            'Email.email' => 'Please enter a valid email address.',
+            'Password.min' => 'The password must be at least 8 characters long.',
+            'Password.regex' => 'The password must contain at least one lowercase letter, one uppercase letter, and one number.',
+
         ]);
         $user=User::create(
             [
@@ -48,7 +58,7 @@ class UserController extends Controller
 
             ]
         );
-        return redirect()->route('profile.view.step1',['user_id'=>$user->id])->with('success', 'Account created successfully!');
+        return redirect()->route('profile.view.step1',['user_id'=>$user->id]);
 
     }
     public function create1($user_id){
@@ -63,7 +73,7 @@ class UserController extends Controller
         $path= $request -> file('profile_image')->store('profile_images','public');
         $request->session()->put('profile_image',$path);
         $user_id = $request->route('user_id');
-        return redirect()->route('profile.view.step2',['user_id'=>$user_id])->with('success', 'Account created successfully!');
+        return redirect()->route('profile.view.step2',['user_id'=>$user_id]);
 
     }
     public function create2($user_id) {
@@ -106,6 +116,9 @@ class UserController extends Controller
             $request->validate([
                 'ContactNumber' => 'required|regex:/^05\d{8}$/',
                 'Address' => 'required',
+            ],[
+                'ContactNumber.regex' => 'The contact number must start with "05" and be exactly 10 digits long.',
+
             ]);
     
             // Store ContactNumber and Address in the session
@@ -128,7 +141,7 @@ class UserController extends Controller
             $request->session()->forget(['profile_image', 'BloodType', 'DateOfBirth', 'ContactNumber', 'Address']);
         
             // Go to the final step (storing in the database)
-            return redirect()->route('login');
+            return redirect()->route('dashboard')->with('success', 'Account created successfully!');
         }
     }
     
@@ -153,7 +166,11 @@ class UserController extends Controller
             $validatedData=$request->validate(
                 [
                     'DateOfBirth' => 'required|date|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
-                    ]
+                ],[
+                    'DateOfBirth.date' => 'Please enter a valid date of birth.',
+                    'DateOfBirth.before_or_equal' => 'You must be at least 18 years old.',
+
+                ]
                 );
                 $request->session()->put('DateOfBirth',$request->DateOfBirth);
         }
@@ -199,7 +216,7 @@ class UserController extends Controller
                 // Clear the session data after saving
                 $request->session()->forget(['profile_image', 'BloodType', 'DateOfBirth', 'ContactNumber', 'Address']);
             
-            return redirect()->route('login');
+            return redirect()->route('dashboard')->with('success', 'Account created successfully!');
 
 
     }

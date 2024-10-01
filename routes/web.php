@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +28,9 @@ Route::middleware('auth')->group(function () {
     // Protected routes here
     Route::get('/dashboard', [AuthController::class, 'index'])->name('dashboard');
 });
-Route::middleware('auth')->group(function(){
+// Route::middleware('auth')->group(function(){
     Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
-});
+// });
 
 Route::get('/roles', function () {
     return view('views.roles');
