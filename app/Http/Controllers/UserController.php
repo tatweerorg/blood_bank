@@ -62,7 +62,7 @@ class UserController extends Controller
 
     }
     public function create1($user_id){
-        return view('views.profile.step1',['user_id'=>$user_id]);
+        return view('pages.profile.step1',['user_id'=>$user_id]);
     }
     public function store1(Request $request){
         $validatedData= $request->validate(
@@ -86,7 +86,7 @@ class UserController extends Controller
         }
     
         // Pass the user to the view
-        return view('views.profile.step2', [
+        return view('pages.profile.step2', [
             'user_id' => $user_id,
             'user' => $user // Pass the user object to the view
         ]);
@@ -184,7 +184,7 @@ class UserController extends Controller
         if(!$user){
             return redirect()->back()->with('error', 'User not found.');
         }
-        return view('views.profile.step4',[
+        return view('pages.profile.step4',[
             'user_id'=>$user_id,
             'user'=>$user,
         ]
