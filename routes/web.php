@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
 // });
 
 Route::get('/roles', function () {
-    return view('auth.register.roles');
+    return view('auth.register.roles'); 
 })->name('roles');
 Route::get('/register/user', function () {
     return view('auth.register.registeruser');
