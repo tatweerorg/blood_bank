@@ -33,15 +33,15 @@ Route::middleware('auth')->group(function () {
 // });
 
 Route::get('/roles', function () {
-    return view('pages.auth.register.roles');
+    return view('auth.register.roles');
 })->name('roles');
 Route::get('/register/user', function () {
-    return view('pages.auth.register.registeruser');
+    return view('auth.register.registeruser');
 })->name('register.user');
 
 Route::post('/register/user', [UserController::class, 'register'])->name('register.user.post');
 Route::get('/register/bloodbank',function () {
-    return view('pages.auth.register.registerbloodbank');
+    return view('auth.register.registerbloodbank');
 })->name('register.bloodbank');
 Route::post('/register/bloodbank',[UserController::class, 'registerBloodBank'])->name('register.bloodbank.post');
 
