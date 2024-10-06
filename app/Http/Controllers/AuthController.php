@@ -12,12 +12,9 @@ class AuthController extends Controller
 {
     public function showLoginForm()
     {
-        return view('pages.auth.login.login');  // تأكد من أن ملف blade الخاص بصفحة تسجيل الدخول موجود في resources/views/login.blade.php
+        return view('auth.login.login');  // تأكد من أن ملف blade الخاص بصفحة تسجيل الدخول موجود في resources/views/login.blade.php
     }
 
-    
- 
-        // Log the validated input data for debugging purposes
         public function login(Request $request)
         {
             // Validate the input data
@@ -49,8 +46,8 @@ class AuthController extends Controller
     }
 
     // Send the reset link to the user
-    public function sendResetEmail(Request $request) 
-    {
+public function sendResetEmail(Request $request) 
+    {        
        
         // Validate email
         $request->validate([
@@ -77,8 +74,6 @@ class AuthController extends Controller
             : back()->withErrors(['email' => 'Failed to send reset email.']);
     }
     
-    
-
     // Show the form to reset password
     public function showResetPasswordForm($token)
     {

@@ -15,9 +15,6 @@ body {
     /* Stack children vertically */
 }
 
-   .container {
-     
-   }
         .content {
             flex: 1 !important;
             /* يجعل القسم الرئيسي يأخذ المساحة المتاحة */
