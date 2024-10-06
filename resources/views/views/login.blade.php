@@ -29,12 +29,14 @@
                 <div class="form-group">
                     <label for="password">كلمة المرور</label>
                     <input type="password" id="password" name="Password" >
+                    <a href="{{ route('password.request') }}"> هل نسيت كلمة السر؟</a>
+
                     @error('Password')
                         <div class="error" style="color:red;">{{ $message }}</div>
                     @enderror
                 </div>
 
-                <a href="{{ route('roles') }}">انشاء حساب ؟</a>
+                <a href="{{ route('roles') }}">انشاء حساب </a>
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn-primary">تسجيل الدخول</button>
