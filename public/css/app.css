@@ -3,7 +3,7 @@ body {
     height: 100%;
     /* Set height to 100% to allow Flexbox to work properly */
     margin: 0;
- 
+
     /* Remove default margins */
     font-family: 'Cairo', sans-serif;
 }
@@ -15,145 +15,143 @@ body {
     /* Stack children vertically */
 }
 
-   .container {
-     
-   }
-        .content {
-            flex: 1 !important;
-            /* يجعل القسم الرئيسي يأخذ المساحة المتاحة */
-        }
 
-   /* Header */
-   .header {
-       background-color: #d32f2f;
-       padding: 20px 0;
-       color: #fff;
-       text-align: center;
-   }
+.content {
+    flex: 1 !important;
+    /* يجعل القسم الرئيسي يأخذ المساحة المتاحة */
+}
 
-   .navbar {
-       margin-top: 10px;
-   }
+/* Header */
+.header {
+    background-color: #d32f2f;
+    padding: 20px 0;
+    color: #fff;
+    text-align: center;
+}
 
-   .navbar a {
-       color: #fff;
-       text-decoration: none;
-       margin: 0 15px;
-       font-weight: bold;
-   }
+.navbar {
+    margin-top: 10px;
+}
 
-   .navbar a:hover {
-       text-decoration: underline;
-   }
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
 
-   /* Footer */
-        .footer {
-            background-color: #d32f2f;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            margin-bottom: 0 !important;
+.navbar a:hover {
+    text-decoration: underline;
+}
 
-        }
-    
-        .footer p {
-                        color: #fff !important;
-            margin: 0;
-        }
+/* Footer */
+.footer {
+    background-color: #d32f2f;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    margin-bottom: 0 !important;
 
-  
-   /* القسم الخاص بصفحة حولنا */
-   .about-section {
-       padding: 50px 0;
-       background-color: #f9f9f9;
-       direction: rtl;
-       /* دعم اتجاه النص من اليمين إلى اليسار */
-       text-align: right;
-       /* محاذاة النص إلى اليمين */
-   }
+}
 
-   .container {
-       width: 85%;
-       margin: 0 auto;
-   }
+.footer p {
+    color: #fff !important;
+    margin: 0;
+}
 
-   h1,
-   h2,
-   h3 {
-       color: #ff3b3f;
-       /* اللون الأحمر الدموي */
-   }
 
-   p {
-       font-size: 16px;
-       line-height: 1.8;
-       color: #555;
-   }
+/* القسم الخاص بصفحة حولنا */
+.about-section {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+    direction: rtl;
+    /* دعم اتجاه النص من اليمين إلى اليسار */
+    text-align: right;
+    /* محاذاة النص إلى اليمين */
+}
 
-   .statistics {
-       display: flex;
-       justify-content: space-between;
-       margin: 30px 0;
-       flex-wrap: wrap;
-   }
+.container {
+    width: 85%;
+    margin: 0 auto;
+}
 
-   .stat-item {
-       flex: 1;
-       min-width: 150px;
-       margin: 10px;
-       text-align: center;
-   }
+h1,
+h2,
+h3 {
+    color: #ff3b3f;
+    /* اللون الأحمر الدموي */
+}
 
-   .stat-item h3 {
-       font-size: 36px;
-       color: #ff3b3f;
-   }
+p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+}
 
-   .stat-item p {
-       font-size: 18px;
-       color: #333;
-   }
+.statistics {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
 
-   .headertitle {
-       color: #fff;
-       /* اللون الأحمر الدموي */
+.stat-item {
+    flex: 1;
+    min-width: 150px;
+    margin: 10px;
+    text-align: center;
+}
 
-   }
+.stat-item h3 {
+    font-size: 36px;
+    color: #ff3b3f;
+}
 
-   .team-members {
-       display: flex;
-       justify-content: space-between;
-       margin: 20px 0;
-       flex-wrap: wrap;
-   }
+.stat-item p {
+    font-size: 18px;
+    color: #333;
+}
 
-   .team-member {
-       flex: 1;
-       min-width: 150px;
-       margin: 10px;
-       text-align: center;
-   }
+.headertitle {
+    color: #fff;
+    /* اللون الأحمر الدموي */
 
-   .team-member h3 {
-       font-size: 22px;
-       color: #333;
-   }
+}
 
-   .contact a {
-       color: #ff3b3f;
-       text-decoration: none;
-   }
+.team-members {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
 
-   @media (max-width: 768px) {
+.team-member {
+    flex: 1;
+    min-width: 150px;
+    margin: 10px;
+    text-align: center;
+}
 
-       .statistics,
-       .team-members {
-           flex-direction: column;
-           align-items: center;
-       }
+.team-member h3 {
+    font-size: 22px;
+    color: #333;
+}
 
-       .stat-item,
-       .team-member {
-           min-width: 100%;
-       }
-   }
+.contact a {
+    color: #ff3b3f;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+
+    .statistics,
+    .team-members {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stat-item,
+    .team-member {
+        min-width: 100%;
+    }
+}
