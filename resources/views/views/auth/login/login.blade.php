@@ -39,7 +39,7 @@
                     @enderror
                 </div>
 
-                <a href="{{ route('password.request') }}" class="create_account_tag">انشاء حساب ؟</a>
+                <a href="{{ route('roles') }}" class="create_account_tag">انشاء حساب ؟</a>
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn-primary">تسجيل الدخول</button>
