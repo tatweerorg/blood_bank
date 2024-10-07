@@ -4,20 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="{{ asset('css/admindashbord.css') }}">
+    <title>Blood Bank Dashboard</title>
+    <link rel="stylesheet" href="{{ asset('css/bloodbankdashbord.css') }}">
 
 </head>
 
 <body>
     <div class="container">
         <header class="header">
-            <h1>لوحة التحكم الخاصة بالادمن</h1> <!-- Arabic for Blood Bank Admin Dashboard -->
+            <h1>لوحة التحكم الخاصة ببنك الدم</h1> <!-- Arabic for Blood Bank Admin Dashboard -->
         </header>
         <nav class="sidebar">
             <ul>
                 <li><a href="#">لوحة التحكم</a></li>
-                <li><a href="#">بنوك الدم </a></li>
 
                 <li><a href="#">المتبرعين</a></li>
                 <li><a href="#">مخزون الدم</a></li>

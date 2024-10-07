@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class BloodCenterController extends Controller
 {
+
+    public function dashboard()
+    {
+        return view("pages.bloodBank.dashbord");
+    }
     /**
      * Display a listing of the resource.
      *

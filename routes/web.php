@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BloodCenterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
@@ -31,6 +32,8 @@ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 // Route::middleware('auth')->group(function(){
     Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
 // });
+Route::get('/dashboard/bloodbank', [BloodCenterController::class, 'dashboard'])->name('dashboard.bloodBank');
+
 
 Route::get('/roles', function () {
     return view('auth.register.roles'); 
