@@ -7,26 +7,27 @@
             <div class="card">
                 <div class="card-header">{{ __('Reset Password') }}</div>
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">{{ session('status') }}</div>
+                    <!-- Display the success message -->
+                    @if (session('message'))
+                        <div class="alert alert-success">{{ session('message') }}</div>
                     @endif
+
                     <form method="POST" action="{{ route('password.email') }}">
-                    @csrf
-    <div class="form-group">
-        <label for="email">{{ __('Email Address') }}</label>
-        <input id="email" type="email" name="email" >
+                        @csrf
+                        <div class="form-group">
+                            <label for="email">{{ __('Email Address') }}</label>
+                            <input id="email" type="email" name="email" class="form-control" required>
 
-        @error('email')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div>
-    <button type="submit" class="btn btn-primary">
-        {{ __('Send Password Reset Link') }}
-    </button>
-</form>
-
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            {{ __('Send Password Reset Link') }}
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
