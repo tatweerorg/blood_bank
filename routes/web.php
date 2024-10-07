@@ -33,8 +33,13 @@ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
     Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
 // });
 Route::get('/dashboard/bloodbank', [BloodCenterController::class, 'dashboard'])->name('dashboard.bloodBank');
-
-
+ 
+Route::get('/dashboard/bloodbanks',[DashboardController::class,'bloodbanks'])->name('dashboard.bloodbanks');
+Route::get('/dashboard/donations',[DashboardController::class,'donations'])->name('dashboard.donations');
+Route::get('/dashboard/inventory',[DashboardController::class,'inventory'])->name('dashboard.inventory');
+Route::get('/dashboard/requests',[DashboardController::class,'requests'])->name('dashboard.requests');
+Route::get('/dashboard/reports',[DashboardController::class,'reports'])->name('dashboard.reports');
+Route::get('/dashboard/settings',[DashboardController::class,'settings'])->name('dashboard.settings');
 Route::get('/roles', function () {
     return view('auth.register.roles'); 
 })->name('roles');

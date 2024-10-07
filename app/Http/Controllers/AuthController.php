@@ -54,16 +54,15 @@ class AuthController extends Controller
         return view('auth.passwords.emailPage');
     }
     public function sendResetEmail(Request $request){
-        $request->validate(['email' => 'required|email|exists:users,email']);
-        $token = Str::random(60);
+        $request->validate(['email' => 'required|email|exists:users,Email']);
+        $token=Str::random(60);
         DB::table('password_resets')->updateOrInsert(
             ['email' => $request->email],
-            ['token' => Hash::make($token), 'created_at' => now()]
+            ['token' => Hash::make($token), 'create_at' => now()]
         );
-        $resetLink = url('/reset-password/' . $token . '?email=' . urlencode($request->email));
-    Mail::to($request->email)->send(new ResetPasswordMail($resetLink));
-
-    return back()->with('message', 'Password reset link sent!');
+        $resetLink = url('/reset-password/' . $token . '?email='. urlencode($request->email));
+        Mail::to($request->email)->send(new ResetPasswordMail($resetLink));
+        return back()->with('message','Password reset link sent!');
         }
         public function showResetPasswordForm(Request $request, $token)
         {
@@ -72,7 +71,7 @@ class AuthController extends Controller
         public function resetPassword(Request $request)
         {
             $request->validate([
-                'email' => 'required|email|exists:users,email',
+                'email' => 'required|email|exists:users,Email',
                 'token' => 'required',
                 'password' => 'required|confirmed|min:8',
             ]);
