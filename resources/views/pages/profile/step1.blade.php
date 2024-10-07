@@ -18,7 +18,7 @@
                 </div>
 
                 <!-- Next Button -->
-                <button type="submit" class="btn-primary w-25 m-auto">التالي</button>
+                <button type="submit" class="btn-danger w-25 m-auto">التالي</button>
             </form>
         </div>
     </section>

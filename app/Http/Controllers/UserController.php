@@ -155,7 +155,7 @@ class UserController extends Controller
         if (!$user) {
             return redirect()->back()->with('error', 'User not found.');
         }
-        return view('views.profile.step3',[
+        return view('pages.profile.step3',[
             'user_id' => $user_id,
             'user' => $user 
         ]);

@@ -10,8 +10,8 @@
                     @if (session('status'))
                         <div class="alert alert-success">{{ session('status') }}</div>
                     @endif
-                    <form method="POST" action="{{ route('password.reset.email') }}">
-    @csrf
+                    <form method="POST" action="{{ route('password.email') }}">
+                    @csrf
     <div class="form-group">
         <label for="email">{{ __('Email Address') }}</label>
         <input id="email" type="email" name="email" >
