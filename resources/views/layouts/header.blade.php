@@ -5,7 +5,8 @@
 
 
     <i class="fas fa-tint"></i> <!-- Font Awesome blood icon -->
-</h1>            <nav class="navbar">
+</h1>           
+ <nav class="navbar">
                 <a href="/">الرئيسية</a>
                 <a href="{{route('views.about')}}">عن النظام</a>
                 <a href="#">تواصل معنا</a>
