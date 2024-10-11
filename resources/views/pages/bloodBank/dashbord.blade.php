@@ -1,5 +1,39 @@
-@extends('layouts.dashbord')
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank Dashboard</title>
+    <link rel="stylesheet" href="{{ asset('css/bloodbankdashbord.css') }}">
+
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>لوحة التحكم الخاصة ببنك الدم</h1> <!-- Arabic for Blood Bank Admin Dashboard -->
+        </header>
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#">لوحة التحكم</a></li>
+
+                <li><a href="#">المتبرعين</a></li>
+                <li><a href="#">مخزون الدم</a></li>
+                <li><a href="#">طلبات التبرع</a></li>
+                <li><a href="#">التقارير</a></li>
+                <li><a href="#">الإعدادات</a></li>
+                <li>
+                <li>
+                    <form action="{{ route('logout') }}" method="POST" id="logout-form">
+                        @csrf
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل الخروج</a>
+                    </form>
+                </li>
+
+            </ul>
+        </nav>
+        <main class="main-content">
             <section class="dashboard-cards">
                 <div class="card">
                     <h3>إجمالي التبرعات</h3>
@@ -45,4 +79,8 @@
                     </tbody>
                 </table>
             </section>
-@endsection
+        </main>
+    </div>
+</body>
+
+</html>

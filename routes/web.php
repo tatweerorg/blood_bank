@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BloodCenterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
@@ -24,14 +25,21 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
 Route::post('/logout',[AuthController::class,'logout'])->name('logout');
-Route::middleware('auth')->group(function () {
-    // Protected routes here
-    Route::get('/dashboard', [AuthController::class, 'index'])->name('dashboard');
-});
+// Route::middleware('auth')->group(function () {
+//     // Protected routes here
+//     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+// });
 // Route::middleware('auth')->group(function(){
     Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
 // });
-
+Route::get('/dashboard/bloodbank', [BloodCenterController::class, 'dashboard'])->name('dashboard.bloodBank');
+ 
+Route::get('/dashboard/bloodbanks',[DashboardController::class,'bloodbanks'])->name('dashboard.bloodbanks');
+Route::get('/dashboard/donations',[DashboardController::class,'donations'])->name('dashboard.donations');
+Route::get('/dashboard/inventory',[DashboardController::class,'inventory'])->name('dashboard.inventory');
+Route::get('/dashboard/requests',[DashboardController::class,'requests'])->name('dashboard.requests');
+Route::get('/dashboard/reports',[DashboardController::class,'reports'])->name('dashboard.reports');
+Route::get('/dashboard/settings',[DashboardController::class,'settings'])->name('dashboard.settings');
 Route::get('/roles', function () {
     return view('auth.register.roles');
      
@@ -61,9 +69,9 @@ Route::get('/profile/create/step5/{user_id}',[UserController::class,'create5'])-
 Route::post('/profile/store/step5/{user_id}',[UserController::class,'store5'])->name('profile.post.step5');
 Route::get('/profile/create/step6/{user_id}',[UserController::class,'create6'])->name('profile.view.step6');
 Route::post('/profile/store/step6/{user_id}',[UserController::class,'store6'])->name('profile.post.step6');
-Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])->name('password.request');
-Route::post('/forgot-password', [AuthController::class, 'sendResetEmail'])->name('password.reset.email');
-Route::get('/reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->name('password.reset');
-Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
+Route::get('/forgot-password',[AuthController::class,'showForgetPasswordForm'])->name('password.request');
+Route::post('/forgot-password-link',[AuthController::class,'sendResetEmail'])->name('password.email');
+Route::get('/reset-password/{token}',[AuthController::class,'showResetPasswordForm'])->name('password.reset');
+Route::post('/reset-password',[AuthController::class,'resetPassword'])->name('password.update');
 
 
