@@ -1,4 +1,60 @@
 @extends('layouts.dashbord')
 @section('content')
-    طلبات 
+<section class="recent-requests">
+    <h2>طلبات التبرع بالدم </h2>
+    <table id="centersTable" class="display">
+        <thead>
+            <tr>
+                <th>نوع فصيلة الدم </th>
+                <th>كمية الدم </th>
+                <th>تاريخ الطلب</th>
+                <th>الحالة</th>
+                <th>العمليات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($requests as $request)
+            <tr>
+                <td>{{ $request->BloodType }}</td>
+                <td>{{ $request->Quantity }}</td>
+                <td>{{ $request->RequestDate }}</td>
+                <td>{{ $request->Status }}</td>
+                <td>
+                <a href="#" class="btn btn-warning">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</section>
+<script>
+    $(document).ready(function(){
+        $('#centersTable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/ar.json" 
+            },
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    text: 'تصدير إلى Excel'
+
+                },
+                {
+                    extend: 'pdfHtml5',
+                    text: 'تصدير إلى PDF',
+                    orientation: 'landscape',
+                    pageSize: 'A4'
+                },
+                {
+                    extend: 'print',
+                    text: 'طباعة'
+                }
+            ]
+        })
+    }
+
+    )
+</script>
 @endsection

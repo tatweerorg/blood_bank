@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Donation;
+use App\Models\BloodCenter;
+use App\Models\BloodRequest;
 use Illuminate\Http\Request;
+use App\Models\BloodInventory;
 
 class DashboardController extends Controller
 {
@@ -11,16 +15,20 @@ class DashboardController extends Controller
         return view("pages.admin.dashbord");
     }
     public function bloodbanks(){
-        return view("pages.admin.bloodbanks");
+        $centers= BloodCenter::all();
+        return view("pages.admin.bloodbanks",compact('centers'));
     }
     public function donations(){
-        return view("pages.admin.donations");
+        $donations=Donation::all();
+        return view("pages.admin.donations",compact('donations'));
     }
     public function inventory(){
-        return view("pages.admin.bloodInventory");
+        $inventores=BloodInventory::all();
+        return view("pages.admin.bloodInventory",compact('inventores'));
     }
     public function requests(){
-        return view("pages.admin.requests");
+        $requests=BloodRequest::all();
+        return view("pages.admin.requests",compact('requests'));
     }
     public function reports(){
         return view("pages.admin.reports");
