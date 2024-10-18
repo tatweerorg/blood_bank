@@ -17,7 +17,7 @@
 
                 <!-- Username -->
                 <div class="form-group">
-                    <label for="username">اسم المستخدم</label>
+                    <label for="Username">اسم المستخدم</label>
                     <input type="text" id="username" name="Username" value="{{ old('Username') }}">
                     @error('Username')
                         <div class="error" style="color:red;">{{ $message }}</div>

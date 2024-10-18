@@ -1,4 +1,4 @@
-@extends('layouts.dashbord')
+@extends('layouts.dashboard-template')
 @section('content')
 <section class="recent-requests">
     <h2>طلبات التبرع بالدم </h2>

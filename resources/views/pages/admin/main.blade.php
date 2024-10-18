@@ -1,4 +1,4 @@
-@extends('layouts.dashbord')
+@extends('layouts.dashboard-template')
 @section('content')
             <section class="dashboard-cards">
                 <div class="card">
@@ -37,7 +37,7 @@
                             <td>موافقة</td>
                         </tr>
                         <tr>
-                            <td>زيد </td>
+                            <td>عبد الله </td>
                             <td>A-</td>
                             <td>2024-09-14</td>
                             <td>معلقة</td>

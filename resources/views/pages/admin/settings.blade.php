@@ -1,4 +1,4 @@
-@extends('layouts.dashbord')
+@extends('layouts.dashboard-template')
 @section('content')
     إعدادات 
 @endsection

@@ -29,12 +29,20 @@ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 //     // Protected routes here
 //     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 // });
-// Route::middleware('auth')->group(function(){
-    Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
-// });
-Route::get('/dashboard/bloodbank', [BloodCenterController::class, 'dashboard'])->name('dashboard.bloodBank');
+ Route::middleware('auth')->group(function(){
+    Route::get('/dashboard/admin',[DashboardController::class,'dashboard'])->name('dashboard.admin');
+
+    Route::get('/dashboard/user',[UserController::class,'dashboard'])->name('dashboard.user');
+    
+    Route::get('/dashboard/bloodcenter',[BloodCenterController::class,'dashboard'])->name('dashboard.bloodcenter');
+    
+});
+
+
+Route::get('/dashboard/main',[DashboardController::class,'main'])->name('dashboard.main');
  
 Route::get('/dashboard/bloodbanks',[DashboardController::class,'bloodbanks'])->name('dashboard.bloodbanks');
+
 Route::get('/dashboard/donations',[DashboardController::class,'donations'])->name('dashboard.donations');
 Route::get('/dashboard/inventory',[DashboardController::class,'inventory'])->name('dashboard.inventory');
 Route::get('/dashboard/requests',[DashboardController::class,'requests'])->name('dashboard.requests');

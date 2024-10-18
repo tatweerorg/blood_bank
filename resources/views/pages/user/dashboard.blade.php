@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blood Bank Dashboard</title>
+    <title>User Dashboard</title>
     <link rel="stylesheet" href="{{ asset('css/bloodbankdashbord.css') }}">
 
 </head>
@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1>لوحة التحكم الخاصة ببنك الدم</h1> <!-- Arabic for Blood Bank Admin Dashboard -->
+            <h1>لوحة التحكم الخاصة  بالمستخدم</h1> <!-- Arabic for Blood Bank Admin Dashboard -->
         </header>
         <nav class="sidebar">
             <ul>

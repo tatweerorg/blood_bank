@@ -4,12 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\UserProfile;
+use App\Models\BloodCenter;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
+    public function dashboard(){
+                return view("pages.user.dashboard");
+
+    }
     public function register(Request $request)
     {
         // Validate the request data
@@ -77,38 +84,31 @@ class UserController extends Controller
 
     }
     public function create2($user_id) {
-        // Find the user by ID
         $user = User::find($user_id);
     
-        // Check if user exists
         if (!$user) {
             return redirect()->back()->withErrors(['user_id' => 'User not found.']);
         }
     
-        // Pass the user to the view
         return view('pages.profile.step2', [
             'user_id' => $user_id,
-            'user' => $user // Pass the user object to the view
+            'user' => $user 
         ]);
     }
     
     public function store2(Request $request, $user_id)
     {
-        // Find the user by ID
         $user = User::find($user_id);
     
-        // Check if user exists
         if (!$user) {
             return redirect()->back()->withErrors(['user_id' => 'User not found.']);
         }
     
-        // Handle different logic based on the UserType
         if ($user->UserType === 'User') {
             $request->validate([
                 'BloodType' => 'required|in:A+,A-,B+,B-,AB+,AB-,O+,O-',
             ]);
     
-            // Store BloodType in the session
             session(['BloodType' => $request->BloodType]);
     
             return redirect()->route('profile.view.step3', ['user_id' => $user_id]);
@@ -120,8 +120,8 @@ class UserController extends Controller
                 'ContactNumber.regex' => 'The contact number must start with "05" and be exactly 10 digits long.',
 
             ]);
+
     
-            // Store ContactNumber and Address in the session
             session(['ContactNumber' => $request->ContactNumber]);
             session(['Address' => $request->Address]);
             $profileData = [
@@ -133,15 +133,20 @@ class UserController extends Controller
                 'Address' => $request->session()->get('Address', null),
                 'last_donation_date' => null, // You can update this field later if needed
             ];
+              $bloodCenterData = [
+                'user_id' => $user->id,
+                'CenterName' => $user->Username,
+                'ContactNumber' => $request->session()->get('ContactNumber', null),
+
+                'Address' => $request->session()->get('Address', null),
+            ];
+            BloodCenter::create($bloodCenterData);
         
-            // Store the collected data in the user_profiles table
             UserProfile::create($profileData);
         
-            // Clear the session data after saving
             $request->session()->forget(['profile_image', 'BloodType', 'DateOfBirth', 'ContactNumber', 'Address']);
         
-            // Go to the final step (storing in the database)
-            return redirect()->route('dashboard')->with('success', 'Account created successfully!');
+            return redirect()->route('dashboard.bloodcenter')->with('success', 'Account created successfully!');
         }
     }
     
@@ -216,7 +221,7 @@ class UserController extends Controller
                 // Clear the session data after saving
                 $request->session()->forget(['profile_image', 'BloodType', 'DateOfBirth', 'ContactNumber', 'Address']);
             
-            return redirect()->route('dashboard')->with('success', 'Account created successfully!');
+            return redirect()->route('dashboard.user')->with('success', 'Account created successfully!');
 
 
     }

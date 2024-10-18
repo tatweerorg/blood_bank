@@ -12,7 +12,10 @@ class DashboardController extends Controller
 {
     //
     public function dashboard(){
-        return view("pages.admin.dashbord");
+        return view("pages.admin.main");
+    }
+      public function main(){
+        return view("pages.admin.main");
     }
     public function bloodbanks(){
         $centers= BloodCenter::all();

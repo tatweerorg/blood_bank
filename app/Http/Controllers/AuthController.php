@@ -21,14 +21,13 @@ class AuthController extends Controller
     }
     public function showLoginForm()
     {
-        return view('auth.login.login');  // تأكد من أن ملف blade الخاص بصفحة تسجيل الدخول موجود في resources/views/login.blade.php
+        return view('auth.login.login');  
     }
 
         public function login(Request $request)
         {
 
             
-            // Validate the input data
             $validatedData = $request->validate([
                 'email' => 'required|email',
                 'password' => 'required|string|min:8',
@@ -36,15 +35,25 @@ class AuthController extends Controller
 
             
         
-            // Attempt to authenticate the user
             if (Auth::attempt(['email' => $request->email, 'password' =>  $request->password]))
              {
                 
-                // If authentication was successful, redirect to the dashboard or another protected route
-                return redirect()->route('dashboard')->with('success', 'Login successful!');
+            $request->session()->regenerate();
+
+            $user = Auth::user();
+            
+            if ($user->UserType === 'Admin') {
+                return redirect()->route('dashboard.admin')->with('success', 'Login successful! Welcome Admin.');
+            } elseif ($user->UserType === 'User') {
+                return redirect()->route('dashboard.user')->with('success', 'Login successful! Welcome User.');
+            }
+            elseif ($user->UserType === 'BloodCenter') {
+                return redirect()->route('dashboard.bloodcenter')->with('success', 'Login successful! Welcome User.');
+            } else {
+                return redirect()->route('home')->with('error', 'Invalid user type.');
+            }
             }
         
-            // If authentication fails, redirect back with an error message
             return back()->with('error', 'Invalid email or password.');
         }
         
@@ -81,7 +90,6 @@ class AuthController extends Controller
                 'password' => 'required|confirmed|min:8',
             ]);
         
-            // Verify the token
             $passwordReset = DB::table('password_resets')
                 ->where('email', $request->email)
                 ->first();
@@ -90,12 +98,10 @@ class AuthController extends Controller
                 return back()->withErrors(['email' => 'Invalid token.']);
             }
         
-            // Update password in users table
             User::where('email', $request->email)->update([
                 'password' => Hash::make($request->password),
             ]);
         
-            // Delete the token after successful reset
             DB::table('password_resets')->where('email', $request->email)->delete();
         
             return redirect()->route('login')->with('message', 'Password has been reset!');

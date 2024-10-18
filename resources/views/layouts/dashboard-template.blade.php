@@ -35,7 +35,7 @@
         </header>
         <nav class="sidebar">
             <ul>
-                <li><a href="{{ route('dashboard') }}">لوحة التحكم</a></li>
+                <li><a href="{{ route('dashboard.main') }}">لوحة التحكم</a></li>
                 <li><a href="{{ route('dashboard.bloodbanks') }}">بنوك الدم </a></li>
                 <li><a href="{{ route('dashboard.donations') }}">المتبرعين</a></li>
                 <li><a href="{{ route('dashboard.inventory') }}">مخزون الدم</a></li>

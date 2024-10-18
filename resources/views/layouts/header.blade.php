@@ -11,7 +11,6 @@
             <a href="{{route('views.about')}}">عن النظام</a>
             <a href="#">تواصل معنا</a>
             <a href="{{ route('login') }}">تسجيل دخول</a>
-            <a href="{{ route('dashboard') }}"> dashboard</a>
 
 
         </nav>
