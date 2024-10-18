@@ -1,9 +1,0 @@
-.form-step {
-    display: none;
-    /* إخفاء جميع الخطوات بشكل افتراضي */
-}
-
-.form-step.active {
-    display: block;
-    /* إظهار الخطوة النشطة فقط */
-}

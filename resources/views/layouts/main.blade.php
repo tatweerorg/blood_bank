@@ -16,7 +16,7 @@
 <body>
     @include('layouts.header')
 
-    <div class="content">
+    <div class="content" >
         @yield('content')
     </div>
 
