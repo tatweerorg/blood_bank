@@ -26,15 +26,20 @@ class AuthController extends Controller
 
         public function login(Request $request)
         {
+
+            
             // Validate the input data
             $validatedData = $request->validate([
-                'Email' => 'required|email',
-                'Password' => 'required|string|min:8',
+                'email' => 'required|email',
+                'password' => 'required|string|min:8',
             ]);
+
+            
         
             // Attempt to authenticate the user
-            if (Auth::attempt(['Email' => $request->Email, 'Password' =>  $request->Password]))
+            if (Auth::attempt(['email' => $request->email, 'password' =>  $request->password]))
              {
+                
                 // If authentication was successful, redirect to the dashboard or another protected route
                 return redirect()->route('dashboard')->with('success', 'Login successful!');
             }
