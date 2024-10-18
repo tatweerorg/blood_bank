@@ -43,25 +43,25 @@ class AuthController extends Controller
             $user = Auth::user();
             
             if ($user->UserType === 'Admin') {
-                return redirect()->route('dashboard.admin')->with('success', 'Login successful! Welcome Admin.');
+                return redirect()->route('dashboard.admin')->with('success', 'تم تسجيل الدخول بنجاح , مرحباً ادمن');
             } elseif ($user->UserType === 'User') {
-                return redirect()->route('dashboard.user')->with('success', 'Login successful! Welcome User.');
+                return redirect()->route('dashboard.user')->with('success', 'تم تسجيل الدخول بنجاح , مرحباً بك');
             }
             elseif ($user->UserType === 'BloodCenter') {
-                return redirect()->route('dashboard.bloodcenter')->with('success', 'Login successful! Welcome User.');
+                return redirect()->route('dashboard.bloodcenter')->with('success', 'تم تسجيل الدخول بنجاح, مرحباً بنك الدم');
             } else {
                 return redirect()->route('home')->with('error', 'Invalid user type.');
             }
             }
         
-            return back()->with('error', 'Invalid email or password.');
+            return back()->with('error', 'خطأ في الايميل او كلمة المرور');
         }
         
     public function logout(Request $request){
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('login')->with('success','You have been logged out !');
+        return redirect()->route('login')->with('success','تم تسجيل الخروج بنجاح');
     }
   
     public function showForgetPasswordForm(){

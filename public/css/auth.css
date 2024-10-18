@@ -1,47 +1,37 @@
 
-.login-section {
-    display: flex;
-    text-align: center;
-    place-items: center;
-    margin-top: 20px;
-}
- .login-form {
-        
-     background-color: #fff;
-     padding: 20px;
-     border-radius: 10px;
-     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-     width: 100%;
-     max-width: 400px;
-     margin: auto;
- }
+  .login-section {
+      display: grid;
+      place-items: center;
+      height:70vh;
+      text-align: center;
+  }
 
- .login-form h2 {
-     margin-bottom: 20px;
- }
+  .login-form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      margin: auto;
+  }
+
+  .login-form h2 {
+      margin-bottom: 20px;
+  }
 .create_account_tag {
+    
     display: inline-block;
-    /* Allows padding and margin to be applied */
-    /* Background color for the button */
     color: #d32f2f;
-    /* Text color */
     padding: 10px 20px;
-    /* Padding for top/bottom and left/right */
     text-decoration: none;
-    /* Remove underline */
     border-radius: 5px;
-    /* Rounded corners */
     font-size: 1.1em;
-    /* Font size */
     transition: background-color 0.3s ease, transform 0.3s ease;
-    /* Smooth transitions */
 }
 
-/* Hover effect */
 .create_account_tag:hover {
-    /* Darker shade on hover */
     transform: scale(1.05);
-    /* Slightly enlarge the button */
 }
 
 /* Responsive styling */
@@ -92,7 +82,10 @@
  }
 
  .role-selection {
-        margin-top: 20px;
+    display: grid;
+        place-items: center;
+        height:70vh;
+        text-align: center;
      padding: 50px 0;
      text-align: center;
  }
@@ -149,8 +142,11 @@
  }
 
  .register-section {
+    display: grid;
+        place-items: center;
+        height: 70vh;
+        text-align: center;
      padding: 50px 0;
-        margin-top: 20px;
      text-align: center;
  }
 

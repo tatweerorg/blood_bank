@@ -9,7 +9,7 @@
         <div class="container">
             <h2>ساهم في إنقاذ الأرواح</h2>
             <p>تبرع بالدم الآن وساهم في إنقاذ حياة شخص محتاج.</p>
-            <a href="#" class="btn-primary">ابدأ الآن</a>
+            <a href="{{route('roles')}}" class="btn-primary">ابدأ الآن</a>
         </div>
     </section>
 
