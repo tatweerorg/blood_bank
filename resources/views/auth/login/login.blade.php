@@ -23,7 +23,7 @@
             <div class="form-group">
                 <label for="email" >البريد الإلكتروني</label>
                 <input type="email" id="email" name="email" value="{{ old('email') }}">
-                @error('Email')
+                @error('email')
                 <div class="error" style="color:red;">{{ $message }}</div>
                 @enderror
             </div>
@@ -34,7 +34,7 @@
                 <div class="form-group">
                     <label for="password" >كلمة المرور</label>
                     <input type="password" id="password" name="password" >
-                    @error('Password')
+                    @error('password')
                         <div class="error" style="color:red;">{{ $message }}</div>
                     @enderror
                     <a href="{{ route('password.request') }}" class="create_account_tag">هل نسيت كلمة السر؟</a>
