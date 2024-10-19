@@ -27,7 +27,16 @@ class DashboardController extends Controller
         return view("pages.admin.bloodbanks",compact('centers'));
     }
     public function donations(){
-        $donations=Donation::all();
+        $donations = Donation::join('users AS donors', 'donations.user_id', '=', 'donors.id') // Join for donor user
+        ->join('users AS centers', 'donations.center_id', '=', 'centers.id') // Join for blood center
+        ->select(
+            'donors.Username AS donor_name', 
+            'centers.Username AS center_name',
+            'donations.blood_type', 
+            'donations.quantity', 
+            'donations.last_donation_date'
+        )
+        ->get();
         return view("pages.admin.donations",compact('donations'));
     }
     public function inventory(){

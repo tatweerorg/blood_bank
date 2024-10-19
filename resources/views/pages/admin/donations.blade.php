@@ -5,20 +5,22 @@
     <table id="centersTable" class="display">
         <thead>
             <tr>
-               <th>نوع الدم</th>
+            <th>المتبرع</th>
+            <th>مركز التبرع</th>
+            <th>نوع الدم</th>
                 <th>كمية الدم</th>
                 <th>تاريخ التبرع  </th>
-                <th>الحالة</th>
                 <th>العمليات</th>
             </tr>
         </thead>
         <tbody>
             @foreach($donations as $donation)
             <tr>
-                <td>{{ $donation->BloodType }}</td>
-                <td>{{ $donation->Quantity }}</td>
-                <td>{{ $donation->DonationDate }}</td>
-                <td>{{ $donation->Status }}</td>
+            <td>{{ $donation->donor_name}}</td>
+            <td>{{ $donation->center_name}}</td>
+            <td>{{ $donation->blood_type }}</td>
+                <td>{{ $donation->quantity }}</td>
+                <td>{{ $donation->last_donation_date }}</td>
                 <td>
                 <a href="#" class="btn btn-warning">Edit</a>
                 <a href="#" class="btn btn-danger">Delete</a>
