@@ -30,11 +30,11 @@ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 //     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 // });
  Route::middleware('auth')->group(function(){
-    Route::get('/dashboard/admin',[DashboardController::class,'dashboard'])->name('dashboard.admin');
+    Route::get('/dashboard/admin',[DashboardController::class,'dashboard'])->middleware('checkUserType:Admin')->name('dashboard.admin');
 
-    Route::get('/dashboard/user',[UserController::class,'dashboard'])->name('dashboard.user');
+    Route::get('/dashboard/user',[UserController::class,'dashboard'])->middleware('checkUserType:User')->name('dashboard.user');
     
-    Route::get('/dashboard/bloodcenter',[BloodCenterController::class,'dashboard'])->name('dashboard.bloodcenter');
+    Route::get('/dashboard/bloodcenter',[BloodCenterController::class,'dashboard'])->middleware('checkUserType:BloodCenter')->name('dashboard.bloodcenter');
     
 });
 
