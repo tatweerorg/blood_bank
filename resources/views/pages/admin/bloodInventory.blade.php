@@ -5,6 +5,7 @@
     <table id="centersTable" class="display">
         <thead>
             <tr>
+                <th>مركز الدم</th>
                 <th>نوع فصيلة الدم </th>
                 <th>كمية الدم </th>
                 <th>تاريخ الانتهاء</th>
@@ -14,6 +15,7 @@
         <tbody>
             @foreach($inventores as $inventory)
             <tr>
+                <td>{{ $inventory->Username}}</td>
                 <td>{{ $inventory->BloodType }}</td>
                 <td>{{ $inventory->Quantity }}</td>
                 <td>{{ $inventory->ExpirationDate }}</td>

@@ -40,7 +40,9 @@ class DashboardController extends Controller
         return view("pages.admin.donations",compact('donations'));
     }
     public function inventory(){
-        $inventores=BloodInventory::all();
+        $inventores=BloodInventory::join('users','blood_inventories.center_id','=','users.id')
+                    ->select('users.Username','blood_inventories.BloodType','blood_inventories.Quantity','blood_inventories.ExpirationDate')
+                    ->get();
         return view("pages.admin.bloodInventory",compact('inventores'));
     }
     public function requests(){
