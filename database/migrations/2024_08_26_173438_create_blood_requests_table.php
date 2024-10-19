@@ -14,12 +14,12 @@ class CreateBloodRequestsTable extends Migration
     public function up()
     {
           Schema::create('blood_requests', function (Blueprint $table) {
-            $table->id('RequestID');
+            $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); 
             $table->enum('BloodType', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
             $table->integer('Quantity');
             $table->dateTime('RequestDate');
-            $table->enum('Status', ['Pending', 'Approved', 'Fulfilled', 'Cancelled']);
+            $table->enum('Status', ['Pending', 'Approved', 'Cancelled']);
             $table->timestamps();
         });
     }

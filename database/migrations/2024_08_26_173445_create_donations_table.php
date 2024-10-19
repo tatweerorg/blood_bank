@@ -13,14 +13,14 @@ class CreateDonationsTable extends Migration
      */
     public function up()
     {
-       Schema::create('donations', function (Blueprint $table) {
-            $table->id('DonationID');
-            $table->foreignId('center_id')->constrained('blood_centers', 'id');
-            $table->enum('BloodType', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
-            $table->integer('Quantity');
-            $table->dateTime('DonationDate');
-            $table->enum('Status', ['Scheduled', 'Completed', 'Cancelled']);
-            $table->timestamps();
+        Schema::create('donations', function (Blueprint $table) {
+            $table->id(); // معرف التبرع الفريد
+            $table->foreignId('user_id')->constrained('users'); // ربط مع جدول المستخدمين
+            $table->foreignId('center_id')->constrained('users'); // ربط مع جدول مراكز الدم (بما أنها مراكز مخزنة في users)
+            $table->string('blood_type'); // نوع الدم
+            $table->integer('quantity'); // كمية التبرع
+            $table->date('last_donation_date'); // تاريخ التبرع الأخير
+            $table->timestamps(); // تواريخ الإنشاء والتحديث
         });
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateBloodRequestCentersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-          Schema::create('users', function (Blueprint $table) {
+        Schema::create('blood_request_centers', function (Blueprint $table) {
             $table->id();
-            $table->string('Username', 50)->unique();
-            $table->string('email', 100)->unique();
-            $table->string('password');
-            $table->enum('UserType', ['Admin', 'User', 'BloodCenter']);
+            $table->foreignId('blood_request_id')->constrained('blood_requests')->onDelete('cascade');
+            $table->foreignId('center_id')->constrained('users');
             $table->timestamps();
-
         });
     }
 
@@ -31,6 +28,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('blood_request_centers');
     }
 }

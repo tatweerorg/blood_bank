@@ -14,12 +14,13 @@ class CreateBloodTransfersTable extends Migration
     public function up()
     {
         Schema::create('blood_transfers', function (Blueprint $table) {
-            $table->id('TransferID');
-            $table->foreignId('FromCenterID')->constrained('blood_centers', 'id');
-            $table->foreignId('ToCenterID')->constrained('blood_centers', 'id');
+            $table->id();
+            $table->foreignId('FromUserID')->constrained('users', 'id');
+            $table->foreignId('ToUserID')->constrained('users', 'id');
             $table->enum('BloodType', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
             $table->integer('Quantity');
             $table->dateTime('TransferDate');
+            $table->foreignId('center_id')->constrained('users', 'id');
             $table->timestamps();
         });
     }

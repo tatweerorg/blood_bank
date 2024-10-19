@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Donation;
 use App\Models\BloodCenter;
 use App\Models\BloodRequest;
@@ -18,7 +19,11 @@ class DashboardController extends Controller
         return view("pages.admin.main");
     }
     public function bloodbanks(){
-        $centers= BloodCenter::all();
+
+        $centers = User::join('user_profiles','users.id','=','user_profiles.user_id')  
+                        ->where('UserType','BloodCenter')
+                        ->select('users.Username', 'user_profiles.Address', 'user_profiles.ContactNumber')
+                        ->get();
         return view("pages.admin.bloodbanks",compact('centers'));
     }
     public function donations(){

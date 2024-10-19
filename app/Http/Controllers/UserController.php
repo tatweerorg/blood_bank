@@ -133,15 +133,7 @@ class UserController extends Controller
                 'Address' => $request->session()->get('Address', null),
                 'last_donation_date' => null, // You can update this field later if needed
             ];
-              $bloodCenterData = [
-                'user_id' => $user->id,
-                'CenterName' => $user->Username,
-                'ContactNumber' => $request->session()->get('ContactNumber', null),
-
-                'Address' => $request->session()->get('Address', null),
-            ];
-            BloodCenter::create($bloodCenterData);
-        
+             
             UserProfile::create($profileData);
         
             $request->session()->forget(['profile_image', 'BloodType', 'DateOfBirth', 'ContactNumber', 'Address']);

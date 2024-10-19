@@ -43,12 +43,12 @@ class AuthController extends Controller
             $user = Auth::user();
             
             if ($user->UserType === 'Admin') {
-                return redirect()->route('dashboard.admin')->with('success', 'تم تسجيل الدخول بنجاح , مرحباً ادمن');
+                return redirect()->route('dashboard.main')->with('success', 'تم تسجيل الدخول بنجاح , مرحباً ادمن');
             } elseif ($user->UserType === 'User') {
-                return redirect()->route('dashboard.user')->with('success', 'تم تسجيل الدخول بنجاح , مرحباً بك');
+                return redirect()->route('dashboard.main')->with('success', 'تم تسجيل الدخول بنجاح , مرحباً بك');
             }
             elseif ($user->UserType === 'BloodCenter') {
-                return redirect()->route('dashboard.bloodcenter')->with('success', 'تم تسجيل الدخول بنجاح, مرحباً بنك الدم');
+                return redirect()->route('dashboard.main')->with('success', 'تم تسجيل الدخول بنجاح, مرحباً بنك الدم');
             } else {
                 return redirect()->route('home')->with('error', 'Invalid user type.');
             }

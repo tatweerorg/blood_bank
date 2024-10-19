@@ -15,7 +15,7 @@
         <tbody>
             @foreach($centers as $center)
             <tr>
-                <td>{{ $center->CenterName }}</td>
+                <td>{{ $center->Username }}</td>
                 <td>{{ $center->Address }}</td>
                 <td>{{ $center->ContactNumber }}</td>
                 <td>
