@@ -3,24 +3,18 @@
 html,
 body {
   height: 100%;
-  /* Set height to 100% to allow Flexbox to work properly */
   margin: 0;
-
-  /* Remove default margins */
   font-family: 'Cairo', sans-serif;
 }
 
 body {
   display: flex;
-  /* Use Flexbox */
   flex-direction: column;
-  /* Stack children vertically */
 }
 
 
 .content {
   flex: 1 !important;
-  /* يجعل القسم الرئيسي يأخذ المساحة المتاحة */
 }
 
 /* Header */
@@ -31,7 +25,6 @@ body {
   text-align: center;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   font-family: 'Cairo', sans-serif;
-  /* استخدام خط عربي جميل */
 }
 
 .navbar {
