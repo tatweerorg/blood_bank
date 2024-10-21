@@ -37,7 +37,11 @@ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
     Route::get('/dashboard/bloodcenter',[BloodCenterController::class,'dashboard'])->middleware('checkUserType:BloodCenter')->name('dashboard.bloodcenter');
     
 });
-
+Route::middleware('checkUserType:Admin')->group(function(){
+    Route::get('/bloodcenter/{id}/edit',[BloodCenterController::class,'edit'])->name('bloodCenter.edit');
+    Route::post('/bloodcenter/{id}',[BloodCenterController::class,'update'])->name('bloodCenter.update');
+    Route::post('/bloodcenter/{id}',[BloodCenterController::class,'destroy'])->name('bloodCenter.destroy');
+});
 
 Route::get('/dashboard/main',[DashboardController::class,'main'])->name('dashboard.main');
  

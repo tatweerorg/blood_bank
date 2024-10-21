@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\BloodCenter;
 use Illuminate\Http\Request;
 
@@ -12,70 +13,48 @@ class BloodCenterController extends Controller
     {
         return view("pages.bloodBank.dashbord");
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+  
+
+
+    public function edit($id)
     {
-        //
+        $user= User::find($id);
+        $profile= UserProfile::where('user_id',$user->id)->first();
+        return view('pages.admin.reports',compact('user','profile'));
+
+    }
+    public function update(Request $reques,$id){
+        $validatedData= $request->validate([
+              'Username' => 'nullable|string|max:255',
+        'email' => 'nullable|email|max:255',
+        'ContactNumber' => 'nullable|string|max:255|regex:/^05\d{8}$/',
+        'Address' => 'nullable|string|max:255',
+        'BloodType' => 'nullable|string|max:255|in:A+,A-,O+,O-,AB+,AB-,B+,B-',
+        ],[
+            'ContactNumber.regex' => 'رقم الهاتف يجب أن يكون 10 أرقام ويبدأ ب 05',
+            'BloodType.in' => 'نوع فصيلة الدم يجب أن يكون أحد الخيارات في القائمة',
+
+        ]);
+        $user=User::find($id);
+        if($request->filled('Username')){
+           $user->Username =$validatedData['Username'];
+        }
+        if($request->filled('email')){
+            $user->enail = $validatedData['email'];
+        }
+        if($request->filled('ContactNumber')){
+            $user->ContactNumber =$validatedData['ContactNumber'];
+         }
+         if($request->filled('Address')){
+            $user->Address =$validatedData['Address'];
+         }
+         if($request->filled('BloodType')){
+            $user->BloodType=$validatedData['BloodType'];
+         }
+         $user->save();
+         return redirect()->route('pages.admin.bloodbanks')->with('success', 'تم تعديل تفاصيل بنوك الدم بنجاح');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\BloodCenter  $bloodCenter
-     * @return \Illuminate\Http\Response
-     */
-    public function show(BloodCenter $bloodCenter)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\BloodCenter  $bloodCenter
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(BloodCenter $bloodCenter)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BloodCenter  $bloodCenter
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, BloodCenter $bloodCenter)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -83,8 +62,14 @@ class BloodCenterController extends Controller
      * @param  \App\Models\BloodCenter  $bloodCenter
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BloodCenter $bloodCenter)
+    public function destroy($id)
     {
-        //
+        $user=User::find($id);
+        if($user){
+            $user->delete();
+            return redirect()->route('users.index')->with('success', 'تم حذف المستخدم بنجاح.');
+        }else{
+            return redirect()->route('users.index')->with('error', 'المستخدم غير موجود');
+        }
     }
 }
