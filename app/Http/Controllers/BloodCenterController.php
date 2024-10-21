@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\BloodCenter;
+use App\Models\UserProfile;
 use Illuminate\Http\Request;
 
 class BloodCenterController extends Controller
@@ -20,7 +21,7 @@ class BloodCenterController extends Controller
     {
         $user= User::find($id);
         $profile= UserProfile::where('user_id',$user->id)->first();
-        return view('pages.admin.reports',compact('user','profile'));
+        return view('pages.admin.bloodcenteredit',compact('user','profile'));
 
     }
     public function update(Request $reques,$id){

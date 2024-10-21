@@ -19,7 +19,7 @@
                 <td>{{ $center->Address }}</td>
                 <td>{{ $center->ContactNumber }}</td>
                 <td>
-                <a href="#" class="btn btn-warning editbtn">Edit</a>
+                <a href="{{ route('bloodCenter.edit' , $center->id) }}" class="btn btn-warning editbtn">Edit</a>
                 <a href="#" class="btn btn-danger deletebtn">Delete</a>
                 </td>
             </tr>

@@ -22,7 +22,7 @@ class DashboardController extends Controller
 
         $centers = User::join('user_profiles','users.id','=','user_profiles.user_id')  
                         ->where('UserType','BloodCenter')
-                        ->select('users.Username', 'user_profiles.Address', 'user_profiles.ContactNumber')
+                        ->select('users.id','users.Username', 'user_profiles.Address', 'user_profiles.ContactNumber')
                         ->get();
         return view("pages.admin.bloodbanks",compact('centers'));
     }
