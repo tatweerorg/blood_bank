@@ -5,6 +5,7 @@
     <table id="centersTable" class="display">
         <thead>
             <tr>
+                <th>اسم المتقدم</th>
                 <th>نوع فصيلة الدم </th>
                 <th>كمية الدم </th>
                 <th>تاريخ الطلب</th>
@@ -15,12 +16,13 @@
         <tbody>
             @foreach($requests as $request)
             <tr>
+            <td>{{ $request->Username }}</td>
                 <td>{{ $request->BloodType }}</td>
                 <td>{{ $request->Quantity }}</td>
                 <td>{{ $request->RequestDate }}</td>
                 <td>{{ $request->Status }}</td>
                 <td>
-                <a href="#" class="btn btn-warning editbtn">Edit</a>
+                <a href="{{ route('bloodRequest.edit' , $request->id ) }}" class="btn btn-warning editbtn">Edit</a>
                 <a href="#" class="btn btn-danger deletebtn">Delete</a>
                 </td>
             </tr>

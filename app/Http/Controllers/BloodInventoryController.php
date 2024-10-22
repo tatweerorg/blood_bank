@@ -94,19 +94,19 @@ class BloodInventoryController extends Controller
         }
       
         if ($request->filled('BloodType')) {
-            $donation->BloodType = $validatedData['BloodType'];
+            $inventory->BloodType = $validatedData['BloodType'];
         }
     
         if ($request->filled('Quantity')) {
-            $donation->Quantity = $validatedData['Quantity'];
+            $inventory->Quantity = $validatedData['Quantity'];
         }
     
         if ($request->filled('ExpirationDate')) {
-            $donation->ExpirationDate = $validatedData['ExpirationDate'];
+            $inventory->ExpirationDate = $validatedData['ExpirationDate'];
         }
     
         // Save the updated donation
-        $donation->save();
+        $inventory->save();
              return redirect()->route('pages.admin.bloodInventory')->with('success', 'تم تعديل معلومات مخزون الدم بنجاح');
         }
     
@@ -129,11 +129,4 @@ class BloodInventoryController extends Controller
         }
     
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\BloodInventory  $bloodInventory
-     * @return \Illuminate\Http\Response
-     */
-  
 }
