@@ -1,13 +1,14 @@
-@extends('layouts.app')
-
+@extends('layouts.main')
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+@endsection
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container perint">
+    <div class="row maindiv">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+            <div class="card ">
+                <div class="card-header " >اعادة ضبط كلمة المرور</div>
                 <div class="card-body">
-                    <!-- Display the success message -->
                     @if (session('message'))
                         <div class="alert alert-success">{{ session('message') }}</div>
                     @endif
@@ -24,8 +25,8 @@
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
                         <div class="form-group">
-                            <label for="email">{{ __('Email Address') }}</label>
-                            <input id="email" type="email" name="email" class="form-control" >
+                            <label for="email">البريد الالكتروني</label>
+                            <input id="email" type="email" name="email" class="form-control " >
 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -33,8 +34,8 @@
                                 </span>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Send Password Reset Link') }}
+                        <button type="submit" class="btn btn-primary submit">
+                            ارسال
                         </button>
                     </form>
                 </div>
