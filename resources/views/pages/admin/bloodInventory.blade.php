@@ -20,7 +20,7 @@
                 <td>{{ $inventory->Quantity }}</td>
                 <td>{{ $inventory->ExpirationDate }}</td>
                 <td>
-                <a href="#" class="btn btn-warning editbtn">Edit</a>
+                <a href="{{ route('bloodInventory.edit', $inventory->id ) }}" class="btn btn-warning editbtn">Edit</a>
                 <a href="#" class="btn btn-danger deletebtn">Delete</a>
                 </td>
             </tr>
