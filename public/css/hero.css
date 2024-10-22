@@ -1,25 +1,27 @@
-/* Hero Section */
+* {
+    direction: rtl !important;
+}
+
 .hero {
-    background-image: url('../images/background.png');
+    background-image: url("../images/background.png");
     background-size: cover;
     background-position: center;
     color: #ffffff;
     text-align: center;
     padding: 100px;
     background-color: rgba(0, 0, 0, 0.5);
-        background-blend-mode: darken;
-        direction: rtl;
-    
+    background-blend-mode: darken;
+    direction: rtl;
 }
 
 .hero h2 {
-        color: #ffffff !important;
+    color: #ffffff !important;
     font-size: 3em;
     margin-bottom: 10px;
 }
 
 .hero p {
-            color: #ffffff !important;
+    color: #ffffff !important;
     font-size: 1.2em;
     margin-bottom: 20px;
 }
@@ -42,7 +44,6 @@
     padding: 50px 0;
     background-color: #fff;
     text-align: center;
-   
 }
 .features h3 {
     font-size: 2.5em;
@@ -60,9 +61,9 @@
     border-radius: 8px;
     width: 30%;
     border: 2px solid #f36969;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
 }
 .feature:hover {
     transform: scale(1.05);
@@ -77,14 +78,13 @@
     font-size: 1em;
     color: #3f3f3f;
 }
-.types{
+.types {
     text-align: right;
-        padding: 20px;
+    padding: 20px;
 }
 
-
-.benefits{
-background-image: url('../images/benefitsbackground.jpg');
+.benefits {
+    background-image: url("../images/benefitsbackground.jpg");
     background-size: cover;
     background-position: center;
     text-align: center;
@@ -92,7 +92,6 @@ background-image: url('../images/benefitsbackground.jpg');
     background-color: rgba(0, 0, 0, 0.726);
     background-blend-mode: darken;
 }
-
 
 .benefitscontainer {
     background-color: rgba(255, 255, 255, 0.76);
@@ -109,26 +108,28 @@ background-image: url('../images/benefitsbackground.jpg');
     color: #d32f2f;
     font-weight: bold;
     margin-bottom: 20px;
-    
 }
 
 .benefitscontainer h2 {
     font-size: 24px;
-color: #d32f2f;
-    font-weight: bold;    margin-top: 30px;
+    color: #d32f2f;
+    font-weight: bold;
+    margin-top: 30px;
 }
 
 .benefitscontainer h3 {
     font-size: 20px;
-color: #d32f2f;
-    font-weight: bold;    margin-top: 20px;
+    color: #d32f2f;
+    font-weight: bold;
+    margin-top: 20px;
 }
 
 .benefitscontainer p {
     font-size: 18px;
     color: #333;
     line-height: 1.6;
-    text-align: right;
+      text-align: justify;
+
 }
 
 .benefitscontainer ul {
@@ -136,10 +137,8 @@ color: #d32f2f;
     display: flex;
     text-align: center;
     display: flex;
-        align-items: center;
-        justify-content: center;
-
-
+    align-items: center;
+    justify-content: center;
 }
 
 .benefitscontainer ul li {
@@ -155,30 +154,28 @@ color: #d32f2f;
     align-items: center;
     justify-content: center;
     color: white;
-        box-shadow: 0 4px 20px rgba(255, 7, 7, 0.671);
-            transition: transform 0.3s ease;
+    box-shadow: 0 4px 20px rgba(255, 7, 7, 0.671);
+    transition: transform 0.3s ease;
 }
 .benefitscontainer ul li:hover {
     transform: scale(1.05);
 }
-.typescontainer{
+.typescontainer {
     background-color: rgba(235, 235, 235, 0.76);
-        border: 1px solid #e0e0e0;
-        padding: 20px;
-        border-radius: 8px;
-        max-width: 80%;
-        margin: auto;
-        box-shadow: 0 4px 8px rgba(226, 226, 226, 0.438);
-    }
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 80%;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(226, 226, 226, 0.438);
+}
 
 .typescontainer h2 {
     font-size: 30px;
     color: #d32f2f;
     font-weight: bold;
-        text-align: center;
+    text-align: center;
 }
-
-
 
 .typescontainer p {
     font-size: 18px;
@@ -194,8 +191,6 @@ color: #d32f2f;
     display: flex;
     align-items: center;
     justify-content: center;
-
-
 }
 
 .typescontainer ul li {
@@ -206,14 +201,14 @@ color: #d32f2f;
     border-radius: 30px;
     height: 100px;
     width: 500px;
-  
+
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     box-shadow: 0 4px 20px rgba(255, 7, 7, 0.671);
-            transition: transform 0.3s ease;
+    transition: transform 0.3s ease;
 }
 .typescontainer ul li:hover {
     transform: scale(1.05);
@@ -254,7 +249,7 @@ color: #d32f2f;
 }
 
 .Procedurescontainer ul {
-list-style-type: none;
+    list-style-type: none;
     padding-right: 0;
 }
 
@@ -262,10 +257,9 @@ list-style-type: none;
     margin-bottom: 10px;
     font-size: 18px;
     position: relative;
-        padding-right: 25px;
-        text-align: right;
+    padding-right: 25px;
+    text-align: right;
 }
-
 
 .Procedurescontainer ul li::before {
     content: "\2022";
