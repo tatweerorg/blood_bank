@@ -53,7 +53,7 @@ class BloodCenterController extends Controller
             $user->BloodType=$validatedData['BloodType'];
          }
          $user->save();
-         return redirect()->route('pages.admin.bloodbanks')->with('success', 'تم تعديل تفاصيل بنوك الدم بنجاح');
+         return redirect()->route('pages.admin.bloodbanks')->with('success', 'تم تعديل معلومات بنك الدم بنجاح');
     }
 
 
@@ -68,9 +68,9 @@ class BloodCenterController extends Controller
         $user=User::find($id);
         if($user){
             $user->delete();
-            return redirect()->route('users.index')->with('success', 'تم حذف المستخدم بنجاح.');
+            return redirect()->route('dashboard.bloodbanks')->with('success', 'تم حذف المستخدم بنجاح.');
         }else{
-            return redirect()->route('users.index')->with('error', 'المستخدم غير موجود');
+            return redirect()->route('dashboard.bloodbanks')->with('error', 'المستخدم غير موجود');
         }
     }
 }

@@ -30,6 +30,7 @@ class DashboardController extends Controller
         $donations = Donation::join('users AS donors', 'donations.user_id', '=', 'donors.id') // Join for donor user
         ->join('users AS centers', 'donations.center_id', '=', 'centers.id') // Join for blood center
         ->select(
+            'donations.id',
             'donors.Username AS donor_name', 
             'centers.Username AS center_name',
             'donations.blood_type', 
@@ -41,7 +42,7 @@ class DashboardController extends Controller
     }
     public function inventory(){
         $inventores=BloodInventory::join('users','blood_inventories.center_id','=','users.id')
-                    ->select('users.Username','blood_inventories.BloodType','blood_inventories.Quantity','blood_inventories.ExpirationDate')
+                    ->select('blood_inventories.id','users.Username','blood_inventories.BloodType','blood_inventories.Quantity','blood_inventories.ExpirationDate')
                     ->get();
         return view("pages.admin.bloodInventory",compact('inventores'));
     }

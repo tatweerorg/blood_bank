@@ -22,7 +22,7 @@
                 <td>{{ $donation->quantity }}</td>
                 <td>{{ $donation->last_donation_date }}</td>
                 <td>
-                <a href="#" class="btn btn-warning editbtn">Edit</a>
+                <a href="{{route(donation.edit,$donation->id)}}" class="btn btn-warning editbtn">Edit</a>
                 <a href="#" class="btn btn-danger deletebtn">Delete</a>
                 </td>
             </tr>
