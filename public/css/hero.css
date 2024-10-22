@@ -7,7 +7,6 @@
     text-align: center;
     padding: 100px;
     background-color: rgba(0, 0, 0, 0.5);
-        /* لون أسود نصف شفاف */
         background-blend-mode: darken;
         /* نمط الدمج يجعل الصورة أغمق */
         direction: rtl;
@@ -27,31 +26,19 @@
 }
 .btn-primary {
     background-color: #d32f2f;
-    /* لون خلفية الزر */
     color: #fff;
-    /* لون النص */
     padding: 10px 30px;
-    /* مساحة داخلية */
     text-decoration: none;
-    /* إزالة التسطير */
     border-radius: 5px;
-    /* زوايا مدورة */
     font-size: 1.2em;
-    /* حجم الخط */
     border: 1px solid #f6f6f6;
-    /* إطار أبيض */
     transition: background-color 0.3s ease, transform 0.3s ease;
-    /* تأثير الانتقال */
 }
 
-/* تأثير عند التمرير */
 .btn-primary:hover {
     background-color: #b71c1c;
-    /* لون الخلفية عند التمرير */
     transform: scale(1.05);
-    /* تكبير الزر عند التمرير */
 }
-/* Features Section */
 .features {
     padding: 50px 0;
     background-color: #fff;
@@ -74,18 +61,12 @@
     border-radius: 8px;
     width: 30%;
     border: 2px solid #f36969;
-        /* إطار بلون أحمر */
         border-radius: 10px;
-        /* زوايا مدورة للإطار */
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        /* ظل مع الشفافية */
             transition: transform 0.3s ease;
-                /* تأثير الانتقال */
 }
-/* تأثير التكبير عند التمرير */
 .feature:hover {
     transform: scale(1.05);
-    /* يكبر العنصر بنسبة 5% */
 }
 
 .feature h4 {
@@ -96,4 +77,201 @@
 .feature p {
     font-size: 1em;
     color: #3f3f3f;
+}
+.types{
+    text-align: right;
+        padding: 20px;
+}
+
+
+.benefits{
+background-image: url('../images/benefitsbackground.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 100px;
+    background-color: rgba(0, 0, 0, 0.726);
+    background-blend-mode: darken;
+}
+
+
+.benefitscontainer {
+    background-color: rgba(255, 255, 255, 0.76);
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 80%;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(226, 226, 226, 0.438);
+}
+
+.benefitscontainer h1 {
+    font-size: 28px;
+    color: #d32f2f;
+    font-weight: bold;
+    margin-bottom: 20px;
+    
+}
+
+.benefitscontainer h2 {
+    font-size: 24px;
+color: #d32f2f;
+    font-weight: bold;    margin-top: 30px;
+}
+
+.benefitscontainer h3 {
+    font-size: 20px;
+color: #d32f2f;
+    font-weight: bold;    margin-top: 20px;
+}
+
+.benefitscontainer p {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
+    text-align: right;
+}
+
+.benefitscontainer ul {
+    list-style-type: none;
+    display: flex;
+    text-align: center;
+    display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+}
+
+.benefitscontainer ul li {
+    margin: 20px;
+    font-size: 18px;
+    background-color: #b71c1c;
+    padding: 20px;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+        box-shadow: 0 4px 20px rgba(255, 7, 7, 0.671);
+            transition: transform 0.3s ease;
+}
+.benefitscontainer ul li:hover {
+    transform: scale(1.05);
+}
+.typescontainer{
+    background-color: rgba(235, 235, 235, 0.76);
+        border: 1px solid #e0e0e0;
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 80%;
+        margin: auto;
+        box-shadow: 0 4px 8px rgba(226, 226, 226, 0.438);
+    }
+
+.typescontainer h2 {
+    font-size: 30px;
+    color: #d32f2f;
+    font-weight: bold;
+        text-align: center;
+}
+
+
+
+.typescontainer p {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
+    text-align: right;
+}
+
+.typescontainer ul {
+    list-style-type: none;
+    display: flex;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+.typescontainer ul li {
+    margin: 20px;
+    font-size: 18px;
+    background-color: #b71c1c;
+    padding: 20px;
+    border-radius: 30px;
+    height: 100px;
+    width: 500px;
+  
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 4px 20px rgba(255, 7, 7, 0.671);
+            transition: transform 0.3s ease;
+}
+.typescontainer ul li:hover {
+    transform: scale(1.05);
+}
+.Procedurescontainer {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.Procedurescontainer h1 {
+    font-size: 28px;
+    color: #d32f2f;
+    margin-bottom: 20px;
+}
+
+.Procedurescontainer h2 {
+    font-size: 24px;
+    color: #d32f2f;
+    margin-top: 30px;
+}
+
+.Procedurescontainer h3 {
+    font-size: 20px;
+    color: #d32f2f;
+    margin-top: 20px;
+}
+
+.Procedurescontainer p {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.Procedurescontainer ul {
+list-style-type: none;
+    padding-right: 0;
+}
+
+.Procedurescontainer ul li {
+    margin-bottom: 10px;
+    font-size: 18px;
+    position: relative;
+        padding-right: 25px;
+        text-align: right;
+}
+
+
+.Procedurescontainer ul li::before {
+    content: "\2022";
+    position: absolute;
+    right: 0;
+    color: #007bff;
+    font-size: 20px;
 }

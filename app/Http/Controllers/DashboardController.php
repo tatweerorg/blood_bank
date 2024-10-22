@@ -22,7 +22,7 @@ class DashboardController extends Controller
 
         $centers = User::join('user_profiles','users.id','=','user_profiles.user_id')  
                         ->where('UserType','BloodCenter')
-                        ->select('users.Username', 'user_profiles.Address', 'user_profiles.ContactNumber')
+                        ->select('users.id','users.Username', 'user_profiles.Address', 'user_profiles.ContactNumber')
                         ->get();
         return view("pages.admin.bloodbanks",compact('centers'));
     }
@@ -30,6 +30,7 @@ class DashboardController extends Controller
         $donations = Donation::join('users AS donors', 'donations.user_id', '=', 'donors.id') // Join for donor user
         ->join('users AS centers', 'donations.center_id', '=', 'centers.id') // Join for blood center
         ->select(
+            'donations.id',
             'donors.Username AS donor_name', 
             'centers.Username AS center_name',
             'donations.blood_type', 
@@ -41,12 +42,14 @@ class DashboardController extends Controller
     }
     public function inventory(){
         $inventores=BloodInventory::join('users','blood_inventories.center_id','=','users.id')
-                    ->select('users.Username','blood_inventories.BloodType','blood_inventories.Quantity','blood_inventories.ExpirationDate')
+                    ->select('blood_inventories.id','users.Username','blood_inventories.BloodType','blood_inventories.Quantity','blood_inventories.ExpirationDate')
                     ->get();
         return view("pages.admin.bloodInventory",compact('inventores'));
     }
     public function requests(){
-        $requests=BloodRequest::all();
+        $requests=BloodRequest::join('users','blood_requests.user_id','=','users.id')
+        ->select('blood_requests.id','users.Username','blood_requests.BloodType','blood_requests.Quantity','blood_requests.RequestDate','blood_requests.Status')
+        ->get();
         return view("pages.admin.requests",compact('requests'));
     }
     public function reports(){

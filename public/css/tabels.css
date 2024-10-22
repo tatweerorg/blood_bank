@@ -1,0 +1,76 @@
+.recent-requests {
+    text-align: center;
+
+}
+
+.title {
+    background-color: #343a40;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.deletebtn {
+    background-color: rgb(187, 3, 3);
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.editbtn {
+    background-color: rgb(0, 31, 207);
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.deletebtn:hover {
+    background-color: rgb(253, 5, 5);
+}
+
+.editbtn:hover {
+    background-color: rgb(5, 5, 253);
+}
+
+tr {
+    height: 50px;
+}
+
+.btn-excel {
+    background-color: green !important;
+    border-radius: 10px !important;
+    color: white !important;
+    border: none !important;
+
+}
+
+.btn-excel:hover {
+    background-color: rgb(8, 240, 0) !important;
+    color: black !important;
+}
+
+.btn-pdf {
+    background-color: rgb(128, 19, 0) !important;
+    border-radius: 10px !important;
+    color: white !important;
+    border: none !important;
+}
+
+.btn-pdf:hover {
+    background-color: rgb(255, 85, 55) !important;
+}
+
+.btn-print {
+
+    background-color: rgb(0, 61, 141) !important;
+    border-radius: 10px !important;
+    color: white !important;
+    border: none !important;
+}
+
+.btn-print:hover {
+    background-color: rgb(36, 122, 235) !important;
+}

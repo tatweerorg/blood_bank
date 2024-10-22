@@ -2,10 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BloodCenterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BloodCenterController;
+use App\Http\Controllers\BloodRequestController;
+use App\Http\Controllers\BloodInventoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +40,20 @@ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
     Route::get('/dashboard/bloodcenter',[BloodCenterController::class,'dashboard'])->middleware('checkUserType:BloodCenter')->name('dashboard.bloodcenter');
     
 });
-
+Route::middleware('checkUserType:Admin')->group(function(){
+    Route::get('/bloodcenter/{id}/edit',[BloodCenterController::class,'edit'])->name('bloodCenter.edit');
+    Route::post('/bloodcenter/{id}',[BloodCenterController::class,'update'])->name('bloodCenter.update');
+    Route::post('/bloodcenter/{id}',[BloodCenterController::class,'destroy'])->name('bloodCenter.destroy');
+    Route::get('/donations/{id}/edit',[DonationController::class,'edit'])->name('donation.edit');
+    Route::post('/donations/{id}',[DonationController::class,'update'])->name('donation.update');
+    Route::post('/donations/{id}',[DonationController::class,'destroy'])->name('donation.destroy');
+    Route::get('/bloodinventories/{id}/edit',[BloodInventoryController::class,'edit'])->name('bloodInventory.edit');
+    Route::post('/bloodinventories/{id}',[BloodInventoryController::class,'update'])->name('bloodInventory.update');
+    Route::post('/bloodinventories/{id}',[BloodInventoryController::class,'destroy'])->name('bloodInventory.destroy');
+    Route::get('/bloodrequests/{id}/edit',[BloodRequestController::class,'edit'])->name('bloodRequest.edit');
+    Route::post('/bloodrequests/{id}',[BloodRequestController::class,'update'])->name('bloodRequest.update');
+    Route::post('/bloodrequests/{id}',[BloodRequestController::class,'destroy'])->name('bloodRequest.destroy');
+});
 
 Route::get('/dashboard/main',[DashboardController::class,'main'])->name('dashboard.main');
  

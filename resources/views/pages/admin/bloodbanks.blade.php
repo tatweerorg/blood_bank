@@ -2,7 +2,7 @@
 @section('content')
 
 <section class="recent-requests">
-    <h2>مراكز التبرع </h2>
+    <h2 class="title">مراكز التبرع </h2>
     <table id="centersTable" class="display">
         <thead>
             <tr>
@@ -19,8 +19,8 @@
                 <td>{{ $center->Address }}</td>
                 <td>{{ $center->ContactNumber }}</td>
                 <td>
-                <a href="#" class="btn btn-warning">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>
+                <a href="{{ route('bloodCenter.edit' , $center->id) }}" class="btn btn-warning editbtn">Edit</a>
+                <a href="#" class="btn btn-danger deletebtn">Delete</a>
                 </td>
             </tr>
             @endforeach
@@ -38,17 +38,23 @@
             buttons: [
                 {
                     extend: 'excelHtml5',
-                    text: 'تصدير إلى Excel'
+                    text: 'تصدير إلى Excel',
+                    className: 'btn-excel'
+
                 },
                 {
                     extend: 'pdfHtml5',
                     text: 'تصدير إلى PDF',
                     orientation: 'landscape',
-                    pageSize: 'A4'
+                    pageSize: 'A4',
+                    className: 'btn-pdf'
+
                 },
                 {
                     extend: 'print',
-                    text: 'طباعة'
+                    text: 'طباعة',
+                    className: 'btn-print'
+
                 }
             ]
         });

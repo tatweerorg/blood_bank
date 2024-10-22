@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Donation;
 use Illuminate\Http\Request;
 
@@ -55,9 +56,13 @@ class DonationController extends Controller
      * @param  \App\Models\Donation  $donation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Donation $donation)
+    public function edit($id)
     {
         //
+        $donation=Donation::find($id);
+        $donor=User::find($donation->user_id);
+        $center=User::find($donation->center_id);
+        return view('pages.admin.donationsedit',compact('donation','donor','center'));
     }
 
     /**
@@ -67,9 +72,51 @@ class DonationController extends Controller
      * @param  \App\Models\Donation  $donation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Donation $donation)
-    {
-        //
+   public function update(Request $reques,$id){
+    $validatedData = $request->validate([
+        'donor_name' => 'nullable|string|max:255',
+        'center_name' => 'nullable|string|max:255',
+        'blood_type' => 'nullable|in:A+,A-,O+,O-,AB+,AB-,B+,B-',
+        'quantity' => 'nullable|integer|min:1',
+        'last_donation_date' => 'nullable|date',
+    ],[
+        'blood_type.in' => 'يجب أن يكون نوع الدم أحد الخيارات الصحيحة.',
+        'last_donation_date.date'=>'يجب أن يكون التاريخ صحيح',
+    ]);
+    $donation=Donation::find($id);
+    if($request->filled('donor_name')){
+        $donor= User::where('Username',$validatedData['donor_name'])->first();
+        if($donor){
+            $donation->user_id=$donation->id;
+        }else{
+            return redirect()->back()->with('error', 'المتبرع غير موجود.');
+
+        }
+    }
+    if($request->filled('center_name')){
+        $donor= User::where('Username',$validatedData['center_name'])->first();
+        if($donor){
+            $donation->user_id=$donation->id;
+        }else{
+            return redirect()->back()->with('error', '.المركز غير موجود');
+
+        }
+    }
+    if ($request->filled('blood_type')) {
+        $donation->blood_type = $validatedData['blood_type'];
+    }
+
+    if ($request->filled('quantity')) {
+        $donation->quantity = $validatedData['quantity'];
+    }
+
+    if ($request->filled('last_donation_date')) {
+        $donation->last_donation_date = $validatedData['last_donation_date'];
+    }
+
+    // Save the updated donation
+    $donation->save();
+         return redirect()->route('pages.admin.donations')->with('success', 'تم تعديل معلومات المتبرع بنجاح');
     }
 
     /**
@@ -78,8 +125,15 @@ class DonationController extends Controller
      * @param  \App\Models\Donation  $donation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Donation $donation)
+    public function destroy($id)
     {
         //
+        $donation=Donation::find($id);
+        if($donation){
+            $donation->delete();
+            return redirect()->route('dashboard.donations')->with('success', 'تم حذف عملية التبرع بنجاح.');
+        }else{
+            return redirect()->route('dashboard.donations')->with('error', ' عملية التبرع غير موجودة');
+        }
     }
 }
