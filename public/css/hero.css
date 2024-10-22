@@ -8,7 +8,6 @@
     padding: 100px;
     background-color: rgba(0, 0, 0, 0.5);
         background-blend-mode: darken;
-        /* نمط الدمج يجعل الصورة أغمق */
         direction: rtl;
     
 }
