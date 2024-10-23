@@ -1,5 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
-
+* {
+  direction: rtl !important;
+}
 html,
 body {
   height: 100%;

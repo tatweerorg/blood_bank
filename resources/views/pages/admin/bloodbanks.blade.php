@@ -20,7 +20,11 @@
                 <td>{{ $center->ContactNumber }}</td>
                 <td>
                 <a href="{{ route('bloodCenter.edit' , $center->id) }}" class="btn btn-warning editbtn">Edit</a>
-                <a href="#" class="btn btn-danger deletebtn">Delete</a>
+                <form action="{{ route('bloodCenter.destroy' , $center->id) }}" method="POST">
+
+
+                    <input type="submit"  class="btn btn-danger deletebtn" value="Delete">
+                </form>
                 </td>
             </tr>
             @endforeach
