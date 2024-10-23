@@ -83,15 +83,16 @@ class BloodRequestController extends Controller
         ]);
         $requestBlood=BloodRequest::find($id);
         if($request->filled('user_name')){
-            $donor= User::where('Username',$validatedData['user_name'])->first();
+            $donor= User::where('id',$requestBlood->user_id)->first();
             if($donor){
-                $requestBlood->user_id=$requestBlood->id;
+                $donor->Username = $validatedData['user_name'];
+                $donor->save();
             }else{
-                return redirect()->back()->with('error', 'المتقدم بالطلب غير موجود.');
+                return redirect()->back()->with('error', 'المتبرع غير موجود.');
     
             }
         }
-      
+       
         if ($request->filled('BloodType')) {
             $requestBlood->BloodType = $validatedData['BloodType'];
         }
@@ -109,7 +110,7 @@ class BloodRequestController extends Controller
     
         // Save the updated donation
         $requestBlood->save();
-             return redirect()->route('pages.admin.requests')->with('success', 'تم تعديل معلومات الطلب بنجاح');
+             return redirect()->route('dashboard.requests')->with('success', 'تم تعديل معلومات الطلب بنجاح');
         }
     
         /**

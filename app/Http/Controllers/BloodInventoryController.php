@@ -83,16 +83,17 @@ class BloodInventoryController extends Controller
             'ExpirationDate.date'=>'يجب أن يكون التاريخ صحيح',
         ]);
         $inventory=BloodInventory::find($id);
+      
         if($request->filled('center_name')){
-            $donor= User::where('Username',$validatedData['center_name'])->first();
-            if($donor){
-                $inventory->center_id=$inventory->id;
+            $center= User::where('id',$inventory->center_id)->first();
+            if($center){
+                $center->Username = $validatedData['center_name'];
+                $center->save();
             }else{
-                return redirect()->back()->with('error', 'المركز غير موجود.');
+                return redirect()->back()->with('error', '.المركز غير موجود');
     
             }
-        }
-      
+        }      
         if ($request->filled('BloodType')) {
             $inventory->BloodType = $validatedData['BloodType'];
         }
@@ -107,7 +108,7 @@ class BloodInventoryController extends Controller
     
         // Save the updated donation
         $inventory->save();
-             return redirect()->route('pages.admin.bloodInventory')->with('success', 'تم تعديل معلومات مخزون الدم بنجاح');
+             return redirect()->route('dashboard.inventory')->with('success', 'تم تعديل معلومات مخزون الدم بنجاح');
         }
     
         /**
