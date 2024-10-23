@@ -24,34 +24,27 @@ class BloodCenterController extends Controller
         return view('pages.admin.bloodcenteredit',compact('user','profile'));
 
     }
-    public function update(Request $reques,$id){
+    public function update(Request $request,$id){
         $validatedData= $request->validate([
               'Username' => 'nullable|string|max:255',
-        'email' => 'nullable|email|max:255',
         'ContactNumber' => 'nullable|string|max:255|regex:/^05\d{8}$/',
-        'Address' => 'nullable|string|max:255',
         'BloodType' => 'nullable|string|max:255|in:A+,A-,O+,O-,AB+,AB-,B+,B-',
         ],[
             'ContactNumber.regex' => 'رقم الهاتف يجب أن يكون 10 أرقام ويبدأ ب 05',
-            'BloodType.in' => 'نوع فصيلة الدم يجب أن يكون أحد الخيارات في القائمة',
 
         ]);
         $user=User::find($id);
         if($request->filled('Username')){
            $user->Username =$validatedData['Username'];
         }
-        if($request->filled('email')){
-            $user->enail = $validatedData['email'];
-        }
+       
         if($request->filled('ContactNumber')){
             $user->ContactNumber =$validatedData['ContactNumber'];
          }
          if($request->filled('Address')){
             $user->Address =$validatedData['Address'];
          }
-         if($request->filled('BloodType')){
-            $user->BloodType=$validatedData['BloodType'];
-         }
+        
          $user->save();
          return redirect()->route('pages.admin.bloodbanks')->with('success', 'تم تعديل معلومات بنك الدم بنجاح');
     }

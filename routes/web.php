@@ -43,7 +43,7 @@ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 Route::middleware('checkUserType:Admin')->group(function(){
     Route::get('/bloodcenter/{id}/edit',[BloodCenterController::class,'edit'])->name('bloodCenter.edit');
     Route::post('/bloodcenter/{id}',[BloodCenterController::class,'update'])->name('bloodCenter.update');
-    Route::post('/bloodcenter/{id}',[BloodCenterController::class,'destroy'])->name('bloodCenter.destroy');
+    Route::post('/bloodcenter/delete/{id}',[BloodCenterController::class,'destroy'])->name('bloodCenter.destroy');
     Route::get('/donations/{id}/edit',[DonationController::class,'edit'])->name('donation.edit');
     Route::post('/donations/{id}',[DonationController::class,'update'])->name('donation.update');
     Route::post('/donations/{id}',[DonationController::class,'destroy'])->name('donation.destroy');
