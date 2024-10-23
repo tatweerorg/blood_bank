@@ -46,13 +46,13 @@ Route::middleware('checkUserType:Admin')->group(function(){
     Route::post('/bloodcenter/delete/{id}',[BloodCenterController::class,'destroy'])->name('bloodCenter.destroy');
     Route::get('/donations/{id}/edit',[DonationController::class,'edit'])->name('donation.edit');
     Route::post('/donations/{id}',[DonationController::class,'update'])->name('donation.update');
-    Route::post('/donations/{id}',[DonationController::class,'destroy'])->name('donation.destroy');
+    Route::post('/donations/delete/{id}',[DonationController::class,'destroy'])->name('donation.destroy');
     Route::get('/bloodinventories/{id}/edit',[BloodInventoryController::class,'edit'])->name('bloodInventory.edit');
     Route::post('/bloodinventories/{id}',[BloodInventoryController::class,'update'])->name('bloodInventory.update');
-    Route::post('/bloodinventories/{id}',[BloodInventoryController::class,'destroy'])->name('bloodInventory.destroy');
+    Route::post('/bloodinventories/delete/{id}',[BloodInventoryController::class,'destroy'])->name('bloodInventory.destroy');
     Route::get('/bloodrequests/{id}/edit',[BloodRequestController::class,'edit'])->name('bloodRequest.edit');
     Route::post('/bloodrequests/{id}',[BloodRequestController::class,'update'])->name('bloodRequest.update');
-    Route::post('/bloodrequests/{id}',[BloodRequestController::class,'destroy'])->name('bloodRequest.destroy');
+    Route::post('/bloodrequests/delete/{id}',[BloodRequestController::class,'destroy'])->name('bloodRequest.destroy');
 });
 
 Route::get('/dashboard/main',[DashboardController::class,'main'])->name('dashboard.main');

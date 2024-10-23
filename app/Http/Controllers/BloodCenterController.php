@@ -28,7 +28,7 @@ class BloodCenterController extends Controller
         $validatedData= $request->validate([
               'Username' => 'nullable|string|max:255',
         'ContactNumber' => 'nullable|string|max:255|regex:/^05\d{8}$/',
-        'BloodType' => 'nullable|string|max:255|in:A+,A-,O+,O-,AB+,AB-,B+,B-',
+        'Address'=>'nullable|string|max:255'
         ],[
             'ContactNumber.regex' => 'رقم الهاتف يجب أن يكون 10 أرقام ويبدأ ب 05',
 
@@ -37,16 +37,17 @@ class BloodCenterController extends Controller
         if($request->filled('Username')){
            $user->Username =$validatedData['Username'];
         }
-       
+       $profile=UserProfile::where('user_id',$user->id)->first();
         if($request->filled('ContactNumber')){
-            $user->ContactNumber =$validatedData['ContactNumber'];
+            $profile->ContactNumber =$validatedData['ContactNumber'];
          }
          if($request->filled('Address')){
-            $user->Address =$validatedData['Address'];
+            $profile->Address =$validatedData['Address'];
          }
         
          $user->save();
-         return redirect()->route('pages.admin.bloodbanks')->with('success', 'تم تعديل معلومات بنك الدم بنجاح');
+         $profile->save();
+         return redirect()->route('dashboard.bloodbanks')->with('success', 'تم تعديل معلومات بنك الدم بنجاح');
     }
 
 

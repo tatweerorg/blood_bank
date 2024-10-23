@@ -85,18 +85,20 @@ class DonationController extends Controller
     ]);
     $donation=Donation::find($id);
     if($request->filled('donor_name')){
-        $donor= User::where('Username',$validatedData['donor_name'])->first();
+        $donor= User::where('id',$donation->user_id)->first();
         if($donor){
-            $donation->user_id=$donation->id;
+            $donor->Username = $validatedData['donor_name'];
+            $donor->save();
         }else{
             return redirect()->back()->with('error', 'المتبرع غير موجود.');
 
         }
     }
     if($request->filled('center_name')){
-        $donor= User::where('Username',$validatedData['center_name'])->first();
-        if($donor){
-            $donation->user_id=$donation->id;
+        $center= User::where('id',$donation->center_id)->first();
+        if($center){
+            $center->Username = $validatedData['center_name'];
+            $center->save();
         }else{
             return redirect()->back()->with('error', '.المركز غير موجود');
 
@@ -116,7 +118,7 @@ class DonationController extends Controller
 
     // Save the updated donation
     $donation->save();
-         return redirect()->route('pages.admin.donations')->with('success', 'تم تعديل معلومات المتبرع بنجاح');
+         return redirect()->route('dashboard.donations')->with('success', 'تم تعديل معلومات المتبرع بنجاح');
     }
 
     /**
