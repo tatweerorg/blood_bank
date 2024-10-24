@@ -7,7 +7,7 @@
   }
 
   .login-form {
-      background-color: #fff;
+      background-color: #f7f7f7;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -156,7 +156,7 @@
  }
 
  .register-form {
-     background-color: #fff;
+      background-color: #f7f7f7;
      padding: 20px;
      border-radius: 10px;
      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
