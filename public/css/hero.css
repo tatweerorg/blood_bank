@@ -213,8 +213,10 @@
 .typescontainer ul li:hover {
     transform: scale(1.05);
 }
+
+
 .Procedurescontainer {
-    background-color: rgba(235, 235, 235, 0.76);
+    background-color: #e0e0e09c;  
     border: 1px solid #e0e0e0;
     padding: 20px;
     border-radius: 8px;
