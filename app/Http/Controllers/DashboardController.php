@@ -2,18 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Donation;
 use App\Models\BloodCenter;
 use App\Models\BloodRequest;
 use Illuminate\Http\Request;
 use App\Models\BloodInventory;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
     //
     public function dashboard(){
-        return view("pages.admin.main");
+        $today=Carbon::today();
+        $bloodrequests= DB::table('blood_requests')
+        ->join('users','blood_requests.user_id', '=', 'users.id')
+        ->whereBetween('RequestDate',[$today,$today->copy()->addDays(30)])
+        ->select('blood_requests.*', 'users.Username')
+        ->get();
+        $donationcount=DB::table('donations')->count();
+        $donorcount=DB::table('donations')->distinct('user_id')->count('user_id');
+        $pendingrequests=Db::table('blood_requests')->where('status','Pending')->count();
+        $quantity=DB::table('blood_inventories')->sum('Quantity');
+        return view("pages.admin.main",compact('bloodrequests','donationcount','donorcount','pendingrequests','quantity'));
     }
       public function main(){
         return view("pages.admin.main");

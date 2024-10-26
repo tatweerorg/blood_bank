@@ -3,19 +3,19 @@
             <section class="dashboard-cards">
                 <div class="card">
                     <h3>إجمالي التبرعات</h3>
-                    <p>1500</p>
+                    <p>{{ $donationcount }}</p>
                 </div>
                 <div class="card">
                     <h3>وحدات الدم المتاحة</h3>
-                    <p>300</p>
+                    <p>{{ $quantity }}</p>
                 </div>
                 <div class="card">
                     <h3>الطلبات المعلقة</h3>
-                    <p>45</p>
+                    <p>{{ $pendingrequests }}</p>
                 </div>
                 <div class="card">
                     <h3>إجمالي المتبرعين</h3>
-                    <p>1200</p>
+                    <p>{{ $donorcount }}</p>
                 </div>
             </section>
             <section class="recent-requests">
@@ -30,18 +30,24 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach( $bloodrequests as $request)
                         <tr>
-                            <td>محمود </td>
-                            <td>O+</td>
-                            <td>2024-09-15</td>
-                            <td>موافقة</td>
+                            <td>{{ $request->Username }} </td>
+                            <td>{{ $request->BloodType }}</td>
+                            <td>{{ $request->RequestDate }}</td>
+                           <td>
+                           @if($request->Status === 'Pending')
+        معلق
+        @elseif($request->Status === 'Approved')
+        مقبول
+        @elseif($request->Status === 'Cancelled')
+        مرفوض
+    @endif
+
+                           </td>
                         </tr>
-                        <tr>
-                            <td>عبد الله </td>
-                            <td>A-</td>
-                            <td>2024-09-14</td>
-                            <td>معلقة</td>
-                        </tr>
+                        @endforeach
+                      
                     </tbody>
                 </table>
             </section>
