@@ -6,13 +6,13 @@
 @section('content')
 <section class="login-section">
     <div class="container">
-        <h2>تسجيل الدخول</h2>
-
-
-
-
+        
+        
+        
+        
         <form action="{{ route('login.post') }}" method="POST" class="login-form">
             @csrf
+            <h2>تسجيل الدخول</h2>
             @if(session('success'))
             <p class="alert alert-success ">{{ session('success') }}</p>
             @endif

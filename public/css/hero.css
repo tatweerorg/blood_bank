@@ -213,33 +213,40 @@
 .typescontainer ul li:hover {
     transform: scale(1.05);
 }
+
+
 .Procedurescontainer {
-    background-color: white;
+    background-color: #e0e0e09c;  
     border: 1px solid #e0e0e0;
     padding: 20px;
     border-radius: 8px;
-    max-width: 800px;
+    max-width: 80%;
     margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .Procedurescontainer h1 {
-    font-size: 28px;
+    font-size: 30px;
     color: #d32f2f;
-    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .Procedurescontainer h2 {
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: bold;
     color: #d32f2f;
     margin-top: 30px;
 }
 
 .Procedurescontainer h3 {
-    font-size: 20px;
+    font-size: 26px;
     color: #d32f2f;
     margin-top: 20px;
+    font-weight: bold;
 }
 
 .Procedurescontainer p {
