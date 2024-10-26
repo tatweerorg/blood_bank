@@ -1,11 +1,16 @@
 .about-section{
-    
 }
 
 
 .intro{
   
 
+}
+.container-section{
+    border: 1px solid #000;
+    background-color: rgb(241, 241, 241);
+    border-radius: 10px;
+    
 }
 
 .title{

@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <section class="about-section">
-    <div class="container">
+    <div class="container container-section">
         <div class="intro">
             <h1 class="title">من نحن</h1>
             <p>مرحبًا بكم في [اسم بنك الدم]، شريككم الموثوق في إنقاذ الأرواح من خلال التبرع بالدم. مهمتنا هي سد الفجوة بين المتبرعين بالدم والمرضى المحتاجين، وضمان عملية تبرع وتوزيع سلسة وآمنة وفعالة.</p>
