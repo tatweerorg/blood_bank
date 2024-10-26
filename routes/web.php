@@ -53,17 +53,37 @@ Route::middleware('checkUserType:Admin')->group(function(){
     Route::get('/bloodrequests/{id}/edit',[BloodRequestController::class,'edit'])->name('bloodRequest.edit');
     Route::post('/bloodrequests/{id}',[BloodRequestController::class,'update'])->name('bloodRequest.update');
     Route::post('/bloodrequests/delete/{id}',[BloodRequestController::class,'destroy'])->name('bloodRequest.destroy');
-});
-
-Route::get('/dashboard/main',[DashboardController::class,'main'])->name('dashboard.main');
- 
-Route::get('/dashboard/bloodbanks',[DashboardController::class,'bloodbanks'])->name('dashboard.bloodbanks');
+    Route::get('/dashboard/bloodbanks',[DashboardController::class,'bloodbanks'])->name('dashboard.bloodbanks');
 
 Route::get('/dashboard/donations',[DashboardController::class,'donations'])->name('dashboard.donations');
 Route::get('/dashboard/inventory',[DashboardController::class,'inventory'])->name('dashboard.inventory');
 Route::get('/dashboard/requests',[DashboardController::class,'requests'])->name('dashboard.requests');
 Route::get('/dashboard/reports',[DashboardController::class,'reports'])->name('dashboard.reports');
 Route::get('/dashboard/settings',[DashboardController::class,'settings'])->name('dashboard.settings');
+});
+Route::middleware('checkUserType:User')->group(function(){
+    Route::get('/bloodcenter/{id}/edit',[BloodCenterController::class,'edit'])->name('bloodCenter.edit');
+    Route::post('/bloodcenter/{id}',[BloodCenterController::class,'update'])->name('bloodCenter.update');
+    Route::post('/bloodcenter/delete/{id}',[BloodCenterController::class,'destroy'])->name('bloodCenter.destroy');
+    Route::get('/donations/{id}/edit',[DonationController::class,'edit'])->name('donation.edit');
+    Route::post('/donations/{id}',[DonationController::class,'update'])->name('donation.update');
+    Route::post('/donations/delete/{id}',[DonationController::class,'destroy'])->name('donation.destroy');
+    Route::get('/bloodinventories/{id}/edit',[BloodInventoryController::class,'edit'])->name('bloodInventory.edit');
+    Route::post('/bloodinventories/{id}',[BloodInventoryController::class,'update'])->name('bloodInventory.update');
+    Route::post('/bloodinventories/delete/{id}',[BloodInventoryController::class,'destroy'])->name('bloodInventory.destroy');
+    Route::get('/bloodrequests/{id}/edit',[BloodRequestController::class,'edit'])->name('bloodRequest.edit');
+    Route::post('/bloodrequests/{id}',[BloodRequestController::class,'update'])->name('bloodRequest.update');
+    Route::post('/bloodrequests/delete/{id}',[BloodRequestController::class,'destroy'])->name('bloodRequest.destroy');
+    Route::get('/dashboard/bloodbanks',[UserController::class,'bloodbanks'])->name('dashboarduser.bloodbanks');
+
+Route::get('/dashboard/donations',[UserController::class,'donations'])->name('dashboarduser.donations');
+Route::get('/dashboard/inventory',[UserController::class,'inventory'])->name('dashboarduser.inventory');
+Route::get('/dashboard/requests',[UserController::class,'requests'])->name('dashboarduser.requests');
+Route::get('/dashboard/reports',[UserController::class,'reports'])->name('dashboarduser.reports');
+Route::get('/dashboard/settings',[UserController::class,'settings'])->name('dashboarduser.settings');
+});
+ 
+
 Route::get('/roles', function () {
     return view('auth.register.roles');
      
