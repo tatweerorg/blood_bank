@@ -101,6 +101,9 @@ Route::post('/register/bloodbank',[UserController::class, 'registerBloodBank'])-
 Route::get('/about', function () {
     return view('pages.about&contact.about');
 })->name('views.about');
+Route::get('/contact', function () {
+    return view('pages.about&contact.contact');
+})->name('views.contact');
 Route::get('/profile/create/step1/{user_id}',[UserController::class,'create1'])->name('profile.view.step1');
 Route::post('/profile/store/step1/{user_id}',[UserController::class,'store1'])->name('profile.post.step1');
 Route::get('/profile/create/step2/{user_id}',[UserController::class,'create2'])->name('profile.view.step2');
