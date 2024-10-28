@@ -75,10 +75,11 @@ Route::middleware('checkUserType:User')->group(function(){
     Route::post('/bloodrequests/{id}',[BloodRequestController::class,'update'])->name('bloodRequest.update');
     Route::post('/bloodrequests/delete/{id}',[BloodRequestController::class,'destroy'])->name('bloodRequest.destroy');
     Route::get('/dashboard/bloodbanks',[UserController::class,'bloodbanks'])->name('dashboarduser.bloodbanks');
-
 Route::get('/dashboard/donations',[UserController::class,'donations'])->name('dashboarduser.donations');
 Route::get('/dashboard/inventory',[UserController::class,'inventory'])->name('dashboarduser.inventory');
 Route::get('/dashboard/requests',[UserController::class,'requests'])->name('dashboarduser.requests');
+Route::get('/dashboard/requestsBlood',[BloodRequestController::class,'create'])->name('dashboarduser.requestsBlood');
+Route::post('/dashboard/requestsBlood/submit',[BloodRequestController::class,'store'])->name('dashboarduser.requestsBlood.store');
 Route::get('/dashboard/reports',[UserController::class,'reports'])->name('dashboarduser.reports');
 Route::get('/dashboard/settings',[UserController::class,'settings'])->name('dashboarduser.settings');
 });

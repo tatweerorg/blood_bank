@@ -22,8 +22,8 @@
                 <td>{{ $donation->quantity }}</td>
                 <td>{{ $donation->last_donation_date }}</td>
                 <td>
-                <a href="{{ route('donation.edit' , $donation->id) }}" class="btn btn-warning editbtn">Edit</a>
-                <a href="#" class="btn btn-danger deletebtn">Delete</a>
+                <a href="{{ route('donation.edit' , $donation->id) }}" class="btn btn-warning editbtn">تواصل</a>
+                <a href="#" class="btn btn-danger deletebtn">طلب تبرع</a>
                 </td>
             </tr>
             @endforeach

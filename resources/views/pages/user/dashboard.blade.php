@@ -2,7 +2,7 @@
 @section('content')
                   <section class="dashboard-cards">
                 <div class="card">
-                    <h3>إجمالي التبرعات</h3>
+                    <h3>  إجمالي تبرعات المستخدم</h3>
                     <p>{{ $donationcount }}</p>
                 </div>
                 <div class="card">
@@ -10,7 +10,7 @@
                     <p>{{ $quantity }}</p>
                 </div>
                 <div class="card">
-                    <h3>الطلبات المعلقة</h3>
+                    <h3>الطلبات المعلقة للمستخدم</h3>
                     <p>{{ $pendingrequests }}</p>
                 </div>
                 <div class="card">

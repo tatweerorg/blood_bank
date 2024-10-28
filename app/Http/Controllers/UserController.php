@@ -268,7 +268,10 @@ class UserController extends Controller
         return view("pages.user.bloodInventory",compact('inventores'));
     }
     public function requests(){
+        $userId= Auth::id();
+
         $requests=BloodRequest::join('users','blood_requests.user_id','=','users.id')
+        ->where('blood_requests.user_id', $userId)
         ->select('blood_requests.id','users.Username','blood_requests.BloodType','blood_requests.Quantity','blood_requests.RequestDate','blood_requests.Status')
         ->get();
         return view("pages.user.requests",compact('requests'));

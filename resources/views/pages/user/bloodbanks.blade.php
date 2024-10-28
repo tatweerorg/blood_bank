@@ -20,11 +20,13 @@
                         <td>
                             <div class="actions">
                                 <a href="{{ route('bloodCenter.edit', $center->id) }}"
-                                    class="btn btn-warning editbtn">Edit</a>
+                                    class="btn btn-warning editbtn"><i class="bi bi-envelope"></i> أرسل رسالة
+
+                                    </a>
                                 <form action="{{ route('bloodCenter.destroy', $center->id) }}" method="POST">
 
 
-                                    <input type="submit" class="btn btn-danger deletebtn" value="Delete">
+                                    <input type="submit" class="btn btn-danger deletebtn" value="طلب تبرع">
                                 </form>
                             </div>
 

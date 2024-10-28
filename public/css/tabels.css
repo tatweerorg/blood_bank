@@ -45,6 +45,8 @@ tr {
     border-radius: 10px !important;
     color: white !important;
     border: none !important;
+    padding: 10px 10px;
+    text-decoration: none;
 
 }
 
@@ -58,6 +60,8 @@ tr {
     border-radius: 10px !important;
     color: white !important;
     border: none !important;
+    padding: 10px 10px;
+
 }
 
 .btn-pdf:hover {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\BloodRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BloodRequestController extends Controller
 {
@@ -26,18 +27,24 @@ class BloodRequestController extends Controller
     public function create()
     {
         //
+        return view('pages.user.requestDonation');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        $request->validate([
+            'BloodType' => 'required|string|max:3', // e.g., A+, O-, etc.
+            'Quantity' => 'required|integer|min:1', // Quantity in units
+            'RequestDate' => 'required|date', // Request date
+        ]);
+        $bloodrequest=BloodRequest::create([
+            'user_id'=> Auth::id(),
+            'BloodType' => $request->input('BloodType'),
+            'Quantity' => $request->input('Quantity'),
+            'RequestDate' => $request->input('RequestDate'),
+            'Status'=>'Pending',
+        ]);
+        return redirect()->route('dashboarduser.requests');
     }
+  
 
     /**
      * Display the specified resource.
