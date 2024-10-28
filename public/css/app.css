@@ -1,7 +1,4 @@
 @import "~bootstrap/scss/bootstrap";
-@import '~@fortawesome/fontawesome-free/css/all.min.css';
-@import '~bootstrap-icons/font/bootstrap-icons.css';
-
 * {
   direction: rtl !important;
 }
@@ -30,6 +27,17 @@ body {
   text-align: center;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   font-family: 'Cairo', sans-serif;
+}
+.logo{
+  width:80px;
+}
+.logobackground{
+  width: 10%;
+  position:absolute;
+  top: 10px;
+  left: 20px;
+  opacity: 0.2;
+
 }
 
 .navbar {
