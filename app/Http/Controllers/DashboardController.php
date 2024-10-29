@@ -30,14 +30,16 @@ class DashboardController extends Controller
       public function main(){
         return view("pages.admin.main");
     }
-    public function bloodbanks(){
+    public function bloodbanks()
+{
+    $centers = User::join('user_profiles', 'users.id', '=', 'user_profiles.user_id')
+                    ->where('UserType', 'BloodCenter')
+                    ->select('users.id', 'users.Username', 'user_profiles.Address', 'user_profiles.ContactNumber')
+                    ->get();
 
-        $centers = User::join('user_profiles','users.id','=','user_profiles.user_id')  
-                        ->where('UserType','BloodCenter')
-                        ->select('users.id','users.Username', 'user_profiles.Address', 'user_profiles.ContactNumber')
-                        ->get();
-        return view("pages.admin.bloodbanks",compact('centers'));
-    }
+    return view("pages.admin.bloodbanks", compact('centers'));
+}
+
     public function donations(){
         $donations = Donation::join('users AS donors', 'donations.user_id', '=', 'donors.id') // Join for donor user
         ->join('users AS centers', 'donations.center_id', '=', 'centers.id') // Join for blood center
