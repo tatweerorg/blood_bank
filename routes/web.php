@@ -41,6 +41,7 @@ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
     
 });
 Route::middleware('checkUserType:Admin')->group(function(){
+    
     Route::get('/bloodcenter/{id}/edit',[BloodCenterController::class,'edit'])->name('bloodCenter.edit');
     Route::post('/bloodcenter/{id}',[BloodCenterController::class,'update'])->name('bloodCenter.update');
     Route::post('/bloodcenter/delete/{id}',[BloodCenterController::class,'destroy'])->name('bloodCenter.destroy');
@@ -54,12 +55,11 @@ Route::middleware('checkUserType:Admin')->group(function(){
     Route::post('/bloodrequests/{id}',[BloodRequestController::class,'update'])->name('bloodRequest.update');
     Route::post('/bloodrequests/delete/{id}',[BloodRequestController::class,'destroy'])->name('bloodRequest.destroy');
     Route::get('/dashboard/bloodbanks',[DashboardController::class,'bloodbanks'])->name('dashboard.bloodbanks');
-
-Route::get('/dashboard/donations',[DashboardController::class,'donations'])->name('dashboard.donations');
-Route::get('/dashboard/inventory',[DashboardController::class,'inventory'])->name('dashboard.inventory');
-Route::get('/dashboard/requests',[DashboardController::class,'requests'])->name('dashboard.requests');
-Route::get('/dashboard/reports',[DashboardController::class,'reports'])->name('dashboard.reports');
-Route::get('/dashboard/settings',[DashboardController::class,'settings'])->name('dashboard.settings');
+    Route::get('/dashboard/donations',[DashboardController::class,'donations'])->name('dashboard.donations');
+    Route::get('/dashboard/inventory',[DashboardController::class,'inventory'])->name('dashboard.inventory');
+    Route::get('/dashboard/requests',[DashboardController::class,'requests'])->name('dashboard.requests');
+    Route::get('/dashboard/reports',[DashboardController::class,'reports'])->name('dashboard.reports');
+    Route::get('/dashboard/settings',[DashboardController::class,'settings'])->name('dashboard.settings');
 });
 Route::middleware('checkUserType:User')->group(function(){
     Route::get('/bloodcenter/{id}/edit',[BloodCenterController::class,'edit'])->name('bloodCenter.edit');
@@ -75,13 +75,13 @@ Route::middleware('checkUserType:User')->group(function(){
     Route::post('/bloodrequests/{id}',[BloodRequestController::class,'update'])->name('bloodRequest.update');
     Route::post('/bloodrequests/delete/{id}',[BloodRequestController::class,'destroy'])->name('bloodRequest.destroy');
     Route::get('/dashboard/bloodbanks',[UserController::class,'bloodbanks'])->name('dashboarduser.bloodbanks');
-Route::get('/dashboard/donations',[UserController::class,'donations'])->name('dashboarduser.donations');
-Route::get('/dashboard/inventory',[UserController::class,'inventory'])->name('dashboarduser.inventory');
-Route::get('/dashboard/requests',[UserController::class,'requests'])->name('dashboarduser.requests');
-Route::get('/dashboard/requestsBlood',[BloodRequestController::class,'create'])->name('dashboarduser.requestsBlood');
-Route::post('/dashboard/requestsBlood/submit',[BloodRequestController::class,'store'])->name('dashboarduser.requestsBlood.store');
-Route::get('/dashboard/reports',[UserController::class,'reports'])->name('dashboarduser.reports');
-Route::get('/dashboard/settings',[UserController::class,'settings'])->name('dashboarduser.settings');
+    Route::get('/dashboard/donations',[UserController::class,'donations'])->name('dashboarduser.donations');
+    Route::get('/dashboard/inventory',[UserController::class,'inventory'])->name('dashboarduser.inventory');
+    Route::get('/dashboard/requests',[UserController::class,'requests'])->name('dashboarduser.requests');
+    Route::get('/dashboard/requestsBlood',[BloodRequestController::class,'create'])->name('dashboarduser.requestsBlood');
+    Route::post('/dashboard/requestsBlood/submit',[BloodRequestController::class,'store'])->name('dashboarduser.requestsBlood.store');
+    Route::get('/dashboard/reports',[UserController::class,'reports'])->name('dashboarduser.reports');
+    Route::get('/dashboard/settings',[UserController::class,'settings'])->name('dashboarduser.settings');
 });
  
 

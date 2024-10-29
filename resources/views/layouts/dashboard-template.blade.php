@@ -36,7 +36,7 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1>لوحة التحكم الخاصة بالادمن</h1> <!-- Arabic for Blood Bank Admin Dashboard -->
+            <h1>لوحة التحكم الخاصة بالادمن</h1> 
         </header>
         <nav class="sidebar">
             <ul>
@@ -47,7 +47,7 @@
                 <li><a href="{{ route('dashboard.requests') }}">طلبات التبرع</a></li>
                 <li><a href="{{ route('dashboard.reports') }}">التقارير</a></li>
                 <li><a href="{{ route('dashboard.settings') }}">الإعدادات</a></li>
-                <li>
+                
                 <li>
                     <form action="{{ route('logout') }}" method="POST" id="logout-form">
                         @csrf
@@ -61,7 +61,6 @@
             @yield('content')
         </main>
     </div>
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script> -->
 
 </body>
 

@@ -36,7 +36,7 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1>لوحة التحكم الخاصة بالمستخدم</h1> <!-- Arabic for Blood Bank Admin Dashboard -->
+            <h1>لوحة التحكم الخاصة بالمستخدم</h1>
         </header>
         <nav class="sidebar">
             <ul>
