@@ -6,15 +6,15 @@
 @section('content')
     <section class="register-section">
         <div class="container">
-            <h2>إنشاء حساب جديد</h2>
+       
+
+            <form action="{{ route('register.user.post') }}" method="POST" class="register-form">
+                @csrf
+     <h2>إنشاء حساب جديد</h2>
 
             @if(session('success'))
                 <p>{{ session('success') }}</p>
             @endif
-
-            <form action="{{ route('register.user.post') }}" method="POST" class="register-form">
-                @csrf
-
                 <!-- Username -->
                 <div class="form-group">
                     <label for="username">اسم المستخدم</label>

@@ -6,7 +6,12 @@ html,
 body {
   height: 100%;
   margin: 0;
-  font-family: 'Cairo', sans-serif;
+      font-family: "Cairo", sans-serif !important;
+        font-optical-sizing: auto ;
+        font-weight: 200 ;
+        font-style: normal ;
+        font-variation-settings :
+          "slnt" 0 ;
 }
 
 body {

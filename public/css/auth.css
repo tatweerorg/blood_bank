@@ -28,9 +28,10 @@
   }
   label{
     text-align: right;
+    font-weight: 500;
   }
 .create_account_tag {
-    
+        font-weight: 500;
     display: inline-block;
     color: #d32f2f;
     padding: 10px 20px;
@@ -98,17 +99,22 @@
         text-align: center;
      padding: 50px 0;
      text-align: center;
-    background-image: url("../images/download__1_-removebg-preview.png");
-        background-size: cover;
-        background-position: left;
-        background-color: rgba(0, 0, 0, 0.486);
+    background-image: url("../images/hands.png");
+        background-size:auto;
+        background-repeat: repeat-x;
+        background-position: bottom;
+        background-color: rgba(0, 0, 0, 0.438);
         background-blend-mode: darken;
  }
 
  .role-selection h2 {
      margin-bottom: 30px;
      font-size: 2.5em;
-   color: #FFF;
+   color: #ffffff;
+   background-color: #a00000;
+   border-radius: 10px;
+   padding: 10px;
+   
  }
 
  .role-options {
@@ -134,11 +140,13 @@
  .role-card h3 {
      font-size: 1.8em;
      margin-bottom: 10px;
+     font-weight: 700;
  }
 
  .role-card p {
      font-size: 1em;
      color: #777;
+     font-weight: 400;
  }
 
  .role-card:hover {
@@ -160,10 +168,11 @@
  .register-section {
     display: grid;
         place-items: center;
-        height: 70vh;
+        height: 100%;
         text-align: center;
      padding: 50px 0;
      text-align: center;
+            background-color: rgba(0, 0, 0, 0.199);
  }
 
  .register-form {
