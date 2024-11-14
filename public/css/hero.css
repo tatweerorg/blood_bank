@@ -25,6 +25,7 @@
     font-size: 1.2em;
     margin-bottom: 20px;
 }
+
 .btn-primary {
     background-color: #d32f2f;
     color: #fff;
@@ -40,12 +41,14 @@
     background-color: #b71c1c;
     transform: scale(1.05);
 }
+
 .features {
     padding: 50px 0;
     background-color: #fff;
     text-align: center;
-       
+
 }
+
 .features h3 {
     font-size: 2.5em;
     margin-bottom: 40px;
@@ -66,6 +69,7 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease;
 }
+
 .feature:hover {
     transform: scale(1.05);
 }
@@ -79,11 +83,12 @@
     font-size: 1em;
     color: #3f3f3f;
 }
+
 .types {
     text-align: right;
     padding: 20px;
     background-image: url("../images/typesbg.png");
-        background-repeat: no-repeat;
+    background-repeat: no-repeat;
 
 }
 
@@ -132,7 +137,7 @@
     font-size: 18px;
     color: #333;
     line-height: 1.6;
-      text-align: justify;
+    text-align: justify;
 
 }
 
@@ -161,9 +166,11 @@
     box-shadow: 0 4px 20px rgba(255, 7, 7, 0.671);
     transition: transform 0.3s ease;
 }
+
 .benefitscontainer ul li:hover {
     transform: scale(1.05);
 }
+
 .typescontainer {
     background-color: rgba(235, 235, 235, 0.76);
     border: 1px solid #e0e0e0;
@@ -214,13 +221,14 @@
     box-shadow: 0 4px 20px rgba(255, 7, 7, 0.671);
     transition: transform 0.3s ease;
 }
+
 .typescontainer ul li:hover {
     transform: scale(1.05);
 }
 
 
 .Procedurescontainer {
-    background-color: #e0e0e09c;  
+    background-color: #e0e0e09c;
     border: 1px solid #e0e0e0;
     padding: 20px;
     border-radius: 8px;
@@ -231,8 +239,8 @@
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-image: url("../images/hartbg.png");
-        background-repeat: no-repeat;
-        
+    background-repeat: no-repeat;
+
 }
 
 .Procedurescontainer h1 {

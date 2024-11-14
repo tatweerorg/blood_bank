@@ -1,37 +1,38 @@
-
-  .login-section {
-      display: grid;
-      place-items: center;
-      height:100%;
-      text-align: center;
+.login-section {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    text-align: center;
     background-image: url("../images/download__2_-removebg-preview.png");
-        background-size:cover;
-        background-position:left;
-        background-color: rgba(0, 0, 0, 0.199);
-            background-blend-mode: darken;
-  }
+    background-size: cover;
+    background-position: left;
+    background-color: rgba(0, 0, 0, 0.199);
+    background-blend-mode: darken;
+}
 
-  .login-form {
-      background-color: #f7f7f7;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 500px;
-      margin: auto;
-      
-  }
+.login-form {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
 
-  .login-form h2 {
-      margin-bottom: 20px;
-      
-  }
-  label{
+}
+
+.login-form h2 {
+    margin-bottom: 20px;
+
+}
+
+label {
     text-align: right;
     font-weight: 500;
-  }
+}
+
 .create_account_tag {
-        font-weight: 500;
+    font-weight: 500;
     display: inline-block;
     color: #d32f2f;
     padding: 10px 20px;
@@ -54,137 +55,138 @@
         /* Adjust padding */
     }
 }
- .form-group {
-     margin-bottom: 15px;
-     text-align: left;
- }
 
- .form-group label {
-     display: block;
-     font-size: 1em;
-     margin-bottom: 5px;
-     color: #333;
- }
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
 
- .form-group input {
-     width: 100%;
-     padding: 10px;
-     border-radius: 5px;
-     border: 1px solid #ccc;
- }
+.form-group label {
+    display: block;
+    font-size: 1em;
+    margin-bottom: 5px;
+    color: #333;
+}
 
- .btn-primary {
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.btn-primary {
     margin-top: 10px;
-     background-color: #d32f2f;
-     color: #fff;
-     padding: 10px 30px;
-     text-decoration: none;
-     border-radius: 5px;
+    background-color: #d32f2f;
+    color: #fff;
+    padding: 10px 30px;
+    text-decoration: none;
+    border-radius: 5px;
     border: 1px solid #f6f6f6;
-     font-size: 1.2em;
-     cursor: pointer;
-     display: block;
-     width: 100%;
-     text-align: center;
- }
+    font-size: 1.2em;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
 
- .btn-primary:hover {
-     background-color: #b71c1c;
- }
+.btn-primary:hover {
+    background-color: #b71c1c;
+}
 
- .role-selection {
+.role-selection {
     display: grid;
-        place-items: center;
-        height:100%;
-        text-align: center;
-     padding: 50px 0;
-     text-align: center;
+    place-items: center;
+    height: 100%;
+    text-align: center;
+    padding: 50px 0;
+    text-align: center;
     background-image: url("../images/hands.png");
-        background-size:auto;
-        background-repeat: repeat-x;
-        background-position: bottom;
-        background-color: rgba(0, 0, 0, 0.438);
-        background-blend-mode: darken;
- }
+    background-size: auto;
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-color: rgba(0, 0, 0, 0.438);
+    background-blend-mode: darken;
+}
 
- .role-selection h2 {
-     margin-bottom: 30px;
-     font-size: 2.5em;
-   color: #ffffff;
-   background-color: #a00000;
-   border-radius: 10px;
-   padding: 10px;
-   
- }
+.role-selection h2 {
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    color: #ffffff;
+    background-color: #a00000;
+    border-radius: 10px;
+    padding: 10px;
 
- .role-options {
-     display: flex;
-     justify-content: space-evenly;
-     flex-wrap: wrap;
- }
+}
 
- .role-card {
-     background-color: #fff;
-     padding: 20px;
-     border-radius: 10px;
-     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-     width: 100%;
-     max-width: 300px;
-     margin: 10px;
-     text-decoration: none;
-     color: #333;
-     transition: transform 0.3s;
-        border: 1px solid #b71c1c;
- }
+.role-options {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
 
- .role-card h3 {
-     font-size: 1.8em;
-     margin-bottom: 10px;
-     font-weight: 700;
- }
+.role-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 300px;
+    margin: 10px;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s;
+    border: 1px solid #b71c1c;
+}
 
- .role-card p {
-     font-size: 1em;
-     color: #777;
-     font-weight: 400;
- }
+.role-card h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
 
- .role-card:hover {
-     transform: scale(1.05);
- }
+.role-card p {
+    font-size: 1em;
+    color: #777;
+    font-weight: 400;
+}
 
- .role-card:hover h3 {
-     color: #d32f2f;
- }
+.role-card:hover {
+    transform: scale(1.05);
+}
 
- .form-group input,
- .form-group select {
-     width: 100%;
-     padding: 10px;
-     border-radius: 5px;
-     border: 1px solid #ccc;
- }
+.role-card:hover h3 {
+    color: #d32f2f;
+}
 
- .register-section {
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.register-section {
     display: grid;
-        place-items: center;
-        height: 100%;
-        text-align: center;
-     padding: 50px 0;
-     text-align: center;
-            background-color: rgba(0, 0, 0, 0.199);
- }
+    place-items: center;
+    height: 100%;
+    text-align: center;
+    padding: 50px 0;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.199);
+}
 
- .register-form {
-      background-color: #f7f7f7;
-     padding: 20px;
-     border-radius: 10px;
-     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-     width: 100%;
-     max-width: 400px;
-     margin: auto;
- }
+.register-form {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+}
 
- .register-form h2 {
-     margin-bottom: 20px;
- }
+.register-form h2 {
+    margin-bottom: 20px;
+}

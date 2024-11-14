@@ -5,20 +5,19 @@
 }
 
 body {
-font-family: "Cairo", sans-serif !important;
+    font-family: "Cairo", sans-serif !important;
     font-optical-sizing: auto;
     font-weight: 200;
     font-style: normal;
     font-variation-settings:
-        "slnt" 0;    background-color: #f4f4f4;
+        "slnt" 0;
+    background-color: #f4f4f4;
     direction: rtl;
-    /* Force RTL layout */
 }
 
 .container {
     display: grid;
     grid-template-columns: 250px 1fr;
-    /* Swap sidebar and main content */
     grid-template-rows: auto 1fr;
     min-height: 100vh;
 }
@@ -62,7 +61,6 @@ font-family: "Cairo", sans-serif !important;
     background-color: #fff;
     padding: 20px;
     text-align: right;
-    /* Align text to the right */
 }
 
 .dashboard-cards {
@@ -100,7 +98,6 @@ table td {
     padding: 12px;
     border: 1px solid #ddd;
     text-align: right;
-    /* Text aligned to the right */
 }
 
 table tbody tr:nth-child(even) {
