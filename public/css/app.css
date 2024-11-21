@@ -4,6 +4,7 @@
   direction: rtl !important;
 }
 
+
 html,
 body {
   height: 100%;
@@ -47,11 +48,25 @@ body {
   opacity: 0.2;
 
 }
-
+.login{
+  position: absolute !important;
+  left: 0;
+  a{
+    background-color: green;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+}
+.nav{
+  position: absolute;
+  right: 0;
+}
 .navbar {
   margin-top: 10px;
   display: flex;
   justify-content: center;
+  
 }
 
 .navbar a {

@@ -2,16 +2,23 @@
     <div class="container">
         <h1 class="headertitle">
             <img src="{{ asset('images/logo.png') }}" alt="logo" class="logo">
-            <img src="{{ asset('images/logo.png') }}" alt="logo" class="logobackground">
 
             نظام إدارة بنك الدم
 
         </h1>
         <nav class="navbar">
-            <a href="/">الرئيسية</a>
-            <a href="{{route('views.about')}}">عن النظام</a>
-            <a href="{{route('views.contact')}}">تواصل معنا</a>
-            <a href="{{ route('login') }}">تسجيل دخول</a>
+            <div class="nav">
+
+                <a href="/">الرئيسية</a>
+                <a href="{{route('views.about')}}">عن النظام</a>
+                <a href="{{route('views.contact')}}">تواصل معنا</a>
+            </div>
+            <div class="login">
+
+                <a href="{{ route('login') }}" class="">تسجيل دخول</a>
+                <a href="{{ route('roles') }}" class=""> انشاء حساب</a>
+            </div>
+
 
 
         </nav>
