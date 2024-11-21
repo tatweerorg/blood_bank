@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\BloodCenter;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
+use App\Models\BloodInventory;
 
 class BloodCenterController extends Controller
 {
@@ -14,7 +15,34 @@ class BloodCenterController extends Controller
     {
         return view("pages.bloodBank.dashbord");
     }
-  
+    public function search(Request $request)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'BloodType' => 'required|string|in:A+,A-,AB+,AB-,B+,B-,O+,O-',
+            'units' => 'required|integer|min:1',
+            'location' => 'required|string|max:255',
+        ]);
+    
+        $results = BloodInventory::where('BloodType', $validatedData['BloodType'])
+        ->where('Quantity', '>=', $validatedData['units'])
+        ->whereHas('center.profile', function ($query) use ($validatedData) {
+            $query->where('Address', 'LIKE', '%' . $validatedData['location'] . '%');
+        })
+        ->with(['center.profile']) 
+        ->with('center')
+        ->get();
+        
+    
+        // Handle no results found
+        if ($results->isEmpty()) {
+            return back()->with('error', 'عذرًا، لا توجد مراكز تحتوي على الكمية المطلوبة في الموقع المحدد.');
+        }
+    
+        // Pass results to the view
+        return view('results', compact('results'));
+    }
+    
 
 
     public function edit($id)

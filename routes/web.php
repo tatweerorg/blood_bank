@@ -80,7 +80,9 @@ Route::get('/dashboarduser/donations',[UserController::class,'donations'])->name
 Route::get('/dashboarduser/inventory',[UserController::class,'inventory'])->name('dashboarduser.inventory');
 Route::get('/dashboarduser/requests',[UserController::class,'requests'])->name('dashboarduser.requests');
 Route::get('/dashboarduser/requestsBlood',[BloodRequestController::class,'create'])->name('dashboarduser.requestsBlood');
+Route::get('/dashboarduser/donateBlood',[DonationController::class,'create'])->name('dashboarduser.donateBlood');
 Route::post('/dashboarduser/requestsBlood/submit',[BloodRequestController::class,'store'])->name('dashboarduser.requestsBlood.store');
+Route::post('/dashboarduser/giveBlood/submit',[DonationController::class,'store'])->name('dashboarduser.giveBlood.store');
 Route::get('/dashboarduser/reports',[UserController::class,'reports'])->name('dashboarduser.reports');
 Route::get('/dashboarduser/settings',[UserController::class,'settings'])->name('dashboarduser.settings');
 });
@@ -90,6 +92,10 @@ Route::get('/roles', function () {
     return view('auth.register.roles');
      
 })->name('roles');
+Route::post('/searchblood',[BloodCenterController::class,'search'])->name('search');
+Route::get('/request',function(){
+    return view('requests');
+})->name('request');
 Route::get('/register/user', function () {
     return view('auth.register.registeruser');
 })->name('register.user');

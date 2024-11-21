@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\BloodInventory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class BloodCenter extends Model
 {
@@ -14,5 +15,5 @@ class BloodCenter extends Model
         'Address',
         'ContactNumber',
     ];
-   
+ 
 }

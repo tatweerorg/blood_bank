@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use App\Models\BloodInventory;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -25,5 +26,8 @@ class User extends Authenticatable
 {
     return $this->hasOne(UserProfile::class, 'user_id');
 }
-
+public function bloodInventory()
+{
+    return $this->hasMany(BloodInventory::class, 'center_id');
+}
 }

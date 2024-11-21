@@ -2,8 +2,8 @@
 @section('content')
 <section class="recent-requests">
     <h2 class="title">طلبات التبرع بالدم التي قمت بها</h2>
-    <a class="btn-excel" href="{{ route('dashboarduser.requestsBlood') }}">اطلب تبرع</a>
-    <a class="btn-pdf" > تبرع الآن</a>
+    <a class="btn-excel" href="{{ route('dashboarduser.requestsBlood') }}">اطلب دم</a>
+    <a class="btn-pdf"  href="{{ route('dashboarduser.donateBlood') }}" > تبرع الآن</a>
     <table id="centersTable" class="display">
         <thead>
             <tr>

@@ -15,4 +15,5 @@ class BloodRequest extends Model
         'RequestDate',
         'Status'
     ];
+    
 }

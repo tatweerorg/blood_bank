@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Donation;
+use App\Models\BloodCenter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DonationController extends Controller
 {
@@ -25,7 +28,10 @@ class DonationController extends Controller
      */
     public function create()
     {
-        //
+        $centers = User::where('UserType', 'BloodCenter')->get();
+
+            return view('pages.user.giveDonation',compact('centers'));
+    
     }
 
     /**
@@ -34,9 +40,21 @@ class DonationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        $request->validate([
+            'center_id' => 'required', // Request date
+            'blood_type' => 'required|string|max:3', // e.g., A+, O-, etc.
+            'quantity' => 'required|integer|min:1', // Quantity in units
+            'last_donation_date' => 'required|date'
+        ]);
+        $donations=Donation::create([
+            'user_id'=> Auth::id(),
+            'center_id'=>$request->id,
+            'blood_type' => $request->input('blood_type'),
+            'quantity' => $request->input('quantity'),
+            'last_donation_date' => $request->input('last_donation_date'),
+        ]);
+        return redirect()->route('dashboarduser.requests');
     }
 
     /**

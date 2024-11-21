@@ -6,10 +6,6 @@
 @section('content')
 <section class="login-section">
     <div class="container">
-        
-        
-        
-        
         <form action="{{ route('login.post') }}" method="POST" class="login-form">
             @csrf
             <h2>تسجيل الدخول</h2>

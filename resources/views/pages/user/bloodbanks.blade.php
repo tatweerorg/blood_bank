@@ -17,20 +17,10 @@
                         <td>{{ $center->Username }}</td>
                         <td>{{ $center->Address }}</td>
                         <td>{{ $center->ContactNumber }}</td>
-                        <td>
-                            <div class="actions">
-                                <a href="{{ route('bloodCenter.edit', $center->id) }}"
-                                    class="btn btn-warning editbtn"><i class="bi bi-envelope"></i> أرسل رسالة
-
-                                    </a>
-                                <form action="{{ route('bloodCenter.destroy', $center->id) }}" method="POST">
-
-
-                                    <input type="submit" class="btn btn-danger deletebtn" value="طلب تبرع">
-                                </form>
-                            </div>
-
-                        </td>
+                        <td  class="buttons">
+                <a href="" class="btn btn-warning editbtn">تواصل</a>
+                <a href="" class="btn btn-danger deletebtn">طلب تبرع</a>
+                </td>
                     </tr>
                 @endforeach
             </tbody>
