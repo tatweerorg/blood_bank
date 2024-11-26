@@ -35,8 +35,14 @@
     font-size: 1.2em;
     border: 1px solid #f6f6f6;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 50%;
+    margin: 10px;
+    box-sizing: border-box;
 }
-
+.mainbtns{
+    display: flex;
+    justify-content: space-between;
+}
 .btn-primary:hover {
     background-color: #b71c1c;
     transform: scale(1.05);
