@@ -34,20 +34,7 @@
                     "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/ar.json"
                 },
                 dom: 'Bfrtip',
-                buttons: [{
-                        extend: 'excelHtml5',
-                        text: 'تصدير إلى Excel',
-                        className: 'btn-excel'
-
-                    },
-                    {
-                        extend: 'pdfHtml5',
-                        text: 'تصدير إلى PDF',
-                        orientation: 'landscape',
-                        pageSize: 'A4',
-                        className: 'btn-pdf'
-
-                    },
+                buttons: [
                     {
                         extend: 'print',
                         text: 'طباعة',

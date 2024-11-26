@@ -38,20 +38,7 @@
             },
             dom: 'Bfrtip', 
             buttons: [
-                {
-                    extend: 'excelHtml5',
-                    text: 'تصدير إلى Excel',
-                                        className: 'btn-excel'
-
-                },
-                {
-                    extend: 'pdfHtml5',
-                    text: 'تصدير إلى PDF',
-                    orientation: 'landscape',
-                    pageSize: 'A4',
-                                        className: 'btn-pdf'
-
-                },
+               
                 {
                     extend: 'print',
                     text: 'طباعة',

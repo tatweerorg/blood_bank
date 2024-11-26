@@ -26,7 +26,7 @@
             @foreach($results as $result)
                 <tr>
                     <td>{{ $result->center->Username }}</td>
-                    <p>{{ $result->center->profile->Address }}</p>
+                    <td>{{ $result->center->profile->Address }}</td>
                     <td>{{ $result->center->profile->ContactNumber }}</td>
                     <td>{{ $result->BloodType }}</td>
                     <td>{{ $result->Quantity }}</td>
