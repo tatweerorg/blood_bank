@@ -5,8 +5,8 @@
     <section class="">
         <div class="card-info">
 
+            <img class="profileImage" src="{{ asset('storage/' . $userProfile->profile_image) }}" alt="profile img">
 
-            <img src="http://127.0.0.1:8000/public/storage/app/public{{ $userProfile->profile_image }}" alt="profile img">
             <h1>اهلاً بعودتك {{ $user->Username }}</h1>
 
             <div></div>

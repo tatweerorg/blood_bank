@@ -35,10 +35,9 @@ class BloodCenterController extends Controller
         
     
         // Handle no results found
-        if ($results->isEmpty()) {
-            return back()->with('error', 'عذرًا، لا توجد مراكز تحتوي على الكمية المطلوبة في الموقع المحدد.');
-        }
-    
+     if ($results->isEmpty()) {
+    return back()->with('error', 'عذرًا، لا توجد مراكز تحتوي على الكمية المطلوبة في الموقع المحدد.');
+}
         // Pass results to the view
         return view('results', compact('results'));
     }
