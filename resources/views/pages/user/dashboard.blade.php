@@ -5,11 +5,14 @@
     <section class="">
         <div class="card-info">
 
-            <img class="profileImage" src="{{ asset('storage/' . $userProfile->profile_image) }}" alt="profile img">
 
-            <h1>اهلاً بعودتك {{ $user->Username }}</h1>
 
-            <div></div>
+            <div class="user-info">
+
+                <img class="profileImage" src="{{ asset('storage/' . $userProfile->profile_image) }}" alt="profile img">
+
+                <h1>اهلاً بعودتك {{ $user->Username }}</h1>
+            </div>
             <div>
                 <p>1</p>
                 <p>تبرعاتك</p>
@@ -26,6 +29,20 @@
 
             </div>
 
+        </div>
+        <div class="notification">
+            <div class="notifi-header">
+                <h1>جميع الاشعارات </h1>
+                <span>0</span>
+            </div>
+            <div class="body">
+                <div>
+
+                    <h1>title</h1>
+                    <p>body</p>
+                </div>
+
+            </div>
         </div>
     </section>
 @endsection
