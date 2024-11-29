@@ -282,4 +282,40 @@ class UserController extends Controller
     public function settings(){
         return view("pages.user.settings");
     }
+    public function personalInfo(){
+        $user = Auth::user();
+        $id= Auth::id();
+        $profile = DB::table('user_profiles')->where('user_id',$id)->first();
+        return view("pages.user.settings.personalInfo",compact('user','profile'));
+    }
+    public function donationInfo() {
+        return view("pages.user.settings.donationInfo");
+    } 
+     public function status() {
+        return view("pages.user.settings.status");
+    } 
+    public function updatePersonalInfo(Request $request){
+        $user = Auth::user();
+        $profile= $user->profile();
+        $request->validate([
+            'Username' => 'required|string|max:255',
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'DateOfBirth' => 'required|date',
+            'ContactNumber' => 'required|string|max:15',
+            'Address' => 'required|string|max:255',
+        ]);
+        $user->Username = $request->input('Username');
+        $user->save();
+        if ($request->hasFile('profile_image')) {
+            $file = $request->file('profile_image');
+            $path = $file->store('profile_images', 'public');
+            $profile->profile_image = $path;
+        }
+        $profile->DateOfBirth = $request->input('DateOfBirth');
+        $profile->ContactNumber = $request->input('ContactNumber');
+        $profile->Address = $request->input('Address');
+        $profile->save();
+        return redirect()->back()->with('success', 'Personal information updated successfully.');
+
+    }
 }

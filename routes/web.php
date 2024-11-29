@@ -85,6 +85,9 @@ Route::post('/dashboarduser/requestsBlood/submit',[BloodRequestController::class
 Route::post('/dashboarduser/giveBlood/submit',[DonationController::class,'store'])->name('dashboarduser.giveBlood.store');
 Route::get('/dashboarduser/reports',[UserController::class,'reports'])->name('dashboarduser.reports');
 Route::get('/dashboarduser/settings',[UserController::class,'settings'])->name('dashboarduser.settings');
+Route::middleware('auth')->get('/settings/personalinformation',[UserController::class,'personalInfo'])->name('settings.personalInfo');
+Route::get('/settings/donationinformation',[UserController::class,'donationInfo'])->name('settings.donationInfo');
+Route::get('/settings/status',[UserController::class,'status'])->name('settings.status');
 });
  
 
