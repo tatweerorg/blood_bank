@@ -21,13 +21,15 @@
                 <li><a href="#">المتبرعين</a></li>
                 <li><a href="#">مخزون الدم</a></li>
                 <li><a href="#">طلبات التبرع</a></li>
-                <li><a href="#">التقارير</a></li>
+                {{--    <li><a href="#">التقارير</a></li> --}}
                 <li><a href="#">الإعدادات</a></li>
                 <li>
                 <li>
                     <form action="{{ route('logout') }}" method="POST" id="logout-form">
                         @csrf
-                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل الخروج</a>
+                        <a href="#"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل
+                            الخروج</a>
                     </form>
                 </li>
 

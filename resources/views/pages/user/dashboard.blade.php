@@ -1,54 +1,48 @@
 @extends('layouts.dashboard-template-user')
-@section('content')
-                  <section class="dashboard-cards">
-                <div class="card">
-                    <h3>  إجمالي تبرعات المستخدم</h3>
-                    <p>{{ $donationcount }}</p>
-                </div>
-                <div class="card">
-                    <h3>وحدات الدم المتاحة</h3>
-                    <p>{{ $quantity }}</p>
-                </div>
-                <div class="card">
-                    <h3>الطلبات المعلقة للمستخدم</h3>
-                    <p>{{ $pendingrequests }}</p>
-                </div>
-                <div class="card">
-                    <h3>إجمالي المتبرعين</h3>
-                    <p>{{ $donorcount }}</p>
-                </div>
-            </section>
-            <section class="recent-requests">
-                <h2>طلبات التبرع الأخيرة</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>اسم المتبرع</th>
-                            <th>فصيلة الدم</th>
-                            <th>التاريخ</th>
-                            <th>الحالة</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach( $bloodrequests as $request)
-                        <tr>
-                            <td>{{ $request->Username }} </td>
-                            <td>{{ $request->BloodType }}</td>
-                            <td>{{ $request->RequestDate }}</td>
-                           <td>
-                           @if($request->Status === 'Pending')
-        معلق
-        @elseif($request->Status === 'Approved')
-        مقبول
-        @elseif($request->Status === 'Cancelled')
-        مرفوض
-    @endif
 
-                           </td>
-                        </tr>
-                        @endforeach
-                      
-                    </tbody>
-                </table>
-            </section>
+
+@section('content')
+    <section class="">
+        <div class="card-info">
+
+
+
+            <div class="user-info">
+
+                <img class="profileImage" src="{{ asset('storage/' . $userProfile->profile_image) }}" alt="profile img">
+
+                <h1>اهلاً بعودتك {{ $user->Username }}</h1>
+            </div>
+            <div>
+                <p>1</p>
+                <p>تبرعاتك</p>
+            </div>
+
+            <div>
+                <p>2</p>
+                <p>بنوك الدم</p>
+
+            </div>
+            <div>
+                <p>3</p>
+                <p>طلبات التبرع حولك</p>
+
+            </div>
+
+        </div>
+        <div class="notification">
+            <div class="notifi-header">
+                <h1>جميع الاشعارات </h1>
+                <span>0</span>
+            </div>
+            <div class="body">
+                <div>
+
+                    <h1>title</h1>
+                    <p>body</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
 @endsection

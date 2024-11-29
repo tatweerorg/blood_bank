@@ -36,7 +36,11 @@ class UserController extends Controller
         $quantity=DB::table('blood_inventories')
         ->sum('Quantity');
 
-                return view("pages.user.dashboard",compact('bloodrequests','donationcount','donorcount','pendingrequests','quantity'));
+            $user = Auth::user();
+             $userProfile = $user->profile;
+
+
+                return view("pages.user.dashboard",compact('bloodrequests','donationcount','donorcount','pendingrequests','quantity','user','userProfile'));
 
     }
     public function register(Request $request)

@@ -103,3 +103,65 @@ table td {
 table tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
+
+.card-info {
+    width: 100%;
+    background-color: #ffd6d6;
+    color: black;
+    height: 200px;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    font-size: 20px;
+
+    p {
+        text-align: center;
+    }
+
+    .profileImage {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 1px solid black;
+    }
+}
+
+.user-info {
+    width: 500px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    justify-content: space-around;
+}
+
+.notification {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #ffd6d6;
+    color: black;
+
+
+    border-radius: 10px;
+    padding: 10px;
+
+    .notifi-header {
+        display: flex;
+        justify-content: space-between;
+
+        span {
+            font-size: 20px;
+            font-weight: 500;
+        }
+    }
+
+    .body {
+        display: flex;
+        background-color: #fff;
+        margin-top: 10px;
+        border-radius: 10px;
+        padding: 10px;
+    }
+}
