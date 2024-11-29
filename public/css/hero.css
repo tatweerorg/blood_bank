@@ -14,9 +14,9 @@
     direction: rtl;
 }
 
-.hero h2 {
+.hero h4 {
     color: #ffffff !important;
-    font-size: 3em;
+    font-size: 35px;
     margin-bottom: 10px;
 }
 
