@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="wrap">
         <header class="header">
             <h1>لوحة التحكم الخاصة ببنك الدم</h1> <!-- Arabic for Blood Bank Admin Dashboard -->
         </header>
