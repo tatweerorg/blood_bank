@@ -143,6 +143,9 @@ class UserController extends Controller
         if ($user->UserType === 'User') {
             $request->validate([
                 'BloodType' => 'required|in:A+,A-,B+,B-,AB+,AB-,O+,O-',
+            ],[
+                'BloodType.required'=>'فصيلة الدم مطلوبة',
+                'BloodType.in'=>'يجب أن تكون فصيلة الدم أحد الخيارات المتاحة',
             ]);
     
             session(['BloodType' => $request->BloodType]);
@@ -153,7 +156,9 @@ class UserController extends Controller
                 'ContactNumber' => 'required|regex:/^05\d{8}$/',
                 'Address' => 'required',
             ],[
-                'ContactNumber.regex' => 'The contact number must start with "05" and be exactly 10 digits long.',
+                'ContactNumber.required' => 'رقم الهاتف مطلوب',
+                'ContactNumber.regex' => 'رقم الهاتف يجب أن يكون 10 أرقام ويبدأ ب 05',
+                'Address.required' => 'العنوان مطلوب',
 
             ]);
 
@@ -200,8 +205,8 @@ class UserController extends Controller
                 [
                     'DateOfBirth' => 'required|date|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
                 ],[
-                    'DateOfBirth.date' => 'Please enter a valid date of birth.',
-                    'DateOfBirth.before_or_equal' => 'You must be at least 18 years old.',
+                    'DateOfBirth.date' => 'رجاءً أدخل تاريخ ميلاد صحيح',
+                    'DateOfBirth.before_or_equal' => 'يجب أن تكون على الأقل بعمر 18 عام',
 
                 ]
                 );
@@ -229,6 +234,10 @@ class UserController extends Controller
                 [
                     'Address'=>'required',
                     'ContactNumber' => 'required|regex:/^05\d{8}$/',
+                ],[
+                    'ContactNumber.required' => 'رقم الهاتف مطلوب',
+                    'ContactNumber.regex' => 'رقم الهاتف يجب أن يكون 10 أرقام ويبدأ ب 05',
+                    'Address.required' => 'العنوان مطلوب',
                 ]
                 );
                 $request->session()->put('Address',$request->Address);
@@ -317,6 +326,16 @@ class UserController extends Controller
             'DateOfBirth' => 'required|date|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
             'ContactNumber' => 'required|regex:/^05\d{8}$/',
             'Address' => 'required|string|max:255',
+        ],[
+            'Username.required' => 'يجب إدخال اسم المستخدم',
+            'Username.string'=>'يجب أن يكون الاسم نصاً',
+            'Username.unique'=>'يوجد حساب بالفعل بنفس هذا الاسم',
+            'DateOfBirth.date' => 'رجاءً أدخل تاريخ ميلاد صحيح',
+            'DateOfBirth.before_or_equal' => 'يجب أن تكون على الأقل بعمر 18 عام',
+            'ContactNumber.required' => 'رقم الهاتف مطلوب',
+            'ContactNumber.regex' => 'رقم الهاتف يجب أن يكون 10 أرقام ويبدأ ب 05',
+            'Address.required' => 'العنوان مطلوب'
+            
         ]);
         $user->Username = $request->input('Username');
         $user->save();
