@@ -11,7 +11,7 @@
 
                 <img class="profileImage" src="{{ asset('storage/' . $userProfile->profile_image) }}" alt="profile img">
 
-                <h1>اهلاً بعودتك {{ $user->Username }}</h1>
+                <h1 class="fs-2">اهلاً بعودتك {{ $user->Username }}</h1>
             </div>
             <div>
                 <p>1</p>
@@ -32,7 +32,7 @@
         </div>
         <div class="notification">
             <div class="notifi-header">
-                <h1>جميع الاشعارات </h1>
+                <p class="fs-4">جميع الاشعارات </p>
                 <span>0</span>
             </div>
             <div class="body">

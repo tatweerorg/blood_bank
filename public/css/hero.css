@@ -14,9 +14,9 @@
     direction: rtl;
 }
 
-.hero h2 {
+.hero h4 {
     color: #ffffff !important;
-    font-size: 3em;
+    font-size: 35px;
     margin-bottom: 10px;
 }
 
@@ -152,10 +152,13 @@
 .benefitscontainer ul {
     list-style-type: none;
     display: flex;
-    text-align: center;
-    display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    /* للسماح بالتفاف العناصر */
     justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+    margin: 0;
 }
 
 .benefitscontainer ul li {
@@ -176,7 +179,8 @@
 }
 
 .benefitscontainer ul li:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
+    /* تكبير العنصر عند التمرير */
 }
 
 .typescontainer {
@@ -313,4 +317,68 @@
     height: 50px;
     font-size: 16px;
     color: black;
+}
+
+/* التصميم المتجاوب */
+@media (max-width: 768px) {
+    .benefitscontainer ul {
+        flex-direction: column;
+        /* ترتيب العناصر عمودياً */
+        gap: 20px;
+        /* إضافة تباعد بين العناصر */
+    }
+
+    .benefitscontainer ul li {
+        width: 120px;
+        /* تقليل العرض */
+        height: 120px;
+        /* تقليل الارتفاع */
+        font-size: 16px;
+        /* تصغير النص */
+    }
+}
+
+@media (max-width: 480px) {
+    .feature-list {
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .feature {
+
+        width: 90%;
+        margin: 10px;
+
+    }
+
+    .benefitscontainer ul li {
+        width: 100px;
+        /* تقليل الحجم أكثر */
+        height: 100px;
+        font-size: 14px;
+        margin: 15px;
+        /* تقليل التباعد بين العناصر */
+    }
+
+    .benefitscontainer {
+
+        max-width: 90%;
+
+    }
+
+    .benefits {
+        padding: 10px;
+    }
+
+    .typescontainer ul li {
+        font-size: 14px;
+        padding: 30px;
+
+    }
+
+    .Procedurescontainer {
+        background-image: none;
+    }
 }
