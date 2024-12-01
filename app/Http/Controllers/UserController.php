@@ -52,9 +52,14 @@ class UserController extends Controller
             'Password' => 'required|string|min:8|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/',
             'UserType' => 'required|in:Admin,User,BloodCenter',
         ],[
-            'Email.email' => 'Please enter a valid email address.',
-            'Password.min' => 'The password must be at least 8 characters long.',
-            'Password.regex' => 'The password must contain at least one lowercase letter, one uppercase letter, and one number.',
+            'Username.required' => 'يجب إدخال اسم المستخدم',
+            'Username.string'=>'يجب أن يكون الاسم نصاً',
+            'Username.unique'=>'يوجد حساب بالفعل بنفس هذا الاسم',
+            'Email.required'=>'يجب إدخال الإيميل',
+            'Email.email'=>'يجب أن يكون الإيميل حقيقي',
+            'Password.min' => 'يجب أن تكون كلمة السر على الأقل 8 أحرف',
+            'Password.regex' => 'يجب أن تحتوي كلمة السر على حرف صغير وحرف كبير ورموز وأرقام',
+            'UserType.in'=>'يجب أن يكون المستخدم إما من نوع مستخدم عادي أو أدمن أو بنك دم'
 
         ]);
 
@@ -77,9 +82,14 @@ class UserController extends Controller
             'Password' => 'required|string|min:8|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/',
             'UserType' => 'required|in:Admin,User,BloodCenter',
         ],[
-            'Email.email' => 'Please enter a valid email address.',
-            'Password.min' => 'The password must be at least 8 characters long.',
-            'Password.regex' => 'The password must contain at least one lowercase letter, one uppercase letter, and one number.',
+            'Username.required' => 'يجب إدخال اسم المستخدم',
+            'Username.string'=>'يجب أن يكون الاسم نصاً',
+            'Username.unique'=>'يوجد حساب بالفعل بنفس هذا الاسم',
+            'Email.required'=>'يجب إدخال الإيميل',
+            'Email.email'=>'يجب أن يكون الإيميل حقيقي',
+            'Password.min' => 'يجب أن تكون كلمة السر على الأقل 8 أحرف',
+            'Password.regex' => 'يجب أن تحتوي كلمة السر على حرف صغير وحرف كبير ورموز وأرقام',
+            'UserType.in'=>'يجب أن يكون المستخدم إما من نوع مستخدم عادي أو أدمن أو بنك دم'
 
         ]);
         $user=User::create(
@@ -300,16 +310,20 @@ class UserController extends Controller
     } 
     public function updatePersonalInfo(Request $request){
         $user = Auth::user();
-        $profile= $user->profile();
+        $profile= $user->profile;
         $request->validate([
-            'Username' => 'required|string|max:255',
+            'Username' => 'required|string|max:50|unique:users,Username',
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'DateOfBirth' => 'required|date',
-            'ContactNumber' => 'required|string|max:15',
+            'DateOfBirth' => 'required|date|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
+            'ContactNumber' => 'required|regex:/^05\d{8}$/',
             'Address' => 'required|string|max:255',
         ]);
         $user->Username = $request->input('Username');
         $user->save();
+        if (!$profile) {
+            $profile = new UserProfile();
+            $profile->user_id = $user->id;
+        }
         if ($request->hasFile('profile_image')) {
             $file = $request->file('profile_image');
             $path = $file->store('profile_images', 'public');

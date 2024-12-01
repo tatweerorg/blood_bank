@@ -26,8 +26,8 @@
 
                 <!-- Email -->
                 <div class="form-group">
-                    <label for="email">البريد الإلكتروني</label>
-                    <input type="email" id="email" name="Email" value="{{ old('Email') }}">
+                    <label for="Email">البريد الإلكتروني</label>
+                    <input type="email" id="Email" name="Email" value="{{ old('Email') }}">
                     @error('Email')
                         <div class="error" style="color:red;">{{ $message }}</div>
                     @enderror
