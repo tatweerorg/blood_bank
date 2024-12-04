@@ -1,4 +1,4 @@
-@extends('layouts.dashboard-template')
+@extends('pages.bloodBank.dashbord')
 @section('content')
     <section class="recent-requests">
         <h2 class="title">مخزون الدم </h2>
@@ -21,8 +21,8 @@
                         <td>{{ $inventory->ExpirationDate }}</td>
                         <td>
                             <a href="{{ route('bloodInventory.edit', $inventory->id) }}"
-                                class="btn btn-warning editbtn">Edit</a>
-                            <a href="#" class="btn btn-danger deletebtn">Delete</a>
+                                class="btn btn-warning editbtn">تعديل</a>
+                            <a href="#" class="btn btn-danger deletebtn">حذف</a>
                         </td>
                     </tr>
                 @endforeach

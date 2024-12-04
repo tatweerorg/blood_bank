@@ -1,28 +1,30 @@
-@extends('layouts.dashboard-template')
+@extends('pages.bloodBank.dashbord')
 @section('content')
     <section class="recent-requests">
-        <h2 class="title">مخزون الدم </h2>
+        <h2 class="title">طلبات التبرع بالدم </h2>
         <table id="centersTable" class="display">
             <thead>
                 <tr>
-                    <th>مركز الدم</th>
+                    <th>اسم المتقدم</th>
                     <th>نوع فصيلة الدم </th>
                     <th>كمية الدم </th>
-                    <th>تاريخ الانتهاء</th>
+                    <th>تاريخ الطلب</th>
+                    <th>الحالة</th>
                     <th>العمليات</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($inventores as $inventory)
+                @foreach ($requests as $request)
                     <tr>
-                        <td>{{ $inventory->Username }}</td>
-                        <td>{{ $inventory->BloodType }}</td>
-                        <td>{{ $inventory->Quantity }}</td>
-                        <td>{{ $inventory->ExpirationDate }}</td>
+                        <td>{{ $request->Username }}</td>
+                        <td>{{ $request->BloodType }}</td>
+                        <td>{{ $request->Quantity }}</td>
+                        <td>{{ $request->RequestDate }}</td>
+                        <td>{{ $request->Status }}</td>
                         <td>
-                            <a href="{{ route('bloodInventory.edit', $inventory->id) }}"
-                                class="btn btn-warning editbtn">Edit</a>
-                            <a href="#" class="btn btn-danger deletebtn">Delete</a>
+                            <a href="{{ route('bloodRequest.edit', $request->id) }}"
+                                class="btn btn-warning editbtn">موافقة</a>
+                            <a href="#" class="btn btn-danger deletebtn">رفض</a>
                         </td>
                     </tr>
                 @endforeach
@@ -42,7 +44,6 @@
                             extend: 'print',
                             text: 'طباعة',
                             className: 'btn-print'
-
 
                         }
                     ]
