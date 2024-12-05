@@ -15,33 +15,32 @@
             @if(session('error'))
             <p class="alert alert-danger ">{{ session('error') }}</p>
             @endif
-            <!-- Email -->
             <div class="form-group">
-                <label for="email" >البريد الإلكتروني</label>
+                <label for="email">البريد الإلكتروني</label>
                 <input type="email" id="email" name="email" value="{{ old('email') }}">
                 @error('email')
                 <div class="error" style="color:red;">{{ $message }}</div>
                 @enderror
             </div>
 
-           
 
 
-                <div class="form-group">
-                    <label for="password" >كلمة المرور</label>
-                    <input type="password" id="password" name="password" >
-                    @error('password')
-                        <div class="error" style="color:red;">{{ $message }}</div>
-                    @enderror
-                    <a href="{{ route('password.request') }}" class="create_account_tag">هل نسيت كلمة السر؟</a>
 
-                </div>
+            <div class="form-group">
+                <label for="password">كلمة المرور</label>
+                <input type="password" id="password" name="password">
+                @error('password')
+                <div class="error" style="color:red;">{{ $message }}</div>
+                @enderror
+                <a href="{{ route('password.request') }}" class="create_account_tag">هل نسيت كلمة السر؟</a>
 
-                <a href="{{ route('roles') }}" class="create_account_tag"> انشاء حساب </a>
+            </div>
 
-                <!-- Submit Button -->
-                <button type="submit" class="btn-primary">تسجيل الدخول</button>
-            </form>
-        </div>
-    </section>
+            <a href="{{ route('roles') }}" class="create_account_tag"> انشاء حساب </a>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-primary">تسجيل الدخول</button>
+        </form>
+    </div>
+</section>
 @endsection

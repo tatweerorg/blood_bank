@@ -2,7 +2,7 @@
     <div class="container">
         <h1 class="headertitle">
             <img src="{{ asset('images/logo.png') }}" alt="logo">
-            <span>دمك حياة</span>
+            <span>دَمُك حياة</span>
         </h1>
         <nav class="navbar">
             <a href="/">الرئيسية</a>
