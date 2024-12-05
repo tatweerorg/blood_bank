@@ -6,79 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blood Bank Dashboard</title>
     <link rel="stylesheet" href="{{ asset('css/bloodbankdashbord.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admindashbord.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tabels.css') }}">
 
 </head>
 
 <body>
-    <div class="container">
+    <div class="wrap">
         <header class="header">
             <h1>لوحة التحكم الخاصة ببنك الدم</h1> <!-- Arabic for Blood Bank Admin Dashboard -->
         </header>
         <nav class="sidebar">
             <ul>
-                <li><a href="#">لوحة التحكم</a></li>
+                <li><a href="{{ route('dashboardblood.home') }}">لوحة التحكم</a></li>
 
-                <li><a href="#">المتبرعين</a></li>
-                <li><a href="#">مخزون الدم</a></li>
-                <li><a href="#">طلبات التبرع</a></li>
-                <li><a href="#">التقارير</a></li>
+                <li><a href="{{ route('dashboardblood.donors') }}">المتبرعين</a></li>
+                <li><a href="{{ route('dashboardblood.bloodstock') }}">مخزون الدم</a></li>
+                <li><a href="{{ route('dashboardblood.donationRequests') }}">طلبات التبرع</a></li>
+                {{--    <li><a href="#">التقارير</a></li> --}}
                 <li><a href="#">الإعدادات</a></li>
                 <li>
                 <li>
                     <form action="{{ route('logout') }}" method="POST" id="logout-form">
                         @csrf
-                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل الخروج</a>
+                        <a href="#"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل
+                            الخروج</a>
                     </form>
                 </li>
 
             </ul>
         </nav>
         <main class="main-content">
-            <section class="dashboard-cards">
-                <div class="card">
-                    <h3>إجمالي التبرعات</h3>
-                    <p>1500</p>
-                </div>
-                <div class="card">
-                    <h3>وحدات الدم المتاحة</h3>
-                    <p>300</p>
-                </div>
-                <div class="card">
-                    <h3>الطلبات المعلقة</h3>
-                    <p>45</p>
-                </div>
-                <div class="card">
-                    <h3>إجمالي المتبرعين</h3>
-                    <p>1200</p>
-                </div>
-            </section>
-            <section class="recent-requests">
-                <h2>طلبات التبرع الأخيرة</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>اسم المتبرع</th>
-                            <th>فصيلة الدم</th>
-                            <th>التاريخ</th>
-                            <th>الحالة</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>محمود </td>
-                            <td>O+</td>
-                            <td>2024-09-15</td>
-                            <td>موافقة</td>
-                        </tr>
-                        <tr>
-                            <td>عبد الله </td>
-                            <td>A-</td>
-                            <td>2024-09-14</td>
-                            <td>معلقة</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+            @yield('content')
         </main>
     </div>
 </body>

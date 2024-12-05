@@ -7,13 +7,19 @@ use App\Models\BloodCenter;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use App\Models\BloodInventory;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Donation;
+use App\Models\BloodRequest;
+
+
+
 
 class BloodCenterController extends Controller
 {
 
     public function dashboard()
     {
-        return view("pages.bloodBank.dashbord");
+        return view("pages.bloodBank.home");
     }
     public function search(Request $request)
     {
@@ -35,10 +41,9 @@ class BloodCenterController extends Controller
         
     
         // Handle no results found
-        if ($results->isEmpty()) {
-            return back()->with('error', 'عذرًا، لا توجد مراكز تحتوي على الكمية المطلوبة في الموقع المحدد.');
-        }
-    
+     if ($results->isEmpty()) {
+    return back()->with('error', 'عذرًا، لا توجد مراكز تحتوي على الكمية المطلوبة في الموقع المحدد.');
+}
         // Pass results to the view
         return view('results', compact('results'));
     }
@@ -78,7 +83,49 @@ class BloodCenterController extends Controller
          return redirect()->route('dashboard.bloodbanks')->with('success', 'تم تعديل معلومات بنك الدم بنجاح');
     }
 
+    public function donations(){
+       $loggedInCenter = Auth::user()->Username; // اسم بنك الدم المسجل دخوله
 
+$donations = Donation::join('users AS donors', 'donations.user_id', '=', 'donors.id') // Join for donor user
+    ->join('users AS centers', 'donations.center_id', '=', 'centers.id') // Join for blood center
+    ->where('centers.Username', $loggedInCenter) // التحقق من تطابق اسم بنك الدم المسجل دخوله
+    ->select(
+        'donations.id',
+        'donors.Username AS donor_name', 
+        'centers.Username AS center_name',
+        'donations.blood_type', 
+        'donations.quantity', 
+        'donations.last_donation_date'
+    )
+    ->get();
+
+return view("pages.bloodBank.donors", compact('donations'));
+
+    }
+  public function requests(){
+
+        $requests=BloodRequest::join('users','blood_requests.user_id','=','users.id')
+        ->select('blood_requests.id','users.Username','blood_requests.BloodType','blood_requests.Quantity','blood_requests.RequestDate','blood_requests.Status')
+        ->get();
+        return view("pages.bloodBank.donationRequests",compact('requests'));
+    }
+   public function inventory(){
+     $loggedInCenterId = Auth::id(); // الحصول على معرف المستخدم المسجل دخوله
+
+$inventores = BloodInventory::join('users', 'blood_inventories.center_id', '=', 'users.id')
+    ->where('blood_inventories.center_id', $loggedInCenterId) // التحقق من أن البيانات تخص المستخدم المسجل دخوله
+    ->select(
+        'blood_inventories.id',
+        'users.Username',
+        'blood_inventories.BloodType',
+        'blood_inventories.Quantity',
+        'blood_inventories.ExpirationDate'
+    )
+    ->get();
+
+return view("pages.bloodBank.bloodStock", compact('inventores'));
+
+    }
     /**
      * Remove the specified resource from storage.
      *

@@ -9,7 +9,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BloodCenterController;
 use App\Http\Controllers\BloodRequestController;
 use App\Http\Controllers\BloodInventoryController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -85,8 +84,28 @@ Route::post('/dashboarduser/requestsBlood/submit',[BloodRequestController::class
 Route::post('/dashboarduser/giveBlood/submit',[DonationController::class,'store'])->name('dashboarduser.giveBlood.store');
 Route::get('/dashboarduser/reports',[UserController::class,'reports'])->name('dashboarduser.reports');
 Route::get('/dashboarduser/settings',[UserController::class,'settings'])->name('dashboarduser.settings');
+Route::middleware('auth')->get('/settings/personalinformation',[UserController::class,'personalInfo'])->name('settings.personalInfo');
+Route::get('/settings/donationinformation',[UserController::class,'donationInfo'])->name('settings.donationInfo');
+Route::get('/settings/status',[UserController::class,'status'])->name('settings.status');
+Route::post('/settings/updatepersonal',[UserController::class, 'updatePersonalInfo'])->name('settings.updatepersonalinfo');
 });
- 
+
+
+Route::middleware('checkUserType:BloodCenter')->group(function(){
+    Route::get('/bloodcenter/home',function(){
+        return view('pages.bloodBank.home');
+    })->name('dashboardblood.home');
+    Route::get('/bloodcenter/donors',[BloodCenterController::class,'donations'])->name('dashboardblood.donors');
+    Route::get('/bloodcenter/donationRequests',[BloodCenterController::class,'requests'])->name('dashboardblood.donationRequests');
+    Route::get('/bloodcenter/bloodstock',[BloodCenterController::class,'inventory'])->name('dashboardblood.bloodstock');
+
+
+
+
+
+});
+
+
 
 Route::get('/roles', function () {
     return view('auth.register.roles');

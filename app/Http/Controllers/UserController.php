@@ -36,7 +36,11 @@ class UserController extends Controller
         $quantity=DB::table('blood_inventories')
         ->sum('Quantity');
 
-                return view("pages.user.dashboard",compact('bloodrequests','donationcount','donorcount','pendingrequests','quantity'));
+            $user = Auth::user();
+             $userProfile = $user->profile;
+
+
+                return view("pages.user.dashboard",compact('bloodrequests','donationcount','donorcount','pendingrequests','quantity','user','userProfile'));
 
     }
     public function register(Request $request)
@@ -48,9 +52,14 @@ class UserController extends Controller
             'Password' => 'required|string|min:8|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/',
             'UserType' => 'required|in:Admin,User,BloodCenter',
         ],[
-            'Email.email' => 'Please enter a valid email address.',
-            'Password.min' => 'The password must be at least 8 characters long.',
-            'Password.regex' => 'The password must contain at least one lowercase letter, one uppercase letter, and one number.',
+            'Username.required' => 'يجب إدخال اسم المستخدم',
+            'Username.string'=>'يجب أن يكون الاسم نصاً',
+            'Username.unique'=>'يوجد حساب بالفعل بنفس هذا الاسم',
+            'Email.required'=>'يجب إدخال الإيميل',
+            'Email.email'=>'يجب أن يكون الإيميل حقيقي',
+            'Password.min' => 'يجب أن تكون كلمة السر على الأقل 8 أحرف',
+            'Password.regex' => 'يجب أن تحتوي كلمة السر على حرف صغير وحرف كبير ورموز وأرقام',
+            'UserType.in'=>'يجب أن يكون المستخدم إما من نوع مستخدم عادي أو أدمن أو بنك دم'
 
         ]);
 
@@ -73,9 +82,14 @@ class UserController extends Controller
             'Password' => 'required|string|min:8|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/',
             'UserType' => 'required|in:Admin,User,BloodCenter',
         ],[
-            'Email.email' => 'Please enter a valid email address.',
-            'Password.min' => 'The password must be at least 8 characters long.',
-            'Password.regex' => 'The password must contain at least one lowercase letter, one uppercase letter, and one number.',
+            'Username.required' => 'يجب إدخال اسم المستخدم',
+            'Username.string'=>'يجب أن يكون الاسم نصاً',
+            'Username.unique'=>'يوجد حساب بالفعل بنفس هذا الاسم',
+            'Email.required'=>'يجب إدخال الإيميل',
+            'Email.email'=>'يجب أن يكون الإيميل حقيقي',
+            'Password.min' => 'يجب أن تكون كلمة السر على الأقل 8 أحرف',
+            'Password.regex' => 'يجب أن تحتوي كلمة السر على حرف صغير وحرف كبير ورموز وأرقام',
+            'UserType.in'=>'يجب أن يكون المستخدم إما من نوع مستخدم عادي أو أدمن أو بنك دم'
 
         ]);
         $user=User::create(
@@ -129,6 +143,9 @@ class UserController extends Controller
         if ($user->UserType === 'User') {
             $request->validate([
                 'BloodType' => 'required|in:A+,A-,B+,B-,AB+,AB-,O+,O-',
+            ],[
+                'BloodType.required'=>'فصيلة الدم مطلوبة',
+                'BloodType.in'=>'يجب أن تكون فصيلة الدم أحد الخيارات المتاحة',
             ]);
     
             session(['BloodType' => $request->BloodType]);
@@ -139,7 +156,9 @@ class UserController extends Controller
                 'ContactNumber' => 'required|regex:/^05\d{8}$/',
                 'Address' => 'required',
             ],[
-                'ContactNumber.regex' => 'The contact number must start with "05" and be exactly 10 digits long.',
+                'ContactNumber.required' => 'رقم الهاتف مطلوب',
+                'ContactNumber.regex' => 'رقم الهاتف يجب أن يكون 10 أرقام ويبدأ ب 05',
+                'Address.required' => 'العنوان مطلوب',
 
             ]);
 
@@ -186,8 +205,8 @@ class UserController extends Controller
                 [
                     'DateOfBirth' => 'required|date|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
                 ],[
-                    'DateOfBirth.date' => 'Please enter a valid date of birth.',
-                    'DateOfBirth.before_or_equal' => 'You must be at least 18 years old.',
+                    'DateOfBirth.date' => 'رجاءً أدخل تاريخ ميلاد صحيح',
+                    'DateOfBirth.before_or_equal' => 'يجب أن تكون على الأقل بعمر 18 عام',
 
                 ]
                 );
@@ -215,6 +234,10 @@ class UserController extends Controller
                 [
                     'Address'=>'required',
                     'ContactNumber' => 'required|regex:/^05\d{8}$/',
+                ],[
+                    'ContactNumber.required' => 'رقم الهاتف مطلوب',
+                    'ContactNumber.regex' => 'رقم الهاتف يجب أن يكون 10 أرقام ويبدأ ب 05',
+                    'Address.required' => 'العنوان مطلوب',
                 ]
                 );
                 $request->session()->put('Address',$request->Address);
@@ -281,5 +304,55 @@ class UserController extends Controller
     }
     public function settings(){
         return view("pages.user.settings");
+    }
+    public function personalInfo(){
+        $user = Auth::user();
+        $id= Auth::id();
+        $profile = DB::table('user_profiles')->where('user_id',$id)->first();
+        return view("pages.user.settings.personalInfo",compact('user','profile'));
+    }
+    public function donationInfo() {
+        return view("pages.user.settings.donationInfo");
+    } 
+     public function status() {
+        return view("pages.user.settings.status");
+    } 
+    public function updatePersonalInfo(Request $request){
+        $user = Auth::user();
+        $profile= $user->profile;
+        $request->validate([
+            'Username' => 'required|string|max:50|unique:users,Username',
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'DateOfBirth' => 'required|date|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
+            'ContactNumber' => 'required|regex:/^05\d{8}$/',
+            'Address' => 'required|string|max:255',
+        ],[
+            'Username.required' => 'يجب إدخال اسم المستخدم',
+            'Username.string'=>'يجب أن يكون الاسم نصاً',
+            'Username.unique'=>'يوجد حساب بالفعل بنفس هذا الاسم',
+            'DateOfBirth.date' => 'رجاءً أدخل تاريخ ميلاد صحيح',
+            'DateOfBirth.before_or_equal' => 'يجب أن تكون على الأقل بعمر 18 عام',
+            'ContactNumber.required' => 'رقم الهاتف مطلوب',
+            'ContactNumber.regex' => 'رقم الهاتف يجب أن يكون 10 أرقام ويبدأ ب 05',
+            'Address.required' => 'العنوان مطلوب'
+            
+        ]);
+        $user->Username = $request->input('Username');
+        $user->save();
+        if (!$profile) {
+            $profile = new UserProfile();
+            $profile->user_id = $user->id;
+        }
+        if ($request->hasFile('profile_image')) {
+            $file = $request->file('profile_image');
+            $path = $file->store('profile_images', 'public');
+            $profile->profile_image = $path;
+        }
+        $profile->DateOfBirth = $request->input('DateOfBirth');
+        $profile->ContactNumber = $request->input('ContactNumber');
+        $profile->Address = $request->input('Address');
+        $profile->save();
+        return redirect()->back()->with('success', 'Personal information updated successfully.');
+
     }
 }

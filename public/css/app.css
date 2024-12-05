@@ -22,18 +22,185 @@ body {
   flex-direction: column;
 }
 
-
 .content {
   flex: 1 !important;
 }
 
+:root {
+  --primary-color: #d32f2f;
+  --secondary-color: #9a0007;
+  --text-color: #fff;
+  --hover-bg: rgba(255, 255, 255, 0.2);
+}
+
+
+
+/* تحسين الرأس */
 .header {
   background: linear-gradient(45deg, #d32f2f, #9a0007);
   padding: 20px 0;
   color: #fff;
   text-align: center;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   font-family: 'Cairo', sans-serif;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.headertitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-family: 'Cairo', sans-serif;
+}
+
+.headertitle img {
+  width: 60px;
+  /* تحسين حجم الشعار */
+  height: auto;
+}
+
+.headertitle span {
+  font-size: 35px;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* تحسين التنقل */
+.navbar {
+  display: flex;
+  justify-content: right;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+  background-color: #fff;
+  color: #d32f2f;
+  transform: scale(1.05);
+  /* تأثير التكبير */
+}
+
+/* تحسين الأزرار */
+.login {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.login a {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 8px;
+  background-color: #28a745;
+  /* لون الزر */
+  color: #fff;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.login a:hover {
+  background-color: #218838;
+  /* لون مختلف عند التمرير */
+  border-color: #1e7e34;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.loginmobile {
+  display: none;
+}
+
+
+/* التصميم المتجاوب */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    /* جعل الروابط عمودية */
+    gap: 10px;
+  }
+
+  .navbar a {
+    font-size: 16px;
+    /* تصغير حجم النص */
+    padding: 10px 15px;
+    width: 100%;
+    /* جعل الروابط بعرض الشاشة */
+    text-align: center;
+  }
+
+  .loginmobile {
+    display: block;
+  }
+
+  .login {
+    display: none;
+  }
+
+
+  .login a {
+    font-size: 14px;
+    width: 100%;
+    /* عرض الأزرار بعرض الشاشة */
+    text-align: center;
+  }
+
+  .headertitle img {
+    width: 50px;
+    /* تصغير الشعار */
+  }
+
+  .headertitle span {
+    font-size: 20px;
+    /* تصغير النص */
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    /* جعل الروابط عمودية */
+    gap: 10px;
+  }
+
+  .loginmobile {
+    display: block;
+  }
+
+  .login {
+    display: none;
+  }
+
+  .header {
+    padding: 15px 10px;
+  }
+
+  .navbar a,
+  .login a {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .headertitle span {
+    font-size: 18px;
+  }
 }
 
 .logo {
@@ -48,63 +215,22 @@ body {
   opacity: 0.2;
 
 }
-.login{
+
+.login {
   position: absolute !important;
   left: 0;
-  a{
+
+  a {
     background-color: green;
     padding: 10px;
     border-radius: 10px;
   }
-  
+
 }
-.nav{
+
+.nav {
   position: absolute;
   right: 0;
-}
-.navbar {
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  
-}
-
-.navbar a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 20px;
-  font-weight: bold;
-  position: relative;
-  padding: 10px 15px;
-  border-radius: 8px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.navbar a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  transform: scale(1.1);
-  /* تكبير الرابط عند التمرير */
-}
-
-.navbar a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background-color: #fff;
-  transition: width 0.3s ease, left 0.3s ease;
-}
-
-.navbar a:hover::after {
-  width: 100%;
-  left: 0;
-}
-
-.navbar a.active {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 50px;
 }
 
 .footer {
@@ -113,6 +239,7 @@ body {
   text-align: center;
   padding: 10px 0;
   margin-bottom: 0 !important;
+
 
 }
 
@@ -129,10 +256,7 @@ body {
   text-align: right;
 }
 
-.container {
-  width: 85%;
-  margin: 0 auto;
-}
+
 
 h1,
 h2,
@@ -170,10 +294,7 @@ p {
   color: #333;
 }
 
-.headertitle {
-  color: #fff;
 
-}
 
 .team-members {
   display: flex;

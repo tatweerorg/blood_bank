@@ -1,31 +1,31 @@
-@extends('layouts.dashboard-template-user')
+@extends('pages.bloodBank.dashbord')
 @section('content')
     <section class="recent-requests">
-        <h2 class="title">طلبات التبرع بالدم التي قمت بها</h2>
-        <a class="btn-excel" href="{{ route('dashboarduser.requestsBlood') }}">اطلب دم</a>
-        <a class="btn-pdf" href="{{ route('dashboarduser.donateBlood') }}"> تبرع الآن</a>
+        <h2 class="title">طلبات التبرع بالدم </h2>
         <table id="centersTable" class="display">
             <thead>
                 <tr>
-                    <th>رقم الطلب</th>
+                    <th>اسم المتقدم</th>
                     <th>نوع فصيلة الدم </th>
                     <th>كمية الدم </th>
                     <th>تاريخ الطلب</th>
                     <th>الحالة</th>
+                    <th>العمليات</th>
                 </tr>
             </thead>
             <tbody>
-                @php
-                    $count = 1;
-                @endphp
                 @foreach ($requests as $request)
                     <tr>
-                        <td>{{ $count++ }}</td>
+                        <td>{{ $request->Username }}</td>
                         <td>{{ $request->BloodType }}</td>
                         <td>{{ $request->Quantity }}</td>
                         <td>{{ $request->RequestDate }}</td>
                         <td>{{ $request->Status }}</td>
-
+                        <td>
+                            <a href="{{ route('bloodRequest.edit', $request->id) }}"
+                                class="btn btn-warning editbtn">موافقة</a>
+                            <a href="#" class="btn btn-danger deletebtn">رفض</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

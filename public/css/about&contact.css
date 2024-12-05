@@ -1,18 +1,56 @@
-.about-section{
+.container {
+    padding: 10px;
 }
 
 
-.intro{
-  
+.intro {}
 
+p {
+    font-size: 16px;
+    font-weight: 500;
 }
-.container-section{
+
+.container-section {
     border: 1px solid #000;
     background-color: rgb(241, 241, 241);
     border-radius: 10px;
-    
+
 }
 
-.title{
+.title {
     text-align: center;
+}
+
+@media (max-width: 480px) {
+
+    .container {
+        max-width: 90%;
+    }
+
+    .title {
+        font-size: 18px;
+        /* حجم أصغر للشاشات الصغيرة جدًا */
+    }
+
+    .about-section p {
+        font-size: 14px;
+        /* حجم أصغر للنصوص الفقرية */
+        line-height: 1.4;
+    }
+
+    .how-it-works ol li {
+        font-size: 14px;
+        /* تصغير النصوص داخل القوائم أكثر */
+    }
+
+    .statistics .stat-item h3 {
+        font-size: 16px;
+        /* حجم أصغر للعناوين الإحصائية */
+    }
+
+    .statistics .stat-item p {
+        font-size: 12px;
+        /* حجم أصغر للنصوص الإحصائية */
+    }
+
 }

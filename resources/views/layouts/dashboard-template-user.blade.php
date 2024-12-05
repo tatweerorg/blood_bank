@@ -27,20 +27,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
- {{-- Font google --}}
-       <link rel="preconnect" href="https://fonts.googleapis.com" />
+    {{-- Font google --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Abel&family=Bebas+Neue&family=Cairo:wght@200..1000&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
+        href="https://fonts.googleapis.com/css2?family=Abel&family=Bebas+Neue&family=Cairo:wght@200..1000&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     @yield('styles')
 
 
 </head>
 
 <body>
-    <div class="container">
+    <div class="wrap">
         <header class="header">
             <h1>لوحة التحكم الخاصة بالمستخدم</h1>
         </header>
@@ -48,16 +53,18 @@
             <ul>
                 <li><a href="{{ route('dashboard.user') }}">لوحة التحكم</a></li>
                 <li><a href="{{ route('dashboarduser.bloodbanks') }}">بنوك الدم </a></li>
-                <li><a href="{{ route('dashboarduser.donations') }}">المتبرعين</a></li>
-                <li><a href="{{ route('dashboarduser.inventory') }}">مخزون الدم</a></li>
+                <li><a href="{{ route('dashboarduser.donations') }}">سجل التبرعات </a></li>
+                {{-- <li><a href="{{ route('dashboarduser.inventory') }}">مخزون الدم</a></li> --}}
                 <li><a href="{{ route('dashboarduser.requests') }}">طلبات التبرع</a></li>
-                <li><a href="{{ route('dashboarduser.reports') }}">التقارير</a></li>
+                {{-- <li><a href="{{ route('dashboarduser.reports') }}">التقارير</a></li> --}}
                 <li><a href="{{ route('dashboarduser.settings') }}">الإعدادات</a></li>
                 <li>
                 <li>
                     <form action="{{ route('logout') }}" method="POST" id="logout-form">
                         @csrf
-                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل الخروج</a>
+                        <a href="#"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل
+                            الخروج</a>
                     </form>
                 </li>
 

@@ -1,31 +1,29 @@
-@extends('layouts.dashboard-template-user')
+@extends('pages.bloodBank.dashbord')
 @section('content')
     <section class="recent-requests">
-        <h2 class="title">طلبات التبرع بالدم التي قمت بها</h2>
-        <a class="btn-excel" href="{{ route('dashboarduser.requestsBlood') }}">اطلب دم</a>
-        <a class="btn-pdf" href="{{ route('dashboarduser.donateBlood') }}"> تبرع الآن</a>
+        <h2 class="title">مخزون الدم </h2>
         <table id="centersTable" class="display">
             <thead>
                 <tr>
-                    <th>رقم الطلب</th>
+                    <th>مركز الدم</th>
                     <th>نوع فصيلة الدم </th>
                     <th>كمية الدم </th>
-                    <th>تاريخ الطلب</th>
-                    <th>الحالة</th>
+                    <th>تاريخ الانتهاء</th>
+                    <th>العمليات</th>
                 </tr>
             </thead>
             <tbody>
-                @php
-                    $count = 1;
-                @endphp
-                @foreach ($requests as $request)
+                @foreach ($inventores as $inventory)
                     <tr>
-                        <td>{{ $count++ }}</td>
-                        <td>{{ $request->BloodType }}</td>
-                        <td>{{ $request->Quantity }}</td>
-                        <td>{{ $request->RequestDate }}</td>
-                        <td>{{ $request->Status }}</td>
-
+                        <td>{{ $inventory->Username }}</td>
+                        <td>{{ $inventory->BloodType }}</td>
+                        <td>{{ $inventory->Quantity }}</td>
+                        <td>{{ $inventory->ExpirationDate }}</td>
+                        <td>
+                            <a href="{{ route('bloodInventory.edit', $inventory->id) }}"
+                                class="btn btn-warning editbtn">تعديل</a>
+                            <a href="#" class="btn btn-danger deletebtn">حذف</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -44,6 +42,7 @@
                             extend: 'print',
                             text: 'طباعة',
                             className: 'btn-print'
+
 
                         }
                     ]
