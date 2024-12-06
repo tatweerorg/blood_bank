@@ -270,20 +270,26 @@ class UserController extends Controller
                         ->get();
         return view("pages.user.bloodbanks",compact('centers'));
     }
-    public function donations(){
+    public function donations()
+    {
+        $userId = Auth::id();
+    
         $donations = Donation::join('users AS donors', 'donations.user_id', '=', 'donors.id') // Join for donor user
-        ->join('users AS centers', 'donations.center_id', '=', 'centers.id') // Join for blood center
-        ->select(
-            'donations.id',
-            'donors.Username AS donor_name', 
-            'centers.Username AS center_name',
-            'donations.blood_type', 
-            'donations.quantity', 
-            'donations.last_donation_date'
-        )
-        ->get();
-        return view("pages.user.donations",compact('donations'));
+            ->join('users AS centers', 'donations.center_id', '=', 'centers.id') 
+            ->where('donations.user_id', $userId) 
+            ->select(
+                'donations.id',
+                'donors.Username AS donor_name',
+                'centers.Username AS center_name',
+                'donations.blood_type',
+                'donations.quantity',
+                'donations.last_donation_date'
+            )
+            ->get();
+    
+        return view("pages.user.donations", compact('donations'));
     }
+    
     public function inventory(){
         $inventores=BloodInventory::join('users','blood_inventories.center_id','=','users.id')
                     ->select('blood_inventories.id','users.Username','blood_inventories.BloodType','blood_inventories.Quantity','blood_inventories.ExpirationDate')
@@ -293,9 +299,11 @@ class UserController extends Controller
     public function requests(){
         $userId= Auth::id();
 
-        $requests=BloodRequest::join('users','blood_requests.user_id','=','users.id')
-        ->where('blood_requests.user_id', $userId)
-        ->select('blood_requests.id','users.Username','blood_requests.BloodType','blood_requests.Quantity','blood_requests.RequestDate','blood_requests.Status')
+        $requests=BloodRequest::join('users as requests','blood_requests.user_id','=','requests.id')
+         ->join('blood_request_centers', 'blood_requests.id', '=', 'blood_request_centers.blood_request_id') 
+        ->join('users as centers', 'blood_request_centers.center_id', '=', 'centers.id')
+         ->where('blood_requests.user_id', $userId)
+        ->select('blood_requests.id','requests.Username as Username','blood_requests.BloodType','blood_requests.Quantity','blood_requests.RequestDate','blood_requests.Status','centers.Username as Centername')
         ->get();
         return view("pages.user.requests",compact('requests'));
     }
@@ -312,7 +320,10 @@ class UserController extends Controller
         return view("pages.user.settings.personalInfo",compact('user','profile'));
     }
     public function donationInfo() {
-        return view("pages.user.settings.donationInfo");
+        $user = Auth::user();
+        $donations = DB::table('donations')
+                         ->join('users as centers','donations.center_id','=','centers.id');
+        return view("pages.user.settings.donationInfo",compact('user','donations'));
     } 
      public function status() {
         return view("pages.user.settings.status");

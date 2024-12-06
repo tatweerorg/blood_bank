@@ -25,9 +25,18 @@
             <label for="RequestDate" class="form-label">تاريخ الطلب</label>
             <input type="date" class="form-control" id="RequestDate" name="RequestDate" required>
         </div>
-
+        <div class="form-group mb-3">
+            <label for="center_id" class="form-label">اختيار مركز الدم</label>
+            <select class="form-control" id="center_id" name="center_id" required>
+                <option value="">اختر مركز الدم</option>
+                <option value="all">جميع المراكز</option>
+                @foreach ($bloodCenters as $center)
+                    <option value="{{ $center->id }}">{{ $center->Username }} </option>
+                @endforeach
+            </select>
+        </div>
         <div class="d-grid">
-            <button type="submit" class="btn btn-primary">إرسال الطلب</button>
+            <button type="submit" class="btn btn-danger">إرسال الطلب</button>
         </div>
     </form>
 @endsection

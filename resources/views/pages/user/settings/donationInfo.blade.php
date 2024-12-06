@@ -1,4 +1,6 @@
 @extends('layouts.dashboard-template-user')
 @section('content')
-   donationInfo
+<div>
+   بالتبرع  {{$user->Username}}قام 
+</div>
 @endsection

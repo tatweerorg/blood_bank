@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\BloodRequest;
 use Illuminate\Http\Request;
+use App\Models\BloodRequestCenter;
 use Illuminate\Support\Facades\Auth;
 
 class BloodRequestController extends Controller
@@ -27,13 +28,15 @@ class BloodRequestController extends Controller
     public function create()
     {
         //
-        return view('pages.user.requestDonation');
+        $bloodCenters= User::where('UserType','BloodCenter')->get();
+        return view('pages.user.requestDonation',compact('bloodCenters'));
     }
     public function store(Request $request){
         $request->validate([
-            'BloodType' => 'required|string|max:3', // e.g., A+, O-, etc.
-            'Quantity' => 'required|integer|min:1', // Quantity in units
-            'RequestDate' => 'required|date', // Request date
+            'BloodType' => 'required|string|max:3', 
+            'Quantity' => 'required|integer|min:1',
+            'RequestDate' => 'required|date',
+            'center_id'=>'required'
         ]);
         $bloodrequest=BloodRequest::create([
             'user_id'=> Auth::id(),
@@ -42,6 +45,20 @@ class BloodRequestController extends Controller
             'RequestDate' => $request->input('RequestDate'),
             'Status'=>'Pending',
         ]);
+        if ($request->center_id == 'all') {
+            $bloodcenters = User::where('UserType','BloodCenter')->get();
+            foreach($bloodcenters as $center){
+                BloodRequestCenter::create([
+                    'blood_request_id'=> $bloodrequest->id,
+                    'center_id'=> $center->id,
+                ]);
+            }
+        } else {
+            BloodRequestCenter::create([
+                'blood_request_id' => $bloodRequest->id,
+                'center_id' => $request->center_id,
+            ]);
+        }
         return redirect()->route('dashboarduser.requests');
     }
   

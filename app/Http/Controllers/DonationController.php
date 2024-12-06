@@ -35,7 +35,6 @@ class DonationController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -49,12 +48,12 @@ class DonationController extends Controller
         ]);
         $donations=Donation::create([
             'user_id'=> Auth::id(),
-            'center_id'=>$request->id,
+            'center_id'=>$request->center_id,
             'blood_type' => $request->input('blood_type'),
             'quantity' => $request->input('quantity'),
             'last_donation_date' => $request->input('last_donation_date'),
         ]);
-        return redirect()->route('dashboarduser.requests');
+        return redirect()->route('dashboarduser.donations');
     }
 
     /**

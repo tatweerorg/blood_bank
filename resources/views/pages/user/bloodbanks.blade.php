@@ -18,8 +18,9 @@
                         <td>{{ $center->Address }}</td>
                         <td>{{ $center->ContactNumber }}</td>
                         <td  class="buttons">
-                <a href="" class="btn btn-warning editbtn">تواصل</a>
-                <a href="" class="btn btn-danger deletebtn">طلب تبرع</a>
+                        <a href="https://wa.me/972{{ preg_replace('/\D/', '', $center->ContactNumber) }}?text=مرحبًا، أريد التواصل معك." class="btn btn-warning editbtn" target="_blank">تواصل</a>
+                        <a href="{{ route('dashboarduser.requestsBlood') }}" class="btn btn-danger deletebtn">اطلب دم</a>
+                        <a href="{{ route('dashboarduser.donateBlood') }}" class="btn btn-danger deletebtn">تبرع بالدم</a>
                 </td>
                     </tr>
                 @endforeach

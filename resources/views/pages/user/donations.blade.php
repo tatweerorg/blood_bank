@@ -1,7 +1,7 @@
 @extends('layouts.dashboard-template-user')
 @section('content')
 <section class="recent-requests">
-    <h2 class="title">المتبرعين</h2>
+    <h2 class="title">التبرعات التي قمت بها</h2>
     <table id="centersTable" class="display">
         <thead>
             <tr>
@@ -22,8 +22,8 @@
                 <td>{{ $donation->quantity }}</td>
                 <td>{{ $donation->last_donation_date }}</td>
                 <td>
-                <a href="{{ route('donation.edit' , $donation->id) }}" class="btn btn-warning editbtn">تواصل</a>
-                <a href="{{ route('dashboarduser.requestsBlood') }}" class="btn btn-danger deletebtn">طلب تبرع</a>
+                <a href="{{ route('dashboarduser.requestsBlood') }}" class="btn btn-danger deletebtn">اطلب دم</a>
+                <a href="{{ route('dashboarduser.donateBlood') }}" class="btn btn-danger deletebtn">تبرع بالدم</a>
                 </td>
             </tr>
             @endforeach

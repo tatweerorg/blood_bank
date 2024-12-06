@@ -1,7 +1,7 @@
 @extends('layouts.dashboard-template-user')
 @section('content')
     <section class="recent-requests">
-        <h2 class="title">طلبات التبرع بالدم التي قمت بها</h2>
+        <h2 class="title">طلبات الدم من مراكز التبرع التي قمت بها</h2>
         <a class="btn-excel" href="{{ route('dashboarduser.requestsBlood') }}">اطلب دم</a>
         <a class="btn-pdf" href="{{ route('dashboarduser.donateBlood') }}"> تبرع الآن</a>
         <table id="centersTable" class="display">
@@ -10,6 +10,7 @@
                     <th>رقم الطلب</th>
                     <th>نوع فصيلة الدم </th>
                     <th>كمية الدم </th>
+                    <th>من مركز الدم </th>
                     <th>تاريخ الطلب</th>
                     <th>الحالة</th>
                 </tr>
@@ -23,6 +24,7 @@
                         <td>{{ $count++ }}</td>
                         <td>{{ $request->BloodType }}</td>
                         <td>{{ $request->Quantity }}</td>
+                        <td>{{ $request->Centername }}</td>
                         <td>{{ $request->RequestDate }}</td>
                         <td>{{ $request->Status }}</td>
 
