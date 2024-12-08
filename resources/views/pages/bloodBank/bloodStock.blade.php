@@ -1,24 +1,22 @@
 @extends('pages.bloodBank.dashbord')
 @section('content')
     <section class="recent-requests">
-        <h2 class="title">مخزون الدم </h2>
+        <h2 class="title">مخزون الدم للمركز</h2>
+        <div class="containerdelete">
+        <a href="{{ route('dashboardblood.donateBlood') }}"  class="btn btn-danger deletedangerbtn ">إضافة دم</a></div>
         <table id="centersTable" class="display">
             <thead>
                 <tr>
-                    <th>مركز الدم</th>
                     <th>نوع فصيلة الدم </th>
                     <th>كمية الدم </th>
-                    <th>تاريخ الانتهاء</th>
                     <th>العمليات</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($inventores as $inventory)
                     <tr>
-                        <td>{{ $inventory->Username }}</td>
                         <td>{{ $inventory->BloodType }}</td>
                         <td>{{ $inventory->Quantity }}</td>
-                        <td>{{ $inventory->ExpirationDate }}</td>
                         <td>
                             <a href="{{ route('bloodInventory.edit', $inventory->id) }}"
                                 class="btn btn-warning editbtn">تعديل</a>

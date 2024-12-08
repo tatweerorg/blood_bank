@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\BloodRequest;
 use Illuminate\Http\Request;
+use App\Models\BloodInventory;
 use App\Models\BloodRequestCenter;
 use Illuminate\Support\Facades\Auth;
 
@@ -61,7 +62,46 @@ class BloodRequestController extends Controller
         }
         return redirect()->route('dashboarduser.requests');
     }
-  
+    public function updateStatus(Request $request , $id){
+        $request->validate([
+            'Status' => 'required|in:Approved,Cancelled',
+        ]);
+       $bloodRequest= BloodRequest::find($id);
+       $centerId=Auth::id();
+
+       $inventory = BloodInventory::where('center_id', $bloodRequest->centerId)
+       ->where('BloodType', $bloodRequest->BloodType)
+       ->first();
+    if($inventory){
+    if ($request->status === 'Approved') {
+        $inventory->Quantity += $bloodRequest->Quantity;
+    } elseif ($request->status === 'Cancelled') {
+        if ($inventory->Quantity >= $bloodRequest->Quantity) {
+            $inventory->Quantity -= $bloodRequest->Quantity;
+        } else {
+            return redirect()->back()->with('error', 'لا يوجد دم كافي ');
+        }
+    }
+    $inventory->save();
+
+}else {
+    if ($request->Status === 'Approved') {
+        BloodInventory::create([
+            'center_id' => $centerId,
+            'BloodType' => $bloodRequest->BloodType,
+            'Quantity' => $bloodRequest->Quantity,
+        ]);
+    } elseif ($request->Status === 'Cancelled') {
+        return redirect()->back()->with('error', 'لا يمكن إلغاء طلب دون وجود سجل للمخزون.');
+    }
+}
+
+
+    $bloodRequest->Status = $request->Status;
+    $bloodRequest->save();
+
+    return redirect()->back()->with('success', 'تم تغيير حالة الطلب  ');
+    }
 
     /**
      * Display the specified resource.

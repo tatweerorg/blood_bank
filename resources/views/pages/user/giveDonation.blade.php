@@ -33,7 +33,7 @@
         </div>
 
         <div class="d-grid">
-            <button type="submit" class="btn btn-danger">إرسال الطلب</button>
+            <button type="submit" class="btn btn-primary">إرسال الطلب</button>
         </div>
     </form>
 @endsection

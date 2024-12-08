@@ -11,7 +11,11 @@ class BloodInventory extends Model
 {
     
     use HasFactory;
-    protected $fillable = ['center_id', 'BloodType', 'Quantity', 'ExpirationDate'];
+    protected $fillable = [
+        'center_id',
+        'BloodType',
+        'Quantity',
+    ];
     public function center(){
         return $this->belongsTo(User::class,'center_id');
     }

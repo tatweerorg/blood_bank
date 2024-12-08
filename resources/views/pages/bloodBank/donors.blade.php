@@ -2,6 +2,8 @@
 @section('content')
     <section class="recent-requests">
         <h2 class="title">المتبرعين</h2>
+<div class="containerdelete">
+        <a href=""  class="btn btn-danger deletedangerbtn ">إضافة متبرع</a></div>
         <table id="centersTable" class="display">
             <thead>
                 <tr>

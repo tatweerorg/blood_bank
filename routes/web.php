@@ -98,7 +98,9 @@ Route::middleware('checkUserType:BloodCenter')->group(function(){
     Route::get('/bloodcenter/donors',[BloodCenterController::class,'donations'])->name('dashboardblood.donors');
     Route::get('/bloodcenter/donationRequests',[BloodCenterController::class,'requests'])->name('dashboardblood.donationRequests');
     Route::get('/bloodcenter/bloodstock',[BloodCenterController::class,'inventory'])->name('dashboardblood.bloodstock');
-
+    Route::get('/bloodcenter/donateBlood',[BloodCenterController::class,'donateBlood'])->name('dashboardblood.donateBlood');
+    Route::post('/blood/add', [BloodCenterController::class, 'addBlood'])->name('dashboardblood.addBlood');
+    Route::post('/bloodrequests/{id}/updateStatus',[BloodRequestController::class, 'updateStatus'])->name('bloodRequest.updateStatus');
 
 
 

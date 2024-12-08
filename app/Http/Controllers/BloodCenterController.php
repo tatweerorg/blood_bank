@@ -113,20 +113,46 @@ return view("pages.bloodBank.donors", compact('donations'));
         return view("pages.bloodBank.donationRequests",compact('requests'));
     }
    public function inventory(){
-     $loggedInCenterId = Auth::id(); // الحصول على معرف المستخدم المسجل دخوله
+     $loggedInCenterId = Auth::id(); 
 
 $inventores = BloodInventory::join('users', 'blood_inventories.center_id', '=', 'users.id')
-    ->where('blood_inventories.center_id', $loggedInCenterId) // التحقق من أن البيانات تخص المستخدم المسجل دخوله
+    ->where('blood_inventories.center_id', $loggedInCenterId) 
     ->select(
         'blood_inventories.id',
         'users.Username',
         'blood_inventories.BloodType',
         'blood_inventories.Quantity',
-        'blood_inventories.ExpirationDate'
     )
     ->get();
 
 return view("pages.bloodBank.bloodStock", compact('inventores'));
+
+    }
+    
+    public function donateBlood(){
+        return view("pages.bloodBank.donate");
+    }
+    public function addBlood(Request $request){
+        $request->validate([
+            'BloodType' => 'required|string',
+            'Quantity' => 'required|integer|min:1',
+        ]);
+        $centerId = Auth::id(); 
+        $bloodType = $request->BloodType;
+        $quantity = $request->Quantity;
+        $bloodRecord = BloodInventory::where('center_id', $centerId)
+        ->where('BloodType', $bloodType)
+        ->first();
+        if($bloodRecord){
+            $bloodRecord->Quantity += $quantity;
+            $bloodRecord->save();
+        }else {
+            BloodInventory::create([
+                'center_id' => $centerId,
+                'BloodType' => $bloodType,
+                'Quantity' => $quantity,]);
+        }
+        return redirect()->route('dashboardblood.bloodstock')->with('success', 'تم إضافة الدم بنجاح.');
 
     }
     /**

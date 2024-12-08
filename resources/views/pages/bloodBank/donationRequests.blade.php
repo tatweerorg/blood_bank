@@ -21,10 +21,19 @@
                         <td>{{ $request->Quantity }}</td>
                         <td>{{ $request->RequestDate }}</td>
                         <td>{{ $request->Status }}</td>
+                       
                         <td>
-                            <a href="{{ route('bloodRequest.edit', $request->id) }}"
-                                class="btn btn-warning editbtn">موافقة</a>
-                            <a href="#" class="btn btn-danger deletebtn">رفض</a>
+                            <form action="{{ route('bloodRequest.updateStatus',$request->id) }}" method="POST" style="display: inline;">
+                                @csrf 
+                                <input type="hidden" name="Status" value="Approved">
+                                <button type="submit" class="btn btn-warning editbtn">موافقة</button>
+                            </form>
+                            <form action="{{ route('bloodRequest.updateStatus',$request->id) }}" method="POST" style="display: inline;">
+                                @csrf 
+                                <input type="hidden" name="Status" value="Cancelled">
+                                <button type="submit" class="btn btn-danger deletebtn">رفض</button>
+
+                            </form>
                         </td>
                     </tr>
                 @endforeach
