@@ -2,6 +2,14 @@
 @section('content')
     <section class="recent-requests">
         <h2 class="title">طلبات التبرع بالدم </h2>
+        @if (session('error'))
+                <div class="alert alert-danger art">
+                    {{ session('error') }}
+
+
+                </div>
+            @endif
+
         <table id="centersTable" class="display">
             <thead>
                 <tr>

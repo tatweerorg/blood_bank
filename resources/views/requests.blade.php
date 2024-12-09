@@ -8,7 +8,7 @@
 
         <div class="container my-5">
             @if (session('error'))
-                <div class="alert alert-danger art">
+                <div class="alert alert-danger ">
                     {{ session('error') }}
 
 

@@ -69,19 +69,19 @@ class BloodRequestController extends Controller
        $bloodRequest= BloodRequest::find($id);
        $centerId=Auth::id();
 
-       $inventory = BloodInventory::where('center_id', $bloodRequest->centerId)
+       $inventory = BloodInventory::where('center_id', $centerId)
        ->where('BloodType', $bloodRequest->BloodType)
        ->first();
     if($inventory){
-    if ($request->status === 'Approved') {
-        $inventory->Quantity += $bloodRequest->Quantity;
-    } elseif ($request->status === 'Cancelled') {
-        if ($inventory->Quantity >= $bloodRequest->Quantity) {
-            $inventory->Quantity -= $bloodRequest->Quantity;
-        } else {
-            return redirect()->back()->with('error', 'لا يوجد دم كافي ');
+        if ($request->Status === 'Approved') {
+            $inventory->Quantity = $inventory->Quantity + $bloodRequest->Quantity;
+        } elseif ($request->Status === 'Cancelled') {
+            if ($inventory->Quantity >= $bloodRequest->Quantity) {
+                $inventory->Quantity = $inventory->Quantity - $bloodRequest->Quantity;
+            } else {
+                return redirect()->back()->with('error', 'لا يوجد دم كافٍ.');
+            }
         }
-    }
     $inventory->save();
 
 }else {
