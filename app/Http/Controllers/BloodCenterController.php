@@ -155,6 +155,20 @@ return view("pages.bloodBank.bloodStock", compact('inventores'));
         return redirect()->route('dashboardblood.bloodstock')->with('success', 'تم إضافة الدم بنجاح.');
 
     }
+    public function setting(Request $request){
+
+
+        $loggedInCenterId = Auth::id();
+
+    // Fetch the user's data and associated profile
+    $user = User::with('profile')->find($loggedInCenterId);
+
+    // Fetch the inventory related to the blood bank
+    $inventory = BloodInventory::where('center_id', $loggedInCenterId)->get();
+
+    // Pass the data to the view
+    return view("pages.bloodBank.setting", compact('user', 'inventory'));
+    }
     /**
      * Remove the specified resource from storage.
      *

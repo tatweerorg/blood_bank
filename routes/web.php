@@ -96,6 +96,8 @@ Route::middleware('checkUserType:BloodCenter')->group(function(){
         return view('pages.bloodBank.home');
     })->name('dashboardblood.home');
     Route::get('/bloodcenter/donors',[BloodCenterController::class,'donations'])->name('dashboardblood.donors');
+    Route::get('/bloodcenter/setting',[BloodCenterController::class,'setting'])->name('dashboardblood.setting');
+
     Route::get('/bloodcenter/donationRequests',[BloodCenterController::class,'requests'])->name('dashboardblood.donationRequests');
     Route::get('/bloodcenter/bloodstock',[BloodCenterController::class,'inventory'])->name('dashboardblood.bloodstock');
     Route::get('/bloodcenter/donateBlood',[BloodCenterController::class,'donateBlood'])->name('dashboardblood.donateBlood');
