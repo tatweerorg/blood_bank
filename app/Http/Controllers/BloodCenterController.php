@@ -108,6 +108,7 @@ return view("pages.bloodBank.donors", compact('donations'));
         $requests=BloodRequest::join('blood_request_centers', 'blood_requests.id', '=', 'blood_request_centers.blood_request_id')
         ->join('users','blood_requests.user_id','=','users.id')
         ->where('blood_request_centers.center_id', $centerId)
+        ->where('blood_requests.Status', 'Pending')
         ->select('blood_requests.id','users.Username','blood_requests.BloodType','blood_requests.Quantity','blood_requests.RequestDate','blood_requests.Status')
         ->get();
         return view("pages.bloodBank.donationRequests",compact('requests'));

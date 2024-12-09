@@ -75,13 +75,7 @@ class BloodRequestController extends Controller
     if($inventory){
         if ($request->Status === 'Approved') {
             $inventory->Quantity = $inventory->Quantity + $bloodRequest->Quantity;
-        } elseif ($request->Status === 'Cancelled') {
-            if ($inventory->Quantity >= $bloodRequest->Quantity) {
-                $inventory->Quantity = $inventory->Quantity - $bloodRequest->Quantity;
-            } else {
-                return redirect()->back()->with('error', 'لا يوجد دم كافٍ.');
-            }
-        }
+        } 
     $inventory->save();
 
 }else {
