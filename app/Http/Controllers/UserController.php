@@ -311,8 +311,11 @@ class UserController extends Controller
         return view("pages.user.reports");
     }
     public function settings(){
-        return view("pages.user.settings");
-    }
+ $user = Auth::user();
+        $id= Auth::id();
+        $profile = DB::table('user_profiles')->where('user_id',$id)->first();
+        return view("pages.user.settings.personalInfo",compact('user','profile'));
+        }
     public function personalInfo(){
         $user = Auth::user();
         $id= Auth::id();
