@@ -8,7 +8,6 @@
                     <th>مركز الدم</th>
                     <th>نوع فصيلة الدم </th>
                     <th>كمية الدم </th>
-                    <th>تاريخ الانتهاء</th>
                     <th>العمليات</th>
                 </tr>
             </thead>
@@ -18,7 +17,6 @@
                         <td>{{ $inventory->Username }}</td>
                         <td>{{ $inventory->BloodType }}</td>
                         <td>{{ $inventory->Quantity }}</td>
-                        <td>{{ $inventory->ExpirationDate }}</td>
                         <td>
                             <a href="{{ route('bloodInventory.edit', $inventory->id) }}"
                                 class="btn btn-warning editbtn">Edit</a>

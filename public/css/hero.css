@@ -43,6 +43,9 @@
 .mainbtns {
     display: flex;
     justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-weight: 500;
 }
 
 .btn-primary:hover {
@@ -63,8 +66,10 @@
 
 .feature-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 أعمدة */
-    gap: 20px; /* مسافة بين العناصر */
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 أعمدة */
+    gap: 20px;
+    /* مسافة بين العناصر */
     padding: 20px;
 }
 
