@@ -1,48 +1,63 @@
-.forms{
+.form {
+    max-width: 800px;
+    margin: 10px auto;
+    padding: 10px;
+
+    .btn {
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+.forms {
     display: flex;
-    
+
     flex-direction: column;
-    padding:20px;
+    padding: 20px;
     border-radius: 10px;
     border: 1px solid #cccccc;
     background-color: #eeeeee;
 }
-label{
+
+label {
     font-size: 18px;
 }
-.forms h1{
+
+.forms h1 {
     text-align: center;
 }
 
-.input-group{
+.input-group {
     display: flex;
-        flex-direction: column;
-        padding: 10px;
+    flex-direction: column;
+    padding: 10px;
 }
-.input{
+
+.input {
     display: block;
-        width: 100%;
-        padding: 0.375rem 0.75rem;
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.5;
-        color: #212529;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 1px solid #ced4da;
-        border-radius: 0.375rem;
-        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        margin-top: 5px;
-    }
-    
-    .input:focus {
-        color: #212529;
-        background-color: #fff;
-        border-color: #86b7fe;
-        outline: 0;
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-    }
-.btn{
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    margin-top: 5px;
+}
+
+.input:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.btn {
     float: left;
     margin: 10px;
     width: 20%;
@@ -53,15 +68,16 @@ label{
     border-radius: 10px;
     font-size: 16px;
     font-weight: bold;
-    
+
 }
-.btn:hover{
-background-color: #eeeeee;
+
+.btn:hover {
+    background-color: #eeeeee;
     color: green;
     border: 1px solid green;
 }
 
-.sccessmassage{
+.sccessmassage {
     background-color: rgba(0, 128, 0, 0.243);
     padding: 10px;
     border-radius: 5px;
@@ -69,10 +85,10 @@ background-color: #eeeeee;
     color: rgb(0, 47, 0);
 }
 
-.failemassage{
+.failemassage {
     background-color: rgba(178, 0, 0, 0.243);
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid rgb(128, 0, 0);
-        color: rgb(47, 0, 0);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(128, 0, 0);
+    color: rgb(47, 0, 0);
 }
