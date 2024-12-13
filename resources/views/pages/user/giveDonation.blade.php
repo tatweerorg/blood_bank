@@ -7,8 +7,20 @@
 
         <div class="form-group mb-3">
             <label for="blood_type" class="form-label">فصيلة الدم</label>
-            <input type="text" class="form-control" id="blood_type" name="blood_type" required maxlength="3"
-                placeholder="e.g., A+" style="text-transform: uppercase;">
+
+
+
+            <select name="blood_type" id="blood_type" class="form-control">
+                <option value="">اختر فصيلة دمك</option>
+                <option value="A+" {{ old('BloodType') == 'A+' ? 'selected' : '' }}>A+</option>
+                <option value="A-" {{ old('BloodType') == 'A-' ? 'selected' : '' }}>A-</option>
+                <option value="B+" {{ old('BloodType') == 'B+' ? 'selected' : '' }}>B+</option>
+                <option value="B-" {{ old('BloodType') == 'B-' ? 'selected' : '' }}>B-</option>
+                <option value="AB+" {{ old('BloodType') == 'AB+' ? 'selected' : '' }}>AB+</option>
+                <option value="AB-" {{ old('BloodType') == 'AB-' ? 'selected' : '' }}>AB-</option>
+                <option value="O+" {{ old('BloodType') == 'O+' ? 'selected' : '' }}>O+</option>
+                <option value="O-" {{ old('BloodType') == 'O-' ? 'selected' : '' }}>O-</option>
+            </select>
         </div>
 
         <div class="form-group mb-3">
@@ -18,7 +30,7 @@
         </div>
 
         <div class="form-group mb-3">
-            <label for="last_donation_date" class="form-label">تاريخ آخر تبرع</label>
+            <label for="last_donation_date" class="form-label">التاريخ المتاح </label>
             <input type="date" class="form-control" id="last_donation_date" name="last_donation_date" required>
         </div>
 

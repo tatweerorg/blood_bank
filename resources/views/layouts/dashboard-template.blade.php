@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{{ asset('css/admindashbord.css') }}">
     <link rel="stylesheet" href="{{ asset('css/tabels.css') }}">
 
+
+
     <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
 
     <!-- DataTables CSS -->
@@ -43,7 +45,10 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1>لوحة التحكم الخاصة بالادمن</h1>
+            <h1 class="headertitle">
+                <img src="{{ asset('images/logo.png') }}" alt="logo">
+                <span>دَمُك حياة</span>
+            </h1>
         </header>
         <nav class="sidebar">
             <ul>

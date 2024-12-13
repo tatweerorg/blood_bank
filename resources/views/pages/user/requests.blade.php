@@ -3,7 +3,7 @@
     <section class="recent-requests">
         <h2 class="title">طلبات الدم من مراكز التبرع التي قمت بها</h2>
         <a class="btn-excel" href="{{ route('dashboarduser.requestsBlood') }}">اطلب دم</a>
-        <a class="btn-pdf" href="{{ route('dashboarduser.donateBlood') }}"> تبرع الآن</a>
+        <a class="btn-pdf" href="{{ route('dashboarduser.donateBlood') }}">حجز موعد للتبرع</a>
         <table id="centersTable" class="display">
             <thead>
                 <tr>
@@ -26,7 +26,21 @@
                         <td>{{ $request->Quantity }}</td>
                         <td>{{ $request->Centername }}</td>
                         <td>{{ $request->RequestDate }}</td>
-                        <td>{{ $request->Status }}</td>
+                        <td
+                            style="
+    @if ($request->Status == 'Approved') background-color: green; color: white; 
+    @elseif($request->Status == 'Pending') 
+        background-color: yellow; color: black; 
+    @else 
+        background-color: orange; color: white; @endif">
+                            @if ($request->Status == 'Approved')
+                                موافقة
+                            @elseif($request->Status == 'Pending')
+                                انتظار
+                            @else
+                                مرفوضة
+                            @endif
+                        </td>
 
                     </tr>
                 @endforeach
