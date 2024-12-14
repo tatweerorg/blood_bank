@@ -42,7 +42,10 @@
 <body>
     <div class="wrap">
         <header class="header">
-            <h1>لوحة التحكم الخاصة ببنك الدم</h1> <!-- Arabic for Blood Bank Admin Dashboard -->
+            <h1 class="headertitle">
+                <img src="{{ asset('images/logo.png') }}" alt="logo">
+                <span>دَمُك حياة</span>
+            </h1>
         </header>
         <nav class="sidebar">
             <ul>

@@ -56,7 +56,7 @@ class DashboardController extends Controller
     }
     public function inventory(){
         $inventores=BloodInventory::join('users','blood_inventories.center_id','=','users.id')
-                    ->select('blood_inventories.id','users.Username','blood_inventories.BloodType','blood_inventories.Quantity','blood_inventories.ExpirationDate')
+                    ->select('blood_inventories.id','users.Username','blood_inventories.BloodType','blood_inventories.Quantity')
                     ->get();
         return view("pages.admin.bloodInventory",compact('inventores'));
     }

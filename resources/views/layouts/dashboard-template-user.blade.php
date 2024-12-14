@@ -47,16 +47,14 @@
 <body>
     <div class="wrap">
         <header class="header">
-            <h1>لوحة التحكم الخاصة بالمستخدم</h1>
+            <h1>لوحة التحكم</h1>
         </header>
         <nav class="sidebar">
             <ul>
                 <li><a href="{{ route('dashboard.user') }}">لوحة التحكم</a></li>
                 <li><a href="{{ route('dashboarduser.bloodbanks') }}">بنوك الدم </a></li>
                 <li><a href="{{ route('dashboarduser.donations') }}">سجل التبرعات </a></li>
-                {{-- <li><a href="{{ route('dashboarduser.inventory') }}">مخزون الدم</a></li> --}}
                 <li><a href="{{ route('dashboarduser.requests') }}">طلبات التبرع</a></li>
-                {{-- <li><a href="{{ route('dashboarduser.reports') }}">التقارير</a></li> --}}
                 <li><a href="{{ route('dashboarduser.settings') }}">الإعدادات</a></li>
                 <li>
                 <li>

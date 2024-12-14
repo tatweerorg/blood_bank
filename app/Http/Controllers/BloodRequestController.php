@@ -56,7 +56,7 @@ class BloodRequestController extends Controller
             }
         } else {
             BloodRequestCenter::create([
-                'blood_request_id' => $bloodRequest->id,
+                'blood_request_id' => $bloodrequest->id,
                 'center_id' => $request->center_id,
             ]);
         }

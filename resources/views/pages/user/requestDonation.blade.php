@@ -11,8 +11,19 @@
 
         <div class="form-group mb-3">
             <label for="BloodType" class="form-label">فصيلة الدم</label>
-            <input type="text" class="form-control" id="BloodType" name="BloodType" required maxlength="3"
-                placeholder="e.g., A+" style="text-transform: uppercase;">
+
+
+            <select name="BloodType" id="BloodType" class="form-control">
+                <option value="">اختر فصيلة دمك</option>
+                <option value="A+" {{ old('BloodType') == 'A+' ? 'selected' : '' }}>A+</option>
+                <option value="A-" {{ old('BloodType') == 'A-' ? 'selected' : '' }}>A-</option>
+                <option value="B+" {{ old('BloodType') == 'B+' ? 'selected' : '' }}>B+</option>
+                <option value="B-" {{ old('BloodType') == 'B-' ? 'selected' : '' }}>B-</option>
+                <option value="AB+" {{ old('BloodType') == 'AB+' ? 'selected' : '' }}>AB+</option>
+                <option value="AB-" {{ old('BloodType') == 'AB-' ? 'selected' : '' }}>AB-</option>
+                <option value="O+" {{ old('BloodType') == 'O+' ? 'selected' : '' }}>O+</option>
+                <option value="O-" {{ old('BloodType') == 'O-' ? 'selected' : '' }}>O-</option>
+            </select>
         </div>
 
         <div class="form-group mb-3">
