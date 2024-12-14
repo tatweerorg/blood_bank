@@ -6,12 +6,12 @@
 @section('content')
     <div class="container">
         <h2>نتائج البحث</h2>
-
         @if (session('error'))
             <div class="alert alert-danger">{{ session('error') }}</div>
         @endif
 
-        @if ($results->isNotEmpty())
+        @if ($users->isNotEmpty())
+    
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -19,23 +19,23 @@
                         <th>العنوان</th>
                         <th>رقم الاتصال</th>
                         <th>فصيلة الدم</th>
-                        <th>الوحدات المتوفرة</th>
+                       
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($results as $result)
+                    @foreach ($users as $user)
                         <tr>
-                            <td>{{ $result->center->Username }}</td>
-                            <td>{{ $result->center->profile->Address }}</td>
-                            <td>{{ $result->center->profile->ContactNumber }}</td>
-                            <td>{{ $result->BloodType }}</td>
-                            <td>{{ $result->Quantity }}</td>
+                            <td>{{ $user->Username }}</td>
+                            <td>{{ $user->profile->Address }}</td>
+                            <td>{{ $user->profile->ContactNumber }}</td>
+                            <td>{{ $user->profile->BloodType }}</td>
+                          
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-        @else
-            <p>لا توجد نتائج مطابقة للبحث.</p>
+            @else
+           <p>لا يوجد مستخدمين بنفس فصيلة الدم هذه</p>
         @endif
     </div>
 

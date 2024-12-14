@@ -42,7 +42,18 @@ class BloodCenterController extends Controller
     
         // Handle no results found
      if ($results->isEmpty()) {
-    return back()->with('error', 'عذرًا، لا توجد مراكز تحتوي على الكمية المطلوبة في الموقع المحدد.');
+        $users = User::whereHas('profile',function ($query) use ($validatedData){
+            $query->where('BloodType', $validatedData['BloodType'])
+            ->where('Address', 'LIKE', '%' . $validatedData['location'] . '%');
+        })
+        ->where('UserType','User')
+        ->with('profile')
+        ->get();
+        if($users->isEmpty()){
+            return back()->with('error','لا يوجد مستخدمين لهم نفس فصيلة دمك ');
+        }
+    return view('users',compact('users'));
+    
 }
         // Pass results to the view
         return view('results', compact('results'));
