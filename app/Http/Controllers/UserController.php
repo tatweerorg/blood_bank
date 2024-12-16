@@ -283,7 +283,9 @@ class UserController extends Controller
                 'centers.Username AS center_name',
                 'donations.blood_type',
                 'donations.quantity',
-                'donations.last_donation_date'
+                'donations.last_donation_date',
+                'donations.Status',
+
             )
             ->get();
     

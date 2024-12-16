@@ -15,6 +15,7 @@ class Donation extends Model
         'blood_type',
         'quantity',
         'last_donation_date',
+        'Status'
     ];
     public function user()
 {

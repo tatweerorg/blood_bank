@@ -35,16 +35,21 @@
                         <td>{{ $request->Username }} </td>
                         <td>{{ $request->BloodType }}</td>
                         <td>{{ $request->RequestDate }}</td>
-                        <td>
-                            @if ($request->Status === 'Pending')
-                                معلق
-                            @elseif($request->Status === 'Approved')
-                                مقبول
-                            @elseif($request->Status === 'Cancelled')
-                                مرفوض
+                        <td
+                            style="
+    @if ($request->Status == 'Approved') background-color: green; color: white; 
+    @elseif($request->Status == 'Pending') 
+        background-color: yellow; color: black; 
+    @else 
+        background-color: orange; color: white; @endif">
+                            @if ($request->Status == 'Approved')
+                                موافقة
+                            @elseif($request->Status == 'Pending')
+                                انتظار
+                            @else
+                                مرفوضة
                             @endif
-
-                        </td>
+                        </td> 
                     </tr>
                 @endforeach
 
