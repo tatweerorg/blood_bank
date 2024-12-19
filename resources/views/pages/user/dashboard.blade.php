@@ -14,18 +14,18 @@
                 <h1 class="fs-2">اهلاً بعودتك {{ $user->Username }}</h1>
             </div>
             <div>
-                <p>1</p>
+                <p>{{$donationcount}}</p>
                 <p>تبرعاتك</p>
             </div>
 
             <div>
-                <p>2</p>
+                <p>{{$bloodbankscount}}</p>
                 <p>بنوك الدم</p>
 
             </div>
             <div>
-                <p>3</p>
-                <p>طلبات التبرع حولك</p>
+                <p>{{$pendingrequests}}</p>
+                <p>طلبات التبرع المعلقة</p>
 
             </div>
 

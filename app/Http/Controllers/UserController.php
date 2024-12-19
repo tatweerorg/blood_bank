@@ -28,6 +28,8 @@ class UserController extends Controller
         ->get();
         $donationcount=DB::table('donations')
         ->where('user_id',$userId)->count();
+        $bloodbankscount=DB::table('users')
+        ->where('UserType','BloodCenter')->count();
         $donorcount=DB::table('donations')
         ->where('user_id',$userId)->distinct('user_id')->count('user_id');
         $pendingrequests=Db::table('blood_requests')
@@ -40,7 +42,7 @@ class UserController extends Controller
              $userProfile = $user->profile;
 
 
-                return view("pages.user.dashboard",compact('bloodrequests','donationcount','donorcount','pendingrequests','quantity','user','userProfile'));
+                return view("pages.user.dashboard",compact('bloodrequests','donationcount','donorcount','pendingrequests','quantity','user','userProfile','bloodbankscount'));
 
     }
     public function register(Request $request)
