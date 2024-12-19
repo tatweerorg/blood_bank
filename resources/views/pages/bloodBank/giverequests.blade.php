@@ -25,18 +25,31 @@
                 @foreach ($requests as $request)
                     <tr>
                         <td>{{ $request->Username }}</td>
-                        <td>{{ $request->BloodType }}</td>
-                        <td>{{ $request->Quantity }}</td>
-                        <td>{{ $request->RequestDate }}</td>
-                        <td>{{ $request->Status }}</td>
-                       
+                        <td>{{ $request->blood_type }}</td>
+                        <td>{{ $request->quantity }}</td>
+                        <td>{{ $request->last_donation_date }}</td>
+                        <td
+                            style="
+    @if ($request->Status == 'Approved') background-color: green; color: white; 
+    @elseif($request->Status == 'Pending') 
+        background-color: yellow; color: black; 
+    @else 
+        background-color: orange; color: white; @endif">
+                            @if ($request->Status == 'Approved')
+                                موافقة
+                            @elseif($request->Status == 'Pending')
+                                انتظار
+                            @else
+                                مرفوضة
+                            @endif
+                        </td>                       
                         <td>
-                            <form action="{{ route('bloodRequest.updateStatus',$request->id) }}" method="POST" style="display: inline;">
+                            <form action="{{ route('giverequests.updateStatus',$request->id) }}" method="POST" style="display: inline;">
                                 @csrf 
                                 <input type="hidden" name="Status" value="Approved">
                                 <button type="submit" class="btn btn-warning editbtn">موافقة</button>
                             </form>
-                            <form action="{{ route('bloodRequest.updateStatus',$request->id) }}" method="POST" style="display: inline;">
+                            <form action="{{ route('giverequests.updateStatus',$request->id) }}" method="POST" style="display: inline;">
                                 @csrf 
                                 <input type="hidden" name="Status" value="Cancelled">
                                 <button type="submit" class="btn btn-danger deletebtn">رفض</button>

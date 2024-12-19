@@ -124,6 +124,18 @@ return view("pages.bloodBank.donors", compact('donations'));
         ->get();
         return view("pages.bloodBank.donationRequests",compact('requests'));
     }
+    public function giverequests(){
+        $centerId = Auth::id();
+    
+        $requests = Donation::join('users', 'donations.center_id', '=', 'users.id') // Correct join condition
+            ->where('donations.center_id', $centerId) // Filter for the logged-in center
+            ->where('donations.Status', 'Pending')
+            ->select('donations.id', 'users.Username', 'donations.blood_type', 'donations.quantity', 'donations.last_donation_date', 'donations.Status')
+            ->get();
+    
+        return view("pages.bloodBank.giverequests", compact('requests'));
+    }
+    
    public function inventory(){
      $loggedInCenterId = Auth::id(); 
 

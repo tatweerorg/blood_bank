@@ -20,8 +20,21 @@
                 <td>{{ $request->BloodType }}</td>
                 <td>{{ $request->Quantity }}</td>
                 <td>{{ $request->RequestDate }}</td>
-                <td>{{ $request->Status }}</td>
-                <td>
+                <td
+                            style="
+    @if ($request->Status == 'Approved') background-color: green; color: white; 
+    @elseif($request->Status == 'Pending') 
+        background-color: yellow; color: black; 
+    @else 
+        background-color: orange; color: white; @endif">
+                            @if ($request->Status == 'Approved')
+                                موافقة
+                            @elseif($request->Status == 'Pending')
+                                انتظار
+                            @else
+                                مرفوضة
+                            @endif
+                        </td>                 <td>
                 <a href="{{ route('bloodRequest.edit' , $request->id ) }}" class="btn btn-warning editbtn">Edit</a>
                 <a href="#" class="btn btn-danger deletebtn">Delete</a>
                 </td>

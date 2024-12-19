@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Donation;
 use App\Models\BloodCenter;
 use Illuminate\Http\Request;
+use App\Models\BloodInventory;
 use Illuminate\Support\Facades\Auth;
 
 class DonationController extends Controller
@@ -41,10 +42,11 @@ class DonationController extends Controller
      */
     public function store(Request $request){
         $request->validate([
-            'center_id' => 'required', // Request date
-            'blood_type' => 'required|string|max:3', // e.g., A+, O-, etc.
-            'quantity' => 'required|integer|min:1', // Quantity in units
-            'last_donation_date' => 'required|date'
+            'center_id' => 'required', 
+            'blood_type' => 'required|string|max:3', 
+            'quantity' => 'required|integer|min:1', 
+            'last_donation_date' => 'required|date',
+            'Status'=>'required',
         ]);
         $donations=Donation::create([
             'user_id'=> Auth::id(),
@@ -52,6 +54,7 @@ class DonationController extends Controller
             'blood_type' => $request->input('blood_type'),
             'quantity' => $request->input('quantity'),
             'last_donation_date' => $request->input('last_donation_date'),
+            'Status'=>'Pending'
         ]);
         return redirect()->route('dashboarduser.donations');
     }
@@ -154,5 +157,39 @@ class DonationController extends Controller
         }else{
             return redirect()->route('dashboard.donations')->with('error', ' عملية التبرع غير موجودة');
         }
+    }
+    public function updateStatus(Request $request , $id){
+        $request->validate([
+            'Status' => 'required|in:Approved,Cancelled',
+        ]);
+       $donation= Donation::find($id);
+       $centerId=Auth::id();
+
+       $inventory = BloodInventory::where('center_id', $centerId)
+       ->where('BloodType', $donation->blood_type)
+       ->first();
+    if($inventory){
+        if ($request->Status === 'Approved') {
+            $inventory->Quantity = $inventory->Quantity + $donation->quantity;
+        } 
+    $inventory->save();
+
+}else {
+    if ($request->Status === 'Approved') {
+        BloodInventory::create([
+            'center_id' => $centerId,
+            'BloodType' => $donation->blood_type,
+            'Quantity' => $donation->quantity,
+        ]);
+    } elseif ($request->Status === 'Cancelled') {
+        return redirect()->back()->with('error', 'لا يمكن إلغاء طلب دون وجود سجل للمخزون.');
+    }
+}
+
+
+    $donation->Status = $request->Status;
+    $donation->save();
+
+    return redirect()->back()->with('success', 'تم تغيير حالة الطلب  ');
     }
 }

@@ -10,6 +10,7 @@
             <th>نوع الدم</th>
                 <th>كمية الدم</th>
                 <th>تاريخ التبرع  </th>
+                <th>الحالة</th>
                 <th>العمليات</th>
             </tr>
         </thead>
@@ -21,6 +22,21 @@
             <td>{{ $donation->blood_type }}</td>
                 <td>{{ $donation->quantity }}</td>
                 <td>{{ $donation->last_donation_date }}</td>
+                <td
+                            style="
+    @if ($donation->Status == 'Approved') background-color: green; color: white; 
+    @elseif($donation->Status == 'Pending') 
+        background-color: yellow; color: black; 
+    @else 
+        background-color: orange; color: white; @endif">
+                            @if ($donation->Status == 'Approved')
+                                موافقة
+                            @elseif($donation->Status == 'Pending')
+                                انتظار
+                            @else
+                                مرفوضة
+                            @endif
+                        </td>
                 <td>
                 <a href="{{ route('dashboarduser.requestsBlood') }}" class="btn btn-danger deletebtn">اطلب دم</a>
                 <a href="{{ route('dashboarduser.donateBlood') }}" class="btn btn-danger deletebtn">تبرع بالدم</a>

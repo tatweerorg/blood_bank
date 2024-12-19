@@ -53,7 +53,13 @@
 
                 <li><a href="{{ route('dashboardblood.donors') }}">المتبرعين</a></li>
                 <li><a href="{{ route('dashboardblood.bloodstock') }}">مخزون الدم</a></li>
+<<<<<<< HEAD
                 <li><a href="{{ route('dashboardblood.donationRequests') }}">طلبات التبرع</a></li>
+=======
+                <li><a href="{{ route('dashboardblood.donationRequests') }}">طلبات الدم  </a></li>
+                <li><a href="{{ route('dashboardblood.giverequests') }}">طلبات التبرع </a></li>
+                {{--    <li><a href="#">التقارير</a></li> --}}
+>>>>>>> 094f33a7ba43f3630de4c10c20aea0373fb7d354
                 <li><a href="{{ route('dashboardblood.setting') }}">الإعدادات</a></li>
                 <li>
                 <li>
