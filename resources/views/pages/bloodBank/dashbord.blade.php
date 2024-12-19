@@ -44,7 +44,7 @@
         <header class="header">
             <h1 class="headertitle">
                 <img src="{{ asset('images/logo.png') }}" alt="logo">
-                <span>دَمُك حياة</span>
+                <span>بوابة بنك الدم</span>
             </h1>
         </header>
         <nav class="sidebar">
@@ -54,7 +54,6 @@
                 <li><a href="{{ route('dashboardblood.donors') }}">المتبرعين</a></li>
                 <li><a href="{{ route('dashboardblood.bloodstock') }}">مخزون الدم</a></li>
                 <li><a href="{{ route('dashboardblood.donationRequests') }}">طلبات التبرع</a></li>
-                {{--    <li><a href="#">التقارير</a></li> --}}
                 <li><a href="{{ route('dashboardblood.setting') }}">الإعدادات</a></li>
                 <li>
                 <li>

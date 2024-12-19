@@ -47,7 +47,7 @@
 <body>
     <div class="wrap">
         <header class="header">
-            <h1>لوحة التحكم</h1>
+            <h1>بوابة المستخدم </h1>
         </header>
         <nav class="sidebar">
             <ul>
