@@ -34,8 +34,8 @@
 
         <div class="form-group mb-3">
             <label for="RequestDate" class="form-label">تاريخ الطلب</label>
-            <input type="date" class="form-control" id="RequestDate" name="RequestDate" required>
-        </div>
+            <input type="datetime-local" class="form-control" id="RequestDate" name="RequestDate" required>
+            </div>
         <div class="form-group mb-3">
             <label for="center_id" class="form-label">اختيار مركز الدم</label>
             <select class="form-control" id="center_id" name="center_id" required>

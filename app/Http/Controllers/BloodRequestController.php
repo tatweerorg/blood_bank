@@ -7,6 +7,7 @@ use App\Models\Reminder;
 use App\Models\BloodRequest;
 use Illuminate\Http\Request;
 use App\Models\BloodInventory;
+use Illuminate\Support\Carbon;
 use App\Models\BloodRequestCenter;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,7 +45,8 @@ class BloodRequestController extends Controller
             'user_id'=> Auth::id(),
             'BloodType' => $request->input('BloodType'),
             'Quantity' => $request->input('Quantity'),
-            'RequestDate' => $request->input('RequestDate'),
+            'RequestDate' => Carbon::createFromFormat('Y-m-d\TH:i', $request->RequestDate)
+            ->format('Y-m-d H:i:s'),
             'Status'=>'Pending',
         ]);
         if ($request->center_id == 'all') {
@@ -60,7 +62,8 @@ class BloodRequestController extends Controller
                     'reciever_id'=>$center->id,
                     'Status'=>'unseen',
                     'reminder'=>'request',
-                    'reminder_date'=>$request->input('RequestDate'),
+                    'reminder_date'=>Carbon::createFromFormat('Y-m-d\TH:i', $request->RequestDate)
+                           ->format('Y-m-d H:i:s'),
                     ]
                 );
             }
@@ -75,7 +78,8 @@ class BloodRequestController extends Controller
                 'reciever_id'=>$request->center_id,
                 'Status'=>'unseen',
                 'reminder'=>'request',
-                'reminder_date'=>$request->input('RequestDate'),
+                'reminder_date'=>Carbon::createFromFormat('Y-m-d\TH:i', $request->RequestDate)
+                           ->format('Y-m-d H:i:s'),
                 ]
             );
         }

@@ -54,7 +54,8 @@ class DonationController extends Controller
             'center_id'=>$request->center_id,
             'blood_type' => $request->input('blood_type'),
             'quantity' => $request->input('quantity'),
-            'last_donation_date' => $request->input('last_donation_date'),
+            'last_donation_date' => Carbon::createFromFormat('Y-m-d\TH:i', $request->last_donation_date)
+            ->format('Y-m-d H:i:s'),
             'Status'=>'Pending'
         ]);
         Reminder::create(
@@ -63,7 +64,8 @@ class DonationController extends Controller
             'reciever_id'=>$request->center_id,
             'Status'=>'unseen',
             'reminder'=>'donate',
-            'reminder_date'=> $request->input('last_donation_date'),
+            'reminder_date'=> Carbon::createFromFormat('Y-m-d\TH:i', $request->last_donation_date)
+            ->format('Y-m-d H:i:s'),
             ]
         );
         return redirect()->route('dashboarduser.donations');
