@@ -49,7 +49,7 @@
         </header>
         <nav class="sidebar">
             <ul>
-                <li><a href="{{ route('dashboardblood.home') }}">لوحة التحكم</a></li>
+                <li><a href="{{ route('dashboard.bloodcenter') }}">لوحة التحكم</a></li>
 
                 <li><a href="{{ route('dashboardblood.donors') }}">المتبرعين</a></li>
                 <li><a href="{{ route('dashboardblood.bloodstock') }}">مخزون الدم</a></li>

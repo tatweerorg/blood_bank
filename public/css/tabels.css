@@ -65,7 +65,12 @@ tr {
     background-color: rgb(8, 240, 0) !important;
     color: black !important;
 }
-
+.button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+}
 .btn-pdf {
     background-color: rgb(128, 19, 0) !important;
     border-radius: 10px !important;
