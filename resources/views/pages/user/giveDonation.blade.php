@@ -31,7 +31,7 @@
 
         <div class="form-group mb-3">
             <label for="last_donation_date" class="form-label">التاريخ المتاح </label>
-            <input type="date" class="form-control" id="last_donation_date" name="last_donation_date" required>
+            <input type="datetime-local" class="form-control" id="last_donation_date" name="last_donation_date" required>
         </div>
 
         <div class="form-group mb-3">
@@ -45,7 +45,7 @@
         </div>
 
         <div class="d-grid">
-            <button type="submit" class="btn btn-primary">إرسال الطلب</button>
+            <button type="submit" class="btn btn-danger">إرسال الطلب</button>
         </div>
     </form>
 @endsection

@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Donation;
 use App\Models\BloodCenter;
 use App\Models\UserProfile;
+use App\Models\BloodRequest;
 use Illuminate\Http\Request;
 use App\Models\BloodInventory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Donation;
-use App\Models\BloodRequest;
 
 
 
@@ -19,7 +20,26 @@ class BloodCenterController extends Controller
 
     public function dashboard()
     {
-        return view("pages.bloodBank.home");
+        $user = Auth::user();
+        $userProfile = $user->profile;
+        $userId = Auth::id();
+
+        $userscount=DB::table('users')
+        ->where('UserType','User')->count();
+        $requestcount=DB::table('donations')
+        ->where('center_id',$userId)->count();
+        
+      
+        $givecount=DB::table('blood_request_centers')
+        ->where('center_id',$userId)->count();
+        $remindercount=DB::table('reminders')
+        ->where('reciever_id',$userId)->count();
+        $reminders = DB::table('reminders')
+        ->join('users', 'reminders.sender_id', '=', 'users.id') 
+        ->select('reminders.*', 'users.Username as sender_name')   
+        ->where('reminders.reciever_id', $userId)             
+        ->get();
+        return view("pages.bloodBank.home",compact('user','userProfile','userscount','requestcount','givecount','remindercount','reminders'));
     }
     public function search(Request $request)
     {

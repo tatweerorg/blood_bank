@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Reminder;
 use App\Models\BloodRequest;
 use Illuminate\Http\Request;
 use App\Models\BloodInventory;
+use Illuminate\Support\Carbon;
 use App\Models\BloodRequestCenter;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,7 +45,8 @@ class BloodRequestController extends Controller
             'user_id'=> Auth::id(),
             'BloodType' => $request->input('BloodType'),
             'Quantity' => $request->input('Quantity'),
-            'RequestDate' => $request->input('RequestDate'),
+            'RequestDate' => Carbon::createFromFormat('Y-m-d\TH:i', $request->RequestDate)
+            ->format('Y-m-d H:i:s'),
             'Status'=>'Pending',
         ]);
         if ($request->center_id == 'all') {
@@ -53,12 +56,32 @@ class BloodRequestController extends Controller
                     'blood_request_id'=> $bloodrequest->id,
                     'center_id'=> $center->id,
                 ]);
+                Reminder::create(
+                    [
+                    'sender_id'=> Auth::id(),
+                    'reciever_id'=>$center->id,
+                    'Status'=>'unseen',
+                    'reminder'=>'request',
+                    'reminder_date'=>Carbon::createFromFormat('Y-m-d\TH:i', $request->RequestDate)
+                           ->format('Y-m-d H:i:s'),
+                    ]
+                );
             }
         } else {
             BloodRequestCenter::create([
                 'blood_request_id' => $bloodrequest->id,
                 'center_id' => $request->center_id,
             ]);
+            Reminder::create(
+                [
+                'sender_id'=> Auth::id(),
+                'reciever_id'=>$request->center_id,
+                'Status'=>'unseen',
+                'reminder'=>'request',
+                'reminder_date'=>Carbon::createFromFormat('Y-m-d\TH:i', $request->RequestDate)
+                           ->format('Y-m-d H:i:s'),
+                ]
+            );
         }
         return redirect()->route('dashboarduser.requests');
     }
@@ -75,6 +98,15 @@ class BloodRequestController extends Controller
     if($inventory){
         if ($request->Status === 'Approved') {
             $inventory->Quantity = $inventory->Quantity + $bloodRequest->Quantity;
+            Reminder::create(
+                [
+                'sender_id'=> $centerId,
+                'reciever_id'=>$bloodRequest->user_id,
+                'Status'=>'unseen',
+                'reminder'=>'approve',
+                'reminder_date'=> now()->format('Y-m-d H:i:s'),
+                ]
+            );
         } 
     $inventory->save();
 
@@ -85,6 +117,15 @@ class BloodRequestController extends Controller
             'BloodType' => $bloodRequest->BloodType,
             'Quantity' => $bloodRequest->Quantity,
         ]);
+        Reminder::create(
+            [
+            'sender_id'=> $centerId,
+            'reciever_id'=>$bloodRequest->user_id,
+            'Status'=>'unseen',
+            'reminder'=>'cancelled',
+            'reminder_date'=> now()->format('Y-m-d H:i:s'),
+            ]
+        );
     } elseif ($request->Status === 'Cancelled') {
         return redirect()->back()->with('error', 'لا يمكن إلغاء طلب دون وجود سجل للمخزون.');
     }

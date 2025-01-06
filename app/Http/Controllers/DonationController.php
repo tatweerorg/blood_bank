@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Donation;
+use App\Models\Reminder;
 use App\Models\BloodCenter;
 use Illuminate\Http\Request;
 use App\Models\BloodInventory;
@@ -53,9 +54,20 @@ class DonationController extends Controller
             'center_id'=>$request->center_id,
             'blood_type' => $request->input('blood_type'),
             'quantity' => $request->input('quantity'),
-            'last_donation_date' => $request->input('last_donation_date'),
+            'last_donation_date' => Carbon::createFromFormat('Y-m-d\TH:i', $request->last_donation_date)
+            ->format('Y-m-d H:i:s'),
             'Status'=>'Pending'
         ]);
+        Reminder::create(
+            [
+            'sender_id'=> Auth::id(),
+            'reciever_id'=>$request->center_id,
+            'Status'=>'unseen',
+            'reminder'=>'donate',
+            'reminder_date'=> Carbon::createFromFormat('Y-m-d\TH:i', $request->last_donation_date)
+            ->format('Y-m-d H:i:s'),
+            ]
+        );
         return redirect()->route('dashboarduser.donations');
     }
 
@@ -171,6 +183,7 @@ class DonationController extends Controller
     if($inventory){
         if ($request->Status === 'Approved') {
             $inventory->Quantity = $inventory->Quantity + $donation->quantity;
+            
         } 
     $inventory->save();
 
