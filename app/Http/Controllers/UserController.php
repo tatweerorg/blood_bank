@@ -74,7 +74,7 @@ class UserController extends Controller
         ]);
 
         // Redirect after successful registration
-        return redirect()->route('profile.view.step1',['user_id'=>$user->id]);
+        return redirect()->route('profile.view.complete',['user_id'=>$user->id]);
     }
    
     public function registerBloodBank(Request $request){
@@ -103,9 +103,60 @@ class UserController extends Controller
 
             ]
         );
-        return redirect()->route('profile.view.step1',['user_id'=>$user->id]);
+        return redirect()->route('profile.view.complete',['user_id'=>$user->id]);
 
     }
+
+public function completeProfileView($user_id) {
+    $user = User::find($user_id);
+
+    if (!$user) {
+        return redirect()->back()->withErrors(['user_id' => 'User not found.']);
+    }
+
+    return view('pages.profile.completeProfileView', [
+        'user_id' => $user_id,
+        'user' => $user,
+    ]);
+}
+
+public function completeProfile(Request $request, $user_id) {
+    $user = User::find($user_id);
+
+    if (!$user) {
+        return redirect()->back()->withErrors(['user_id' => 'User not found.']);
+    }
+
+    $rules = [
+        'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+    ];
+
+    if ($user->UserType === 'User') {
+        $rules['BloodType'] = 'required|in:A+,A-,B+,B-,AB+,AB-,O+,O-';
+        $rules['DateOfBirth'] = 'required|date|before_or_equal:' . now()->subYears(18)->format('Y-m-d');
+    } elseif ($user->UserType === 'BloodCenter') {
+        $rules['Address'] = 'required';
+        $rules['ContactNumber'] = 'required|regex:/^05\d{8}$/';
+    }
+
+    $validatedData = $request->validate($rules);
+
+    $profileData = [
+        'user_id' => $user->id,
+        'profile_image' => $request->file('profile_image') ? $request->file('profile_image')->store('profile_images', 'public') : null,
+        'BloodType' => $request->BloodType ?? null,
+        'DateOfBirth' => $request->DateOfBirth ?? null,
+        'ContactNumber' => $request->ContactNumber ?? null,
+        'Address' => $request->Address ?? null,
+        'last_donation_date' => null,
+    ];
+
+    UserProfile::create($profileData);
+
+    return redirect()->route('dashboard.' . strtolower($user->UserType))->with('success', 'Profile completed successfully!');
+}
+
+/* 
     public function create1($user_id){
         return view('pages.profile.step1',['user_id'=>$user_id]);
     }
@@ -264,6 +315,7 @@ class UserController extends Controller
 
 
     }
+      */
     public function bloodbanks(){
 
         $centers = User::join('user_profiles','users.id','=','user_profiles.user_id')  
