@@ -46,23 +46,25 @@
                 <span>{{ $remindercount }}</span>
             </div>
             <div class="body">
-                <div>
-@foreach($reminders as $reminder)
-<h1>من {{$reminder->sender_name}} </h1>
-@if($reminder->reminder === 'approve')
-تم قبول الطلب المقدم من قبل {{$reminder->sender_name}} 
-@elseif($reminder->reminder === 'cancelled')
-تم رفض الطلب المقدم من قبل {{$reminder->sender_name}} 
-@elseif($reminder->reminder === 'donate')
-تم حجز موعد التبرع بالدم من قبل {{$reminder->sender_name}}في تاريخ {{$reminder->reminder_date}}
-@elseif($reminder->reminder === 'request')
-تم طلب دم من قبل {{$reminder->sender_name}}في تاريخ {{$reminder->reminder_date}}
+            <div>
+                    @if($remindercount > 0)
+                    @foreach($reminders as $reminder)
+                    <h1>من {{$reminder->sender_name}} </h1>
+                    @if($reminder->reminder === 'approve')
+                    تم قبول الطلب المقدم من قبل {{$reminder->sender_name}} 
+                    @elseif($reminder->reminder === 'cancelled')
+                    تم رفض الطلب المقدم من قبل {{$reminder->sender_name}} 
+                    @elseif($reminder->reminder === 'donate')
+                    تم حجز موعد التبرع بالدم من قبل {{$reminder->sender_name}}في تاريخ {{$reminder->reminder_date}}
+                    @elseif($reminder->reminder === 'request')
+                    تم طلب دم من قبل {{$reminder->sender_name}}في تاريخ {{$reminder->reminder_date}}
 
-@endif
-@endforeach
-                    
+                    @endif
+                    @endforeach     
+                    @elseif($remindercount==0) 
+                    لا يوجد إشعارات
+                    @endif        
                 </div>
-
             </div>
         </div>
     </section>

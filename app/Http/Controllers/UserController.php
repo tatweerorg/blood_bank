@@ -40,9 +40,15 @@ class UserController extends Controller
 
             $user = Auth::user();
              $userProfile = $user->profile;
+             $remindercount=DB::table('reminders')
+             ->where('reciever_id',$userId)->count();
+             $reminders = DB::table('reminders')
+             ->join('users', 'reminders.sender_id', '=', 'users.id') 
+             ->select('reminders.*', 'users.Username as sender_name')   
+             ->where('reminders.reciever_id', $userId)             
+             ->get();
 
-
-                return view("pages.user.dashboard",compact('bloodrequests','donationcount','donorcount','pendingrequests','quantity','user','userProfile','bloodbankscount'));
+                return view("pages.user.dashboard",compact('remindercount','reminders','bloodrequests','donationcount','donorcount','pendingrequests','quantity','user','userProfile','bloodbankscount'));
 
     }
     public function register(Request $request)
