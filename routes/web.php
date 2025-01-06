@@ -137,7 +137,7 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('pages.about&contact.contact');
 })->name('views.contact');
-Route::get('/profile/create/step1/{user_id}',[UserController::class,'create1'])->name('profile.view.step1');
+/* Route::get('/profile/create/step1/{user_id}',[UserController::class,'create1'])->name('profile.view.step1');
 Route::post('/profile/store/step1/{user_id}',[UserController::class,'store1'])->name('profile.post.step1');
 Route::get('/profile/create/step2/{user_id}',[UserController::class,'create2'])->name('profile.view.step2');
 Route::post('/profile/store/step2/{user_id}', [UserController::class, 'store2'])->name('profile.post.step2');
@@ -148,10 +148,13 @@ Route::post('/profile/store/step4/{user_id}',[UserController::class,'store4'])->
 Route::get('/profile/create/step5/{user_id}',[UserController::class,'create5'])->name('profile.view.step5');
 Route::post('/profile/store/step5/{user_id}',[UserController::class,'store5'])->name('profile.post.step5');
 Route::get('/profile/create/step6/{user_id}',[UserController::class,'create6'])->name('profile.view.step6');
-Route::post('/profile/store/step6/{user_id}',[UserController::class,'store6'])->name('profile.post.step6');
+Route::post('/profile/store/step6/{user_id}',[UserController::class,'store6'])->name('profile.post.step6'); */
 Route::get('/forgot-password',[AuthController::class,'showForgetPasswordForm'])->name('password.request');
 Route::post('/forgot-password-link',[AuthController::class,'sendResetEmail'])->name('password.email');
 Route::get('/reset-password/{token}',[AuthController::class,'showResetPasswordForm'])->name('password.reset');
 Route::post('/reset-password',[AuthController::class,'resetPassword'])->name('password.update');
+
+Route::get('/profile/complete/{user_id}', [UserController::class, 'completeProfileView'])->name('profile.view.complete');
+Route::post('/profile/complete/{user_id}', [UserController::class, 'completeProfile'])->name('profile.complete');
 
 
