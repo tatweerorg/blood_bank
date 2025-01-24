@@ -37,9 +37,7 @@
             </div>
 
         </div>
-        <div class="button-container">
-            <a href="" class="btn-pdf">إضافة ملاحظة</a>
-        </div>
+      
         <div class="notification">
             <div class="notifi-header">
                 <p class="fs-4">جميع الاشعارات </p>

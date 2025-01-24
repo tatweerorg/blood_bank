@@ -60,10 +60,43 @@ class BloodInventoryController extends Controller
     {
         //
         $inventroy=BloodInventory::find($id);
-        $center=User::find($inventroy->center_id);
-        return view ('pages.admin.bloodInventoryedit',compact('inventroy','center'));
+        $center=User::find($inventroy->center_id);      
+
+
+        return view ('pages.bloodBank.bloodInventoryedit',compact('inventroy','center'));
 
     }
+    public function updatequantity(Request $request, $id)
+    {
+        $request->validate([
+            'Quantity' => 'required|integer',
+        ]);
+
+        $bloodStock = BloodInventory::findOrFail($id);
+        $bloodStock->Quantity = $request->Quantity;
+        $bloodStock->updated_at = now();
+        $bloodStock->save();
+        
+
+        return redirect()->route('dashboardblood.bloodstock')->with('success', 'Quantity updated successfully!');
+    }
+    public function destroyquantity($id)
+    {
+        try {
+            // البحث عن المخزون باستخدام الـ ID
+            $bloodInventory = BloodInventory::findOrFail($id);
+            // حذف المخزون
+            $bloodInventory->delete();
+    
+            // إرجاع استجابة بنجاح
+            return response()->json(['message' => 'تم الحذف بنجاح!'], 200);
+        } catch (\Exception $e) {
+            // في حال حدوث خطأ، إرجاع رسالة خطأ
+            return response()->json(['message' => 'حدث خطأ أثناء عملية الحذف.'], 500);
+        }
+    }
+    
+    
 
     /**
      * Update the specified resource in storage.

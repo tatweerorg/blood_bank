@@ -97,7 +97,8 @@ Route::middleware('checkUserType:BloodCenter')->group(function(){
     })->name('dashboardblood.home');
     Route::get('/bloodcenter/donors',[BloodCenterController::class,'donations'])->name('dashboardblood.donors');
     Route::get('/bloodcenter/setting',[BloodCenterController::class,'setting'])->name('dashboardblood.setting');
-
+    Route::get('/bloodinventoriesbank/{id}/edit',[BloodInventoryController::class,'edit'])->name('bloodInventory.edit');
+    Route::post('/bloodinventoriesbank/{id}', [BloodInventoryController::class, 'updatequantity'])->name('bloodInventory.update');
     Route::get('/bloodcenter/donationRequests',[BloodCenterController::class,'requests'])->name('dashboardblood.donationRequests');
    Route::get('/bloodcenter/giverequests',[BloodCenterController::class,'giverequests'])->name('dashboardblood.giverequests');
     Route::get('/bloodcenter/bloodstock',[BloodCenterController::class,'inventory'])->name('dashboardblood.bloodstock');
@@ -105,7 +106,7 @@ Route::middleware('checkUserType:BloodCenter')->group(function(){
     Route::post('/blood/add', [BloodCenterController::class, 'addBlood'])->name('dashboardblood.addBlood');
     Route::post('/bloodrequests/{id}/updateStatus',[BloodRequestController::class, 'updateStatus'])->name('bloodRequest.updateStatus');
     Route::post('/giverequests/{id}/updateStatus',[DonationController::class, 'updateStatus'])->name('giverequests.updateStatus');
-
+    Route::delete('/bloodinventoriesbank/{id}', [BloodInventoryController::class, 'destroyquantity'])->name('bloodInventory.destroy');
 
 
 

@@ -12,7 +12,6 @@
                     <th>نوع الدم</th>
                     <th>كمية الدم</th>
                     <th>تاريخ التبرع </th>
-                    <th>العمليات</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,9 +22,7 @@
                         <td>{{ $donation->blood_type }}</td>
                         <td>{{ $donation->quantity }}</td>
                         <td>{{ $donation->last_donation_date }}</td>
-                        <td>
-                            <a href="" class="btn btn-warning editbtn">معلوات</a>
-                        </td>
+                        
                     </tr>
                 @endforeach
             </tbody>

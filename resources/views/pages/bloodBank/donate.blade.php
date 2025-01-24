@@ -34,4 +34,5 @@
             <button type="submit" class="btn submit">إرسال الطلب</button>
         </div>
     </form>
+    
 @endsection

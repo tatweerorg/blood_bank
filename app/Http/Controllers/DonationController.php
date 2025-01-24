@@ -162,39 +162,85 @@ class DonationController extends Controller
             return redirect()->route('dashboard.donations')->with('error', ' عملية التبرع غير موجودة');
         }
     }
-    public function updateStatus(Request $request , $id){
+    
+
+
+    public function updateStatus(Request $request, $id)
+    {
         $request->validate([
             'Status' => 'required|in:Approved,Cancelled',
         ]);
-       $donation= Donation::find($id);
-       $centerId=Auth::id();
-
-       $inventory = BloodInventory::where('center_id', $centerId)
-       ->where('BloodType', $donation->blood_type)
-       ->first();
-    if($inventory){
-        if ($request->Status === 'Approved') {
-            $inventory->Quantity = $inventory->Quantity + $donation->quantity;
+        
+        // Find the blood request by ID
+        $donation = Donation::findOrFail($id); // Using findOrFail to ensure it exists
+        $sender = Auth::id(); // The current center's ID (authenticated user)
+        
+        // Find the corresponding blood inventory for the center and blood type
+        $inventory = BloodInventory::where('center_id', $sender)
+            ->where('BloodType', $donation->blood_type)
+            ->first();
+    
+        if ($inventory) {
+            if ($request->Status === 'Approved') {
+                // Update the quantity in the inventory when approved
+                $inventory->quantity += $donation->quantity;
+        
+                // Create a reminder for the user who made the blood request
+                Reminder::create([
+                    'sender_id' => $sender,  // The sender is the current center
+                    'reciever_id' => $donation->user_id,  // The receiver is the user who made the request
+                    'Status' => 'unseen',  // The reminder is marked as unseen
+                    'reminder' => 'approve',  // The reminder message is "approve"
+                    'reminder_date' => now()->format('Y-m-d H:i:s'),  // The reminder's date and time
+                ]);
+            }
             
-        } 
-    $inventory->save();
-
-}else {
-    if ($request->Status === 'Approved') {
-        BloodInventory::create([
-            'center_id' => $centerId,
-            'BloodType' => $donation->blood_type,
-            'Quantity' => $donation->quantity,
-        ]);
-    } elseif ($request->Status === 'Cancelled') {
-        return redirect()->back()->with('error', 'لا يمكن إلغاء طلب دون وجود سجل للمخزون.');
+            // Save the updated inventory data
+            $inventory->save();
+            if ($request->Status === 'Cancelled') {
+                // Create a reminder for the user who made the request, if it's cancelled
+                Reminder::create([
+                    'sender_id' => $sender,  // The sender is the current center
+                    'reciever_id' => $donation->user_id,  // The receiver is the user who made the request
+                    'Status' => 'unseen',  // The reminder is marked as unseen
+                    'reminder' => 'cancelled',  // The reminder message is "cancelled"
+                    'reminder_date' => now()->format('Y-m-d H:i:s'),  // The reminder's date and time
+                ]);
+            }
+        } else {
+            if ($request->Status === 'Approved') {
+                // Update the quantity in the inventory when approved
+                BloodInventory::create([
+                    'center_id' => $sender,
+                    'BloodType' => $donation->blood_type,
+                    'Quantity' => $donation->quantity,]);
+                   
+                // Create a reminder for the user who made the blood request
+                Reminder::create([
+                    'sender_id' => $sender,  // The sender is the current center
+                    'reciever_id' => $donation->user_id,  // The receiver is the user who made the request
+                    'Status' => 'unseen',  // The reminder is marked as unseen
+                    'reminder' => 'approve',  // The reminder message is "approve"
+                    'reminder_date' => now()->format('Y-m-d H:i:s'),  // The reminder's date and time
+                ]);
+            }else if($request->Status === 'Cancelled') {
+                // Create a reminder for the user who made the request, if it's cancelled
+                Reminder::create([
+                    'sender_id' => $sender,  // The sender is the current center
+                    'reciever_id' => $donation->user_id,  // The receiver is the user who made the request
+                    'Status' => 'unseen',  // The reminder is marked as unseen
+                    'reminder' => 'cancelled',  // The reminder message is "cancelled"
+                    'reminder_date' => now()->format('Y-m-d H:i:s'),  // The reminder's date and time
+                ]);
+            }
+        }
+     
+    
+        // Update the blood request status to Approved or Cancelled
+        $donation->Status = $request->Status;
+        $donation->save();
+        
+        return redirect()->back()->with('success', 'تم تغيير حالة الطلب');
     }
-}
-
-
-    $donation->Status = $request->Status;
-    $donation->save();
-
-    return redirect()->back()->with('success', 'تم تغيير حالة الطلب  ');
-    }
+    
 }

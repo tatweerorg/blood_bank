@@ -48,4 +48,23 @@
             <button type="submit" class="btn btn-danger">إرسال الطلب</button>
         </div>
     </form>
+    <script>
+    window.onload = function() {
+        // الحصول على التاريخ والوقت الحالي
+        const today = new Date();
+
+        // تعديل التاريخ ليكون بتنسيق "YYYY-MM-DDTHH:MM"
+        const year = today.getFullYear();
+        const month = (today.getMonth() + 1).toString().padStart(2, '0');
+        const day = today.getDate().toString().padStart(2, '0');
+        const hours = today.getHours().toString().padStart(2, '0');
+        const minutes = today.getMinutes().toString().padStart(2, '0');
+
+        // دمج القيمة بالشكل المطلوب
+        const todayString = `${year}-${month}-${day}T${hours}:${minutes}`;
+
+        // تعيين خاصية min لتكون التاريخ والوقت الحالي
+        document.getElementById("last_donation_date").setAttribute("min", todayString);
+    };
+</script>
 @endsection
