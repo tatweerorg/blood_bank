@@ -23,11 +23,7 @@ class DonationController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
         $centers = User::where('UserType', 'BloodCenter')->get();
@@ -36,20 +32,16 @@ class DonationController extends Controller
     
     }
 
-    /**
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request){
         $request->validate([
             'center_id' => 'required', 
             'blood_type' => 'required|string|max:3', 
             'quantity' => 'required|integer|min:1', 
             'last_donation_date' => 'required|date',
-            'Status'=>'required',
         ]);
-        $donations=Donation::create([
+        
+        Donation::create([
             'user_id'=> Auth::id(),
             'center_id'=>$request->center_id,
             'blood_type' => $request->input('blood_type'),
@@ -58,6 +50,7 @@ class DonationController extends Controller
             ->format('Y-m-d H:i:s'),
             'Status'=>'Pending'
         ]);
+
         Reminder::create(
             [
             'sender_id'=> Auth::id(),

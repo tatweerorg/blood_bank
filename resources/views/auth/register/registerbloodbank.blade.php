@@ -6,15 +6,15 @@
 @section('content')
     <section class="register-section">
         <div class="container">
-           
+
 
             <form action="{{ route('register.bloodbank.post') }}" method="POST" class="register-form">
                 @csrf
- <h2>إنشاء حساب جديد</h2>
+                <h2>إنشاء حساب جديد</h2>
 
-            @if(session('success'))
-                <p>{{ session('success') }}</p>
-            @endif
+                @if (session('success'))
+                    <p>{{ session('success') }}</p>
+                @endif
                 <!-- Username -->
                 <div class="form-group">
                     <label for="Username">اسم المستخدم</label>
@@ -43,7 +43,8 @@
                 </div>
 
                 <!-- UserType (hidden field or dropdown if needed) -->
-                <input type="hidden" name="UserType" value="BloodCenter"> <!-- You can change this or use a dropdown for role selection -->
+                <input type="hidden" name="UserType" value="BloodCenter">
+                <!-- You can change this or use a dropdown for role selection -->
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn-primary">تسجيل</button>
