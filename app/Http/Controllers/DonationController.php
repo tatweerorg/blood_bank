@@ -22,8 +22,7 @@ class DonationController extends Controller
     {
         //
     }
-
-   
+    
     public function create()
     {
         $centers = User::where('UserType', 'BloodCenter')->get();
