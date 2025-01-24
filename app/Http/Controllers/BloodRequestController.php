@@ -103,7 +103,7 @@ class BloodRequestController extends Controller
         if ($inventory) {
             if ($request->Status === 'Approved') {
                 // Update the quantity in the inventory when approved
-                $inventory->Quantity += $bloodRequest->Quantity;
+                $inventory->Quantity -= $bloodRequest->Quantity;
         
                 // Create a reminder for the user who made the blood request
                 Reminder::create([
