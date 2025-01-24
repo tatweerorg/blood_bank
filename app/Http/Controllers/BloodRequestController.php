@@ -111,7 +111,7 @@ class BloodRequestController extends Controller
     $inventory->save();
 
 }else {
-    if ($request->Status === 'Approved') {
+    if ($request->Status === 'Cancelled') {
         BloodInventory::create([
             'center_id' => $centerId,
             'BloodType' => $bloodRequest->BloodType,

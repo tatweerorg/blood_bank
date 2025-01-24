@@ -65,6 +65,7 @@ class UserController extends Controller
             'Username.unique'=>'يوجد حساب بالفعل بنفس هذا الاسم',
             'Email.required'=>'يجب إدخال الإيميل',
             'Email.email'=>'يجب أن يكون الإيميل حقيقي',
+            'Password.required' => 'يجب إدخال كلمة السر ',
             'Password.min' => 'يجب أن تكون كلمة السر على الأقل 8 أحرف',
             'Password.regex' => 'يجب أن تحتوي كلمة السر على حرف صغير وحرف كبير ورموز وأرقام',
             'UserType.in'=>'يجب أن يكون المستخدم إما من نوع مستخدم عادي أو أدمن أو بنك دم'
@@ -89,12 +90,14 @@ class UserController extends Controller
             'Email' => 'required|string|email|unique:users,Email',
             'Password' => 'required|string|min:8|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/',
             'UserType' => 'required|in:Admin,User,BloodCenter',
+            
         ],[
             'Username.required' => 'يجب إدخال اسم المستخدم',
             'Username.string'=>'يجب أن يكون الاسم نصاً',
             'Username.unique'=>'يوجد حساب بالفعل بنفس هذا الاسم',
             'Email.required'=>'يجب إدخال الإيميل',
             'Email.email'=>'يجب أن يكون الإيميل حقيقي',
+            'Password.required' => 'يجب إدخال كلمة السر ',
             'Password.min' => 'يجب أن تكون كلمة السر على الأقل 8 أحرف',
             'Password.regex' => 'يجب أن تحتوي كلمة السر على حرف صغير وحرف كبير ورموز وأرقام',
             'UserType.in'=>'يجب أن يكون المستخدم إما من نوع مستخدم عادي أو أدمن أو بنك دم'
